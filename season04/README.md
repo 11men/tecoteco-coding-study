@@ -86,7 +86,7 @@ touch README.md
 - 선정된 문제 및 팀 배정
 - 전체 회고
 
-👉 [SESSION_README_template.md](./templates/SESSION_README_template.md) 참고
+👉 [session_readme_template.md](./templates/session_readme.md) 참고
 
 ### 2️⃣ 팀별 프로젝트 폴더 생성
 
@@ -112,7 +112,7 @@ team-{A/B/C}-{프로젝트-간단명}/
 - 배운 점 / 회고
 - 향후 개선 방향
 
-👉 [PROJECT_README_template.md](./templates/PROJECT_README_template.md) 참고
+👉 [projdct_readme_template.md](./templates/project_readme.md) 참고
 
 ### 4️⃣ 코드 및 자료 업로드
 
