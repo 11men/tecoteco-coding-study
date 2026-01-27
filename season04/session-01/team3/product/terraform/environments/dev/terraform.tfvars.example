@@ -1,0 +1,6 @@
+# AWS SSH Key Pair 이름
+key_name = "your-key-pair-name"
+
+# DB 설정
+db_username = "busapp"
+db_password = "your-secure-password"
