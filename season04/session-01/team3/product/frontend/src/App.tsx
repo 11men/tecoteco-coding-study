@@ -1,28 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useNotification } from './hooks/useNotification';
 import './App.css';
 
 function App() {
-  const {
-    isSupported,
-    permission,
-    isSubscribed,
-    requestPermission,
-    sendMockStrikeAlert,
-    sendMockStrikeStart,
-    sendMockStrikeEnd,
-    sendMockNegotiation,
-  } = useNotification();
-
-  const handleSubscribe = async () => {
-    const success = await requestPermission();
-    if (success) {
-      alert('알림 구독이 완료되었습니다!');
-    } else {
-      alert('알림 권한이 거부되었습니다. 브라우저 설정에서 알림을 허용해주세요.');
-    }
-  };
-
   return (
     <div className="app">
       <header className="header">
@@ -31,83 +10,6 @@ function App() {
       </header>
 
       <main className="main">
-        {/* 알림 상태 카드 */}
-        <section className="card status-card">
-          <h2>알림 상태</h2>
-          <div className="status-grid">
-            <div className="status-item">
-              <span className="label">브라우저 지원</span>
-              <span className={`value ${isSupported ? 'success' : 'error'}`}>
-                {isSupported ? '지원' : '미지원'}
-              </span>
-            </div>
-            <div className="status-item">
-              <span className="label">알림 권한</span>
-              <span className={`value ${permission === 'granted' ? 'success' : permission === 'denied' ? 'error' : 'warning'}`}>
-                {permission === 'granted' ? '허용' : permission === 'denied' ? '거부' : '대기'}
-              </span>
-            </div>
-            <div className="status-item">
-              <span className="label">구독 상태</span>
-              <span className={`value ${isSubscribed ? 'success' : 'warning'}`}>
-                {isSubscribed ? '구독중' : '미구독'}
-              </span>
-            </div>
-          </div>
-
-          {permission !== 'granted' && (
-            <button className="btn btn-primary" onClick={handleSubscribe}>
-              알림 구독하기
-            </button>
-          )}
-        </section>
-
-        {/* 테스트 알림 카드 */}
-        <section className="card">
-          <h2>테스트 알림 보내기</h2>
-          <p className="description">
-            아래 버튼을 눌러 각 상황별 알림을 테스트해보세요.
-          </p>
-
-          <div className="button-grid">
-            <button
-              className="btn btn-alert"
-              onClick={sendMockStrikeAlert}
-              disabled={permission !== 'granted'}
-            >
-              파업 예고 알림
-            </button>
-
-            <button
-              className="btn btn-danger"
-              onClick={sendMockStrikeStart}
-              disabled={permission !== 'granted'}
-            >
-              파업 시작 알림
-            </button>
-
-            <button
-              className="btn btn-info"
-              onClick={sendMockNegotiation}
-              disabled={permission !== 'granted'}
-            >
-              협상 진행 알림
-            </button>
-
-            <button
-              className="btn btn-success"
-              onClick={sendMockStrikeEnd}
-              disabled={permission !== 'granted'}
-            >
-              파업 종료 알림
-            </button>
-          </div>
-
-          {permission !== 'granted' && (
-            <p className="hint">먼저 알림을 구독해주세요</p>
-          )}
-        </section>
-
         {/* 뉴스 바로가기 */}
         <section className="card">
           <h2>파업 관련 뉴스</h2>
@@ -153,7 +55,6 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>PWA 알림 테스트 v1.0</p>
         <p>2026 버스파업 알림 서비스</p>
       </footer>
     </div>
