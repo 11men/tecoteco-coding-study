@@ -10,6 +10,7 @@ public class Notification {
     private LocalDateTime createdAt;
 
     public Notification(String title, String message, NotificationType type) {
+        validate(title, message, type);
         this.title = title;
         this.message = message;
         this.type = type;
@@ -17,11 +18,24 @@ public class Notification {
     }
 
     public Notification(Long id, String title, String message, NotificationType type, LocalDateTime createdAt) {
+        validate(title, message, type);
         this.id = id;
         this.title = title;
         this.message = message;
         this.type = type;
         this.createdAt = createdAt;
+    }
+
+    private void validate(String title, String message, NotificationType type) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("title must not be blank");
+        }
+        if (message == null || message.isBlank()) {
+            throw new IllegalArgumentException("message must not be blank");
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("type must not be null");
+        }
     }
 
     public Long getId() { return id; }
