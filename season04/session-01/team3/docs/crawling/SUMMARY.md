@@ -321,10 +321,10 @@ ORDER BY changed_at DESC;
 
 ## 📚 참고 문서
 
-- [README.md](./README.md) - 전체 시스템 개요
-- [database-schema.md](./database-schema.md) - DB 스키마 상세
-- [api-spec.md](./api-spec.md) - Admin API 명세
-- [implementation-guide.md](./implementation-guide.md) - 구현 가이드 (Step-by-Step)
+- [README.md](README.md) - 전체 시스템 개요
+- [database-schema.md](database-schema.md) - DB 스키마 상세
+- [api-spec.md](api-spec.md) - Admin API 명세
+- [implementation-guide.md](implementation-guide.md) - 구현 가이드 (Step-by-Step)
 
 ## 🎯 다음 단계
 
