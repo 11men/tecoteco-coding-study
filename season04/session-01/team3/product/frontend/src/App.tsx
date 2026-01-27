@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useNotification } from './hooks/useNotification';
 import './App.css';
 
@@ -25,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>🚌 버스파업 알림</h1>
+        <h1>버스파업 알림</h1>
         <p>서울/경기 버스 파업 실시간 알림 서비스</p>
       </header>
 
@@ -37,26 +38,26 @@ function App() {
             <div className="status-item">
               <span className="label">브라우저 지원</span>
               <span className={`value ${isSupported ? 'success' : 'error'}`}>
-                {isSupported ? '✅ 지원' : '❌ 미지원'}
+                {isSupported ? '지원' : '미지원'}
               </span>
             </div>
             <div className="status-item">
               <span className="label">알림 권한</span>
               <span className={`value ${permission === 'granted' ? 'success' : permission === 'denied' ? 'error' : 'warning'}`}>
-                {permission === 'granted' ? '✅ 허용' : permission === 'denied' ? '❌ 거부' : '⏳ 대기'}
+                {permission === 'granted' ? '허용' : permission === 'denied' ? '거부' : '대기'}
               </span>
             </div>
             <div className="status-item">
               <span className="label">구독 상태</span>
               <span className={`value ${isSubscribed ? 'success' : 'warning'}`}>
-                {isSubscribed ? '✅ 구독중' : '⏳ 미구독'}
+                {isSubscribed ? '구독중' : '미구독'}
               </span>
             </div>
           </div>
 
           {permission !== 'granted' && (
             <button className="btn btn-primary" onClick={handleSubscribe}>
-              🔔 알림 구독하기
+              알림 구독하기
             </button>
           )}
         </section>
@@ -74,7 +75,7 @@ function App() {
               onClick={sendMockStrikeAlert}
               disabled={permission !== 'granted'}
             >
-              ⚠️ 파업 예고 알림
+              파업 예고 알림
             </button>
 
             <button
@@ -82,7 +83,7 @@ function App() {
               onClick={sendMockStrikeStart}
               disabled={permission !== 'granted'}
             >
-              🚨 파업 시작 알림
+              파업 시작 알림
             </button>
 
             <button
@@ -90,7 +91,7 @@ function App() {
               onClick={sendMockNegotiation}
               disabled={permission !== 'granted'}
             >
-              📢 협상 진행 알림
+              협상 진행 알림
             </button>
 
             <button
@@ -98,13 +99,22 @@ function App() {
               onClick={sendMockStrikeEnd}
               disabled={permission !== 'granted'}
             >
-              ✅ 파업 종료 알림
+              파업 종료 알림
             </button>
           </div>
 
           {permission !== 'granted' && (
-            <p className="hint">⬆️ 먼저 알림을 구독해주세요</p>
+            <p className="hint">먼저 알림을 구독해주세요</p>
           )}
+        </section>
+
+        {/* 뉴스 바로가기 */}
+        <section className="card">
+          <h2>파업 관련 뉴스</h2>
+          <p className="description">최신 파업 소식을 확인하세요</p>
+          <Link to="/news" className="btn btn-primary" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+            뉴스 보기
+          </Link>
         </section>
 
         {/* 파업 현황 카드 (목업) */}
@@ -112,7 +122,7 @@ function App() {
           <h2>현재 파업 현황</h2>
           <div className="strike-status">
             <div className="strike-badge active">
-              🔴 파업 중
+              파업 중
             </div>
             <div className="strike-info">
               <h3>2026년 1월 서울 시내버스 파업</h3>
@@ -144,7 +154,7 @@ function App() {
 
       <footer className="footer">
         <p>PWA 알림 테스트 v1.0</p>
-        <p>© 2026 버스파업 알림 서비스</p>
+        <p>2026 버스파업 알림 서비스</p>
       </footer>
     </div>
   );
