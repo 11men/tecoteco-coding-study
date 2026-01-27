@@ -112,7 +112,7 @@ export const useNotification = () => {
 
   const sendMockStrikeAlert = useCallback(() => {
     sendNotification({
-      title: '🚌 [긴급] 서울 시내버스 파업 예고',
+      title: '[긴급] 서울 시내버스 파업 예고',
       body: '내일(1/13) 04:00부터 서울 시내버스 파업이 예정되어 있습니다.',
       type: 'strike_alert',
       data: { strikeId: 'STK-2026-001', region: 'seoul' },
@@ -121,7 +121,7 @@ export const useNotification = () => {
 
   const sendMockStrikeStart = useCallback(() => {
     sendNotification({
-      title: '🚨 [속보] 서울 시내버스 파업 시작',
+      title: '[속보] 서울 시내버스 파업 시작',
       body: '서울 시내버스 390개 노선이 운행을 중단했습니다.',
       type: 'strike_start',
       data: { strikeId: 'STK-2026-001', region: 'seoul' },
@@ -130,7 +130,7 @@ export const useNotification = () => {
 
   const sendMockStrikeEnd = useCallback(() => {
     sendNotification({
-      title: '✅ 서울 시내버스 파업 종료',
+      title: '서울 시내버스 파업 종료',
       body: '노사 협상이 타결되어 내일 첫차부터 정상 운행됩니다.',
       type: 'strike_end',
       data: { strikeId: 'STK-2026-001', region: 'seoul' },
@@ -139,7 +139,7 @@ export const useNotification = () => {
 
   const sendMockNegotiation = useCallback(() => {
     sendNotification({
-      title: '📢 노사 협상 진행 중',
+      title: '노사 협상 진행 중',
       body: '서울시버스노조와 사측 간 협상이 진행 중입니다.',
       type: 'negotiation',
       data: { strikeId: 'STK-2026-001' },

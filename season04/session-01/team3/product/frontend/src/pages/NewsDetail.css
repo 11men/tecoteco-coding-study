@@ -1,0 +1,131 @@
+.news-detail {
+  min-height: 100vh;
+  background: white;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+}
+
+.detail-header .back-btn,
+.detail-header .share-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #3b82f6;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.detail-content {
+  padding: 1.5rem;
+}
+
+.detail-category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.detail-title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1f2937;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.detail-source {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.detail-body {
+  line-height: 1.8;
+  color: #374151;
+}
+
+.detail-body p {
+  margin: 0 0 1rem;
+}
+
+.not-found {
+  padding: 3rem;
+  text-align: center;
+}
+
+.not-found h2 {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.not-found a {
+  color: #3b82f6;
+}
+
+.related-section {
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.related-section h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.related-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-title {
+  font-size: 0.875rem;
+  color: #1f2937;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+
+.related-source {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
