@@ -1,0 +1,21 @@
+{
+  "name": "bus-strike-crawler",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "버스 파업 정보 크롤러",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "test": "tsx src/test.ts",
+    "crawl": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "playwright": "^1.49.1",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
