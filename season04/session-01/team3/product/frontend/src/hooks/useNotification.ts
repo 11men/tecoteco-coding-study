@@ -1,17 +1,20 @@
 import { useState, useEffect, useCallback } from 'react';
+import { getToken, onMessage } from 'firebase/messaging';
+import { messaging } from '../firebase';
+
+const VAPID_KEY = 'BF5Hrjy0Pvpq-YIodfyrcp_aFbLk0-kwYj48VbBqQF9rgWcXDXIK95it8QO5zCiRfol1jxeEnSxNL7o27RGPGNw';
 
 interface NotificationState {
   isSupported: boolean;
   permission: NotificationPermission;
   isSubscribed: boolean;
+  fcmToken: string | null;
 }
 
 interface StrikeNotification {
-  id: string;
   title: string;
   body: string;
   type: 'strike_alert' | 'strike_start' | 'strike_end' | 'negotiation';
-  timestamp: Date;
   data?: {
     strikeId?: string;
     affectedRoutes?: string[];
@@ -24,6 +27,7 @@ export const useNotification = () => {
     isSupported: false,
     permission: 'default',
     isSubscribed: false,
+    fcmToken: null,
   });
 
   useEffect(() => {
@@ -33,6 +37,19 @@ export const useNotification = () => {
       isSupported,
       permission: isSupported ? Notification.permission : 'denied',
     }));
+
+    // FCM 포그라운드 메시지 수신
+    if (isSupported) {
+      onMessage(messaging, (payload) => {
+        console.log('FCM 메시지 수신:', payload);
+        if (payload.notification) {
+          new Notification(payload.notification.title || '알림', {
+            body: payload.notification.body,
+            icon: '/bus-icon.svg',
+          });
+        }
+      });
+    }
   }, []);
 
   const requestPermission = useCallback(async (): Promise<boolean> => {
@@ -46,7 +63,21 @@ export const useNotification = () => {
       setState(prev => ({ ...prev, permission }));
 
       if (permission === 'granted') {
-        setState(prev => ({ ...prev, isSubscribed: true }));
+        // Service Worker 등록
+        const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+
+        // FCM 토큰 가져오기
+        const token = await getToken(messaging, {
+          vapidKey: VAPID_KEY,
+          serviceWorkerRegistration: registration,
+        });
+
+        console.log('FCM Token:', token);
+        setState(prev => ({ ...prev, isSubscribed: true, fcmToken: token }));
+
+        // TODO: 백엔드에 토큰 전송
+        // await fetch('/api/notifications/subscribe', { method: 'POST', body: JSON.stringify({ token }) });
+
         return true;
       }
       return false;
@@ -56,7 +87,7 @@ export const useNotification = () => {
     }
   }, [state.isSupported]);
 
-  const sendNotification = useCallback((notification: Omit<StrikeNotification, 'id' | 'timestamp'>) => {
+  const sendNotification = useCallback((notification: StrikeNotification) => {
     if (state.permission !== 'granted') {
       console.warn('알림 권한이 없습니다.');
       return;
@@ -64,8 +95,7 @@ export const useNotification = () => {
 
     const options: NotificationOptions = {
       body: notification.body,
-      icon: '/pwa-192x192.png',
-      badge: '/pwa-192x192.png',
+      icon: '/bus-icon.svg',
       tag: notification.type,
       requireInteraction: notification.type === 'strike_start',
       data: notification.data,
@@ -83,25 +113,18 @@ export const useNotification = () => {
   const sendMockStrikeAlert = useCallback(() => {
     sendNotification({
       title: '🚌 [긴급] 서울 시내버스 파업 예고',
-      body: '내일(1/13) 04:00부터 서울 시내버스 파업이 예정되어 있습니다. 대체 교통수단을 확인하세요.',
+      body: '내일(1/13) 04:00부터 서울 시내버스 파업이 예정되어 있습니다.',
       type: 'strike_alert',
-      data: {
-        strikeId: 'STK-2026-001',
-        affectedRoutes: ['143', '240', '100'],
-        region: 'seoul',
-      },
+      data: { strikeId: 'STK-2026-001', region: 'seoul' },
     });
   }, [sendNotification]);
 
   const sendMockStrikeStart = useCallback(() => {
     sendNotification({
       title: '🚨 [속보] 서울 시내버스 파업 시작',
-      body: '서울 시내버스 390개 노선이 운행을 중단했습니다. 지하철 또는 대체버스를 이용해주세요.',
+      body: '서울 시내버스 390개 노선이 운행을 중단했습니다.',
       type: 'strike_start',
-      data: {
-        strikeId: 'STK-2026-001',
-        region: 'seoul',
-      },
+      data: { strikeId: 'STK-2026-001', region: 'seoul' },
     });
   }, [sendNotification]);
 
@@ -110,21 +133,16 @@ export const useNotification = () => {
       title: '✅ 서울 시내버스 파업 종료',
       body: '노사 협상이 타결되어 내일 첫차부터 정상 운행됩니다.',
       type: 'strike_end',
-      data: {
-        strikeId: 'STK-2026-001',
-        region: 'seoul',
-      },
+      data: { strikeId: 'STK-2026-001', region: 'seoul' },
     });
   }, [sendNotification]);
 
   const sendMockNegotiation = useCallback(() => {
     sendNotification({
       title: '📢 노사 협상 진행 중',
-      body: '서울시버스노조와 사측 간 협상이 진행 중입니다. 결과를 기다려주세요.',
+      body: '서울시버스노조와 사측 간 협상이 진행 중입니다.',
       type: 'negotiation',
-      data: {
-        strikeId: 'STK-2026-001',
-      },
+      data: { strikeId: 'STK-2026-001' },
     });
   }, [sendNotification]);
 
