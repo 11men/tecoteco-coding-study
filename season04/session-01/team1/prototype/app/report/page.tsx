@@ -41,15 +41,15 @@ export default function ReportPage() {
     return (
       <div className="min-h-screen bg-gray-100">
         <header className="bg-white shadow-sm">
-          <div className="max-w-md mx-auto px-4 py-4 flex items-center gap-3">
-            <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <div className="px-4 py-4 flex items-center gap-3">
+            <Link href="/strike-detail" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
               <ArrowLeft size={20} className="text-gray-600" />
             </Link>
             <h1 className="text-lg font-bold text-gray-900">현장 제보</h1>
           </div>
         </header>
 
-        <main className="max-w-md mx-auto px-4 py-6">
+        <main className="px-4 py-6">
           <div className="bg-white rounded-xl p-8 shadow-sm text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle size={32} className="text-green-600" />
@@ -60,11 +60,11 @@ export default function ReportPage() {
               검증 후 정보에 반영됩니다.
             </p>
             <Link
-              href="/"
-              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors"
+              href="/strike-detail"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
             >
-              <Home size={18} />
-              홈으로 돌아가기
+              <ArrowLeft size={18} />
+              파업 정보로 돌아가기
             </Link>
           </div>
         </main>
@@ -76,15 +76,15 @@ export default function ReportPage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4 flex items-center gap-3">
-          <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
+        <div className="px-4 py-4 flex items-center gap-3">
+          <Link href="/strike-detail" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft size={20} className="text-gray-600" />
           </Link>
           <h1 className="text-lg font-bold text-gray-900">현장 제보</h1>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {/* 제보 유형 선택 */}
         <div className="bg-white rounded-xl p-5 shadow-sm">
           <h2 className="font-semibold text-gray-900 mb-4">무엇을 제보하시나요?</h2>

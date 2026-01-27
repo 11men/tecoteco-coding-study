@@ -81,7 +81,7 @@ export default function CarpoolPage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4">
+        <div className="px-4 py-4">
           <div className="flex items-center gap-2 mb-4">
             <Users size={24} className="text-green-500" />
             <h1 className="text-xl font-bold text-gray-900">카풀</h1>
@@ -91,7 +91,7 @@ export default function CarpoolPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setActiveTab('find')}
-              className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+              className={`flex-1 py-2.5 rounded-lg font-medium transition-colors ${
                 activeTab === 'find'
                   ? 'bg-green-500 text-white'
                   : 'bg-gray-100 text-gray-600'
@@ -101,7 +101,7 @@ export default function CarpoolPage() {
             </button>
             <button
               onClick={() => setActiveTab('my')}
-              className={`flex-1 py-2 rounded-lg font-medium transition-colors ${
+              className={`flex-1 py-2.5 rounded-lg font-medium transition-colors ${
                 activeTab === 'my'
                   ? 'bg-green-500 text-white'
                   : 'bg-gray-100 text-gray-600'
@@ -113,7 +113,7 @@ export default function CarpoolPage() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {activeTab === 'find' ? (
           <>
             {/* 검색 필터 */}

@@ -67,7 +67,7 @@ export default function TaxiPage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4">
+        <div className="px-4 py-4">
           <div className="flex items-center gap-2 mb-4">
             <Car size={24} className="text-yellow-500" />
             <h1 className="text-xl font-bold text-gray-900">택시</h1>
@@ -77,7 +77,7 @@ export default function TaxiPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setRideType('solo')}
-              className={`flex-1 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-2.5 rounded-lg font-medium transition-colors flex items-center justify-center gap-1 ${
                 rideType === 'solo'
                   ? 'bg-yellow-400 text-gray-900'
                   : 'bg-gray-100 text-gray-600'
@@ -88,7 +88,7 @@ export default function TaxiPage() {
             </button>
             <button
               onClick={() => setRideType('share')}
-              className={`flex-1 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-2.5 rounded-lg font-medium transition-colors flex items-center justify-center gap-1 ${
                 rideType === 'share'
                   ? 'bg-yellow-400 text-gray-900'
                   : 'bg-gray-100 text-gray-600'
@@ -101,7 +101,7 @@ export default function TaxiPage() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {/* 경로 설정 */}
         <div className="bg-white rounded-xl p-4 shadow-sm">
           <span className="font-semibold text-gray-900 block mb-3">어디로 가시나요?</span>

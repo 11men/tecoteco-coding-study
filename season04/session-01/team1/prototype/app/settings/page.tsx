@@ -1,9 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import {
-  ArrowLeft,
   MapPin,
   Clock,
   Bus,
@@ -11,7 +9,8 @@ import {
   Bell,
   X,
   Plus,
-  Save
+  Save,
+  User
 } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -37,13 +36,8 @@ export default function SettingsPage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ArrowLeft size={20} className="text-gray-600" />
-            </Link>
-            <h1 className="text-lg font-bold text-gray-900">경로 설정</h1>
-          </div>
+        <div className="px-4 py-4 flex items-center justify-between">
+          <h1 className="text-lg font-bold text-gray-900">내 정보</h1>
           <button
             onClick={() => setIsEditing(!isEditing)}
             className="px-4 py-1.5 text-blue-500 font-medium hover:bg-blue-50 rounded-lg transition-colors"
@@ -53,7 +47,7 @@ export default function SettingsPage() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {/* 출퇴근 경로 */}
         <div className="bg-white rounded-xl p-5 shadow-sm">
           <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">

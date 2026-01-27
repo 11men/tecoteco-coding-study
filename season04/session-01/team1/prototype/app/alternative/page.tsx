@@ -91,7 +91,7 @@ export default function AlternativePage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4 flex items-center gap-3">
+        <div className="px-4 py-4 flex items-center gap-3">
           <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft size={20} className="text-gray-600" />
           </Link>
@@ -102,7 +102,7 @@ export default function AlternativePage() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {/* 평소 경로 (이용 불가) */}
         <div className="space-y-2">
           <p className="text-sm font-semibold text-gray-500">평소 경로 (파업으로 이용 불가)</p>

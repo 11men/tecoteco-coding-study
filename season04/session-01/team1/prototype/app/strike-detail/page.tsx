@@ -9,7 +9,8 @@ import {
   Calendar,
   Info,
   MapPin,
-  Clock
+  Clock,
+  MessageSquarePlus
 } from 'lucide-react';
 
 export default function StrikeDetailPage() {
@@ -47,15 +48,24 @@ export default function StrikeDetailPage() {
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-4 flex items-center gap-3">
-          <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <ArrowLeft size={20} className="text-gray-600" />
+        <div className="px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <ArrowLeft size={20} className="text-gray-600" />
+            </Link>
+            <h1 className="text-lg font-bold text-gray-900">파업 상세 정보</h1>
+          </div>
+          <Link
+            href="/report"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+          >
+            <MessageSquarePlus size={16} />
+            현장 제보
           </Link>
-          <h1 className="text-lg font-bold text-gray-900">파업 상세 정보</h1>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-6 space-y-4">
         {/* 상태 배지 */}
         <div className="bg-white rounded-xl p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -185,7 +195,7 @@ export default function StrikeDetailPage() {
         {/* 대체 경로 버튼 */}
         <Link
           href="/alternative"
-          className="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3.5 rounded-xl font-medium transition-colors"
+          className="block w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-center py-3.5 rounded-xl font-semibold transition-colors"
         >
           대체 경로 확인하기
         </Link>

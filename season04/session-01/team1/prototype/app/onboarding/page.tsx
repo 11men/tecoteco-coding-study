@@ -38,26 +38,24 @@ export default function OnboardingPage() {
     <div className="min-h-screen bg-white flex flex-col">
       {/* 진행 표시 */}
       <div className="px-4 pt-6">
-        <div className="max-w-md mx-auto">
-          <div className="flex gap-2 mb-2">
-            {[1, 2, 3].map((s) => (
-              <div
-                key={s}
-                className={`flex-1 h-1.5 rounded-full transition-colors ${
-                  s <= step ? 'bg-blue-500' : 'bg-gray-200'
-                }`}
-              />
-            ))}
-          </div>
-          <div className="text-right text-sm text-gray-500">
-            {step} / {totalSteps}
-          </div>
+        <div className="flex gap-2 mb-2">
+          {[1, 2, 3].map((s) => (
+            <div
+              key={s}
+              className={`flex-1 h-1.5 rounded-full transition-colors ${
+                s <= step ? 'bg-blue-500' : 'bg-gray-200'
+              }`}
+            />
+          ))}
+        </div>
+        <div className="text-right text-sm text-gray-500">
+          {step} / {totalSteps}
         </div>
       </div>
 
       {/* 콘텐츠 */}
       <main className="flex-1 flex flex-col justify-center px-4">
-        <div className="max-w-md mx-auto w-full">
+        <div className="w-full">
           {/* Step 1: 환영 */}
           {step === 1 && (
             <div className="text-center">
@@ -191,32 +189,30 @@ export default function OnboardingPage() {
       </main>
 
       {/* 하단 버튼 */}
-      <div className="px-4 pb-8">
-        <div className="max-w-md mx-auto space-y-3">
-          {step !== 2 && (
-            <button
-              onClick={handleNext}
-              disabled={step === 3 && (!settings.from || !settings.to)}
-              className={`w-full py-3.5 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 ${
-                step === 3 && (!settings.from || !settings.to)
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-blue-500 hover:bg-blue-600 text-white'
-              }`}
-            >
-              {step === totalSteps ? '시작하기' : '다음'}
-              <ChevronRight size={18} />
-            </button>
-          )}
+      <div className="px-4 pb-8 space-y-3">
+        {step !== 2 && (
+          <button
+            onClick={handleNext}
+            disabled={step === 3 && (!settings.from || !settings.to)}
+            className={`w-full py-3.5 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 ${
+              step === 3 && (!settings.from || !settings.to)
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white'
+            }`}
+          >
+            {step === totalSteps ? '시작하기' : '다음'}
+            <ChevronRight size={18} />
+          </button>
+        )}
 
-          {step === 3 && (
-            <button
-              onClick={handleSkip}
-              className="w-full text-gray-500 py-2 font-medium hover:text-gray-700 transition-colors"
-            >
-              나중에 등록하기
-            </button>
-          )}
-        </div>
+        {step === 3 && (
+          <button
+            onClick={handleSkip}
+            className="w-full text-gray-500 py-2 font-medium hover:text-gray-700 transition-colors"
+          >
+            나중에 등록하기
+          </button>
+        )}
       </div>
     </div>
   );

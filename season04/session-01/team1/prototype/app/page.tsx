@@ -9,8 +9,9 @@ import {
   Clock,
   MapPin,
   ArrowRight,
-  Settings,
-  Megaphone
+  Bell,
+  ChevronRight,
+  Edit3
 } from 'lucide-react';
 
 type StrikeStatus = 'warning' | 'confirmed' | 'partial' | 'ongoing';
@@ -32,14 +33,15 @@ export default function Home() {
     region: '서울 전역',
     affectedBuses: ['시내버스 전체', '광역버스 일부'],
     operationRate: 30,
-    updatedAt: '2026년 1월 27일 오후 3시',
+    updatedAt: '오후 3시',
     source: '서울시 교통정책과'
   });
 
   const [myRoute] = useState({
     from: '수원 영통',
     to: '판교역',
-    isAffected: true
+    isAffected: true,
+    registered: true
   });
 
   const getStatusDisplay = (status: StrikeStatus) => {
@@ -85,137 +87,180 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* 헤더 */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-white border-b border-gray-200">
+        <div className="px-4 py-3 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-gray-900">파업 출근 비서</h1>
-            <p className="text-sm text-gray-500">Strike Commute Assistant</p>
+            <h1 className="text-lg font-bold text-gray-900">파업 출근 비서</h1>
+            <p className="text-xs text-gray-500">오늘의 출퇴근 현황</p>
           </div>
-          <Link href="/settings" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <Settings size={24} className="text-gray-600" />
-          </Link>
+          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
+            <Bell size={22} className="text-gray-600" />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 space-y-4">
+      <main className="px-4 py-4 space-y-4">
         {/* 파업 상태 배너 */}
         {!strikeData.isStrike ? (
-          <div className="bg-green-50 border border-green-300 rounded-xl p-6 flex items-center gap-4">
-            <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0" />
+          <div className="bg-green-50 border border-green-300 rounded-2xl p-5 flex items-center gap-4">
+            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-6 h-6 text-green-600" />
+            </div>
             <div>
-              <h2 className="font-bold text-green-900">운행 정상입니다</h2>
+              <h2 className="font-bold text-green-900">운행 정상</h2>
               <p className="text-sm text-green-700">현재 버스 파업이 없습니다</p>
             </div>
           </div>
         ) : (
           <Link href="/strike-detail" className="block">
             <div
-              className={`${display?.color} border-2 rounded-xl p-6 flex items-center justify-between cursor-pointer hover:shadow-lg transition-all hover:scale-[1.02] duration-300`}
+              className={`${display?.color} border-2 rounded-2xl p-5 transition-all active:scale-[0.98]`}
             >
-              <div className="flex items-center gap-4">
-                <StatusIcon className={`w-8 h-8 ${display?.textColor} flex-shrink-0`} />
-                <div>
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 ${display?.badgeColor}`}>
-                    🔴 {display?.label}
-                  </span>
-                  <h2 className={`font-bold text-lg ${display?.textColor}`}>오늘 버스 파업이 있습니다</h2>
-                  <p className={`text-sm ${display?.textColor} opacity-80`}>
-                    {strikeData.region} · 평소 대비 {strikeData.operationRate}% 운행
-                  </p>
-                </div>
+              <div className="flex items-start justify-between mb-3">
+                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${display?.badgeColor}`}>
+                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                  {display?.label}
+                </span>
+                <ChevronRight className={`${display?.textColor}`} size={20} />
               </div>
-              <ArrowRight className={`text-2xl ${display?.textColor}`} size={24} />
+
+              <h2 className={`font-bold text-lg ${display?.textColor} mb-1`}>
+                오늘 버스 파업이 있습니다
+              </h2>
+              <p className={`text-sm ${display?.textColor} opacity-80`}>
+                {strikeData.region} · 평소 대비 {strikeData.operationRate}% 운행
+              </p>
+
+              <div className={`mt-3 pt-3 border-t ${display?.textColor} border-current opacity-20`}></div>
+              <div className={`flex items-center justify-between text-xs ${display?.textColor} opacity-70`}>
+                <span>{strikeData.updatedAt} 기준</span>
+                <span>자세히 보기</span>
+              </div>
             </div>
           </Link>
         )}
 
         {/* 내 경로 카드 */}
-        <div className="bg-white rounded-xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-4">
-            <MapPin className="w-5 h-5 text-blue-500" />
-            <span className="font-semibold text-gray-900">내 출퇴근 경로</span>
-          </div>
-
-          <div className="flex items-center gap-3 mb-4 bg-gray-50 p-3 rounded-lg">
-            <div className="flex-1">
-              <div className="text-xs text-gray-500 mb-1">출발</div>
-              <div className="font-medium text-gray-900">{myRoute.from}</div>
-            </div>
-            <ArrowRight className="text-gray-400" size={20} />
-            <div className="flex-1 text-right">
-              <div className="text-xs text-gray-500 mb-1">도착</div>
-              <div className="font-medium text-gray-900">{myRoute.to}</div>
-            </div>
-          </div>
-
-          {/* 영향도 표시 */}
-          {myRoute.isAffected ? (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4 flex items-center gap-3">
-              <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0" />
-              <div>
-                <span className="font-medium text-yellow-800">내 경로가 파업 영향권입니다</span>
-                <p className="text-xs text-yellow-700 mt-0.5">대체 경로를 확인해주세요</p>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
-              <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-              <span className="font-medium text-green-800">내 경로는 영향 없습니다</span>
-            </div>
-          )}
-
-          {/* 대체 경로 버튼 */}
-          <Link
-            href="/alternative"
-            className="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 rounded-lg font-medium transition-colors"
-          >
-            대체 경로 확인하기
-          </Link>
-        </div>
-
-        {/* 파업 상세 정보 카드 */}
-        <Link href="/strike-detail" className="block">
-          <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div className="p-4 border-b border-gray-100">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-gray-600" />
-                <span className="font-semibold text-gray-900">파업 상세 정보</span>
+                <MapPin className="w-5 h-5 text-blue-500" />
+                <span className="font-semibold text-gray-900">내 출퇴근 경로</span>
               </div>
-              <ArrowRight className="text-gray-400" size={20} />
-            </div>
-
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-500">파업 지역</span>
-                <span className="text-gray-900 font-medium">{strikeData.region}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-500">영향 노선</span>
-                <span className="text-gray-900 font-medium">{strikeData.affectedBuses.join(', ')}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-500">운행 현황</span>
-                <span className="text-gray-900 font-medium">평소 대비 {strikeData.operationRate}%</span>
-              </div>
-            </div>
-
-            <div className="mt-4 pt-3 border-t text-xs text-gray-400">
-              {strikeData.updatedAt} 기준 · 출처: {strikeData.source}
+              <Link href="/settings" className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">
+                <Edit3 size={16} className="text-gray-400" />
+              </Link>
             </div>
           </div>
-        </Link>
 
-        {/* 빠른 메뉴 */}
-        <div className="grid grid-cols-2 gap-3">
-          <Link href="/settings" className="bg-white rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all hover:scale-[1.02]">
-            <Settings className="w-8 h-8 mx-auto mb-2 text-gray-600" />
-            <div className="text-sm font-medium text-gray-700">경로 설정</div>
-          </Link>
-          <Link href="/report" className="bg-white rounded-xl p-4 shadow-sm text-center hover:shadow-md transition-all hover:scale-[1.02]">
-            <Megaphone className="w-8 h-8 mx-auto mb-2 text-gray-600" />
-            <div className="text-sm font-medium text-gray-700">현장 제보</div>
-          </Link>
+          <div className="p-4">
+            {myRoute.registered ? (
+              <>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex-1">
+                    <div className="text-xs text-gray-400 mb-0.5">출발</div>
+                    <div className="font-semibold text-gray-900">{myRoute.from}</div>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <ArrowRight className="text-gray-300" size={20} />
+                  </div>
+                  <div className="flex-1 text-right">
+                    <div className="text-xs text-gray-400 mb-0.5">도착</div>
+                    <div className="font-semibold text-gray-900">{myRoute.to}</div>
+                  </div>
+                </div>
+
+                {/* 영향도 표시 */}
+                {myRoute.isAffected ? (
+                  <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-3 mb-4">
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5 text-orange-500" />
+                      <div>
+                        <span className="font-semibold text-orange-800 text-sm">내 경로가 영향받습니다</span>
+                        <p className="text-xs text-orange-600">대체 경로를 확인하세요</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-3 mb-4">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="font-semibold text-green-800 text-sm">내 경로는 영향 없습니다</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* 대체 경로 버튼 */}
+                <Link
+                  href="/alternative"
+                  className="block w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-center py-3.5 rounded-xl font-semibold transition-colors"
+                >
+                  대체 경로 확인하기
+                </Link>
+              </>
+            ) : (
+              <div className="text-center py-4">
+                <p className="text-gray-500 mb-3">출퇴근 경로를 등록하면<br/>맞춤 정보를 받을 수 있어요</p>
+                <Link
+                  href="/onboarding"
+                  className="inline-block bg-blue-500 text-white px-6 py-2.5 rounded-xl font-semibold"
+                >
+                  경로 등록하기
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
+
+        {/* 파업 상세 요약 */}
+        {strikeData.isStrike && (
+          <div className="bg-white rounded-2xl shadow-sm p-4">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-semibold text-gray-900">운행 현황</span>
+              <Link href="/strike-detail" className="text-xs text-blue-500 font-medium">
+                상세보기
+              </Link>
+            </div>
+
+            <div className="space-y-2">
+              {strikeData.affectedBuses.map((bus, idx) => (
+                <div key={idx} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
+                  <span className="text-sm text-gray-600">{bus}</span>
+                  <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">
+                    영향
+                  </span>
+                </div>
+              ))}
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm text-gray-600">마을버스</span>
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                  정상 운행
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 운행률 시각화 */}
+        {strikeData.isStrike && (
+          <div className="bg-white rounded-2xl shadow-sm p-4">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-semibold text-gray-900">전체 운행률</span>
+              <span className="text-2xl font-bold text-orange-500">{strikeData.operationRate}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <div
+                className="bg-gradient-to-r from-orange-400 to-red-500 h-3 rounded-full transition-all duration-500"
+                style={{ width: `${strikeData.operationRate}%` }}
+              />
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              평소 대비 {100 - strikeData.operationRate}% 감소
+            </p>
+          </div>
+        )}
       </main>
     </div>
   );
