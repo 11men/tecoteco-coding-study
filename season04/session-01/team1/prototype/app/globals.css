@@ -12,30 +12,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* 모바일 앱 스타일 - 다크모드 비활성화 */
+/* 모바일 앱 스타일 */
 html {
-  background: #1f2937;
+  background: #1f2937 !important;
 }
 
 body {
-  background: var(--background);
+  background: var(--background) !important;
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  max-width: 430px;
-  margin: 0 auto;
+  max-width: 430px !important;
+  margin: 0 auto !important;
   min-height: 100vh;
   position: relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-}
-
-/* 모바일 앱 느낌의 스크롤바 숨김 */
-body::-webkit-scrollbar {
-  display: none;
-}
-
-body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* 스크롤바 숨김 */
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /* Safe area for notch devices */
