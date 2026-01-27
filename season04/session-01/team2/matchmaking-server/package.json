@@ -1,0 +1,17 @@
+{
+  "name": "matchmaking-server",
+  "version": "1.0.0",
+  "description": "Redis-based region matchmaking server with minimum N players",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node src/test/concurrency-test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ioredis": "^5.3.2",
+    "uuid": "^9.0.0"
+  }
+}
