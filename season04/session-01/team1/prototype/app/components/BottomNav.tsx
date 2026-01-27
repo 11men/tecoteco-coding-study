@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Car, Bus, User } from 'lucide-react';
+import { Home, Users, Car, MessageSquare, User } from 'lucide-react';
 
 const navItems = [
   { href: '/', icon: Home, label: '홈' },
   { href: '/carpool', icon: Users, label: '카풀' },
   { href: '/taxi', icon: Car, label: '택시' },
-  { href: '/charter', icon: Bus, label: '대절' },
+  { href: '/community', icon: MessageSquare, label: '커뮤니티' },
   { href: '/settings', icon: User, label: '내 정보' },
 ];
 
@@ -22,7 +22,8 @@ export default function BottomNav() {
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-gray-200 z-50">
       <div className="flex justify-around items-center h-14 px-2">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href ||
+            (item.href !== '/' && pathname.startsWith(item.href));
           const Icon = item.icon;
 
           return (
