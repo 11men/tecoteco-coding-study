@@ -187,9 +187,25 @@ body {
   white-space: nowrap;
 }
 
-.strike-badge.active {
+.strike-badge.active,
+.strike-badge.danger {
   background: #fee2e2;
   color: #991b1b;
+}
+
+.strike-badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.strike-badge.info {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.strike-badge.success {
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .strike-info h3 {
@@ -200,6 +216,28 @@ body {
 .strike-info p {
   font-size: 0.85rem;
   color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.source-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  background: #fee2e2;
+  border-radius: 8px;
 }
 
 /* Route List */

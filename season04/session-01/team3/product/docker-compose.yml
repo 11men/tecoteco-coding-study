@@ -13,12 +13,32 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U busapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: busapp-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/busapp
+      SPRING_DATASOURCE_USERNAME: busapp
+      SPRING_DATASOURCE_PASSWORD: busapp123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8090:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
 
   frontend:
     build: ./frontend
     container_name: busapp-frontend
     ports:
-      - "80:80"
+      - "8080:80"
     restart: unless-stopped
 
 volumes:

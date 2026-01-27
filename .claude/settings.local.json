@@ -1,0 +1,12 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "task-master-ai",
+    "mssql"
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew clean build:*)"
+    ]
+  }
+}

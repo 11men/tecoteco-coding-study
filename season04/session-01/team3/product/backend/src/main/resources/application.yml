@@ -1,12 +1,15 @@
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/${MYSQL_DATABASE:busapp}?useSSL=false&allowPublicKeyRetrieval=true
-    username: ${MYSQL_USER:busapp}
-    password: ${MYSQL_PASSWORD:busapp123}
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:testdb}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
     show-sql: true
+  h2:
+    console:
+      enabled: true
 
 server:
   port: 8080

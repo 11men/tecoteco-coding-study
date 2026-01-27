@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useNotification } from './hooks/useNotification';
+import { useStrikes } from './hooks/useStrikes';
+import { getStatusText, getStatusColor } from './types/strike';
 import './App.css';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
     sendMockStrikeEnd,
     sendMockNegotiation,
   } = useNotification();
+
+  const { strikes, loading, error } = useStrikes(true);
 
   const handleSubscribe = async () => {
     const success = await requestPermission();
@@ -117,19 +121,42 @@ function App() {
           </Link>
         </section>
 
-        {/* 파업 현황 카드 (목업) */}
+        {/* 파업 현황 카드 */}
         <section className="card">
           <h2>현재 파업 현황</h2>
-          <div className="strike-status">
-            <div className="strike-badge active">
-              파업 중
+          {loading && <p>파업 정보를 불러오는 중...</p>}
+          {error && <p className="error">오류: {error}</p>}
+          {!loading && !error && strikes.length === 0 && (
+            <p>현재 진행 중이거나 예정된 파업이 없습니다.</p>
+          )}
+          {!loading && !error && strikes.map((strike) => (
+            <div key={strike.id} className="strike-status" style={{ marginBottom: '1rem' }}>
+              <div className={`strike-badge ${getStatusColor(strike.status)}`}>
+                {getStatusText(strike.status)}
+              </div>
+              <div className="strike-info">
+                <h3>{strike.title}</h3>
+                <p>{strike.description}</p>
+                <p>
+                  <strong>지역:</strong> {strike.affectedRegions.join(', ')} |
+                  <strong> 버스:</strong> {strike.busTypes.join(', ')}
+                </p>
+                <p>
+                  <strong>파업 예정:</strong> {new Date(strike.strikeDate).toLocaleString('ko-KR')}
+                </p>
+                {strike.sourceUrl && (
+                  <a
+                    href={strike.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="source-link"
+                  >
+                    원문 보기 →
+                  </a>
+                )}
+              </div>
             </div>
-            <div className="strike-info">
-              <h3>2026년 1월 서울 시내버스 파업</h3>
-              <p>영향 노선: 390개 / 영향 차량: 7,300대</p>
-              <p>시작: 2026.01.13 04:00</p>
-            </div>
-          </div>
+          ))}
         </section>
 
         {/* 즐겨찾기 노선 (목업) */}
