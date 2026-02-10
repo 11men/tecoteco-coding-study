@@ -1,0 +1,128 @@
+"use client";
+
+import Card from "@/components/ui/Card";
+import BadgeUI from "@/components/ui/Badge";
+import { ShadowRecord } from "@/lib/types";
+import { FOMO_INTENSITY_LABELS } from "@/lib/constants";
+import { formatKRW, formatPercent, getRelativeTime } from "@/lib/utils";
+
+interface ShadowRecordListProps {
+  records: ShadowRecord[];
+}
+
+export default function ShadowRecordList({ records }: ShadowRecordListProps) {
+  if (records.length === 0) {
+    return (
+      <Card>
+        <p className="text-center text-zinc-400 py-12">
+          아직 기록이 없습니다. 첫 FOMO를 기록해보세요.
+        </p>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <h2 className="text-lg font-bold">참음 기록</h2>
+      {records.map((record) => (
+        <ShadowRecordItem key={record.id} record={record} />
+      ))}
+    </div>
+  );
+}
+
+function ShadowRecordItem({ record }: { record: ShadowRecord }) {
+  const hasResult = !!record.result;
+  const isDefenseSuccess = record.result?.isDefenseSuccess ?? false;
+
+  return (
+    <Card
+      variant={
+        hasResult
+          ? isDefenseSuccess
+            ? "success"
+            : "default"
+          : "default"
+      }
+    >
+      <div className="flex flex-col gap-3">
+        {/* 상단: 종목명 + 뱃지 */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-base">{record.ticker.name}</span>
+            <span className="text-sm text-zinc-500">{record.ticker.symbol}</span>
+          </div>
+          {hasResult ? (
+            isDefenseSuccess ? (
+              <BadgeUI label="방어 성공" variant="success" />
+            ) : (
+              <BadgeUI label="상승" variant="default" />
+            )
+          ) : (
+            <BadgeUI label="결과 대기중" variant="warning" />
+          )}
+        </div>
+
+        {/* 중단: 금액 + FOMO 강도 */}
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-zinc-500">예정 금액</p>
+            <p className="text-xl font-bold">{formatKRW(record.intendedAmount)}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-sm text-zinc-500">FOMO 강도</p>
+            <p className="text-base font-semibold">
+              {record.fomoIntensity}/5{" "}
+              <span className="text-sm font-normal text-zinc-500">
+                {FOMO_INTENSITY_LABELS[record.fomoIntensity]}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* 결과가 있을 때 변동률 표시 */}
+        {hasResult && record.result && (
+          <div className="flex items-center justify-between pt-2 border-t border-zinc-200 dark:border-zinc-700">
+            <div>
+              <p className="text-sm text-zinc-500">결과</p>
+              <p
+                className={
+                  record.result.changePercent < 0
+                    ? "text-emerald-600 font-bold"
+                    : "text-zinc-500 font-bold"
+                }
+              >
+                {formatPercent(record.result.changePercent)}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-zinc-500">방어 금액</p>
+              <p
+                className={
+                  record.result.defendedAmount > 0
+                    ? "text-emerald-600 font-bold"
+                    : "text-zinc-500 font-bold"
+                }
+              >
+                {record.result.defendedAmount > 0 ? "+" : ""}
+                {formatKRW(Math.abs(record.result.defendedAmount))}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* 하단: 메모 + 경과시간 */}
+        <div className="flex items-end justify-between pt-1">
+          {record.memo && (
+            <p className="text-sm text-zinc-500 italic truncate max-w-[70%]">
+              &ldquo;{record.memo}&rdquo;
+            </p>
+          )}
+          <p className="text-xs text-zinc-400 shrink-0">
+            {getRelativeTime(record.createdAt)}
+          </p>
+        </div>
+      </div>
+    </Card>
+  );
+}
