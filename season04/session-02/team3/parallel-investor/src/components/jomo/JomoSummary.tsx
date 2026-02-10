@@ -16,9 +16,9 @@ export default function JomoSummary({
     <Card variant="success">
       <div className="flex flex-col items-center gap-4 py-4">
         <p className="text-sm font-medium text-emerald-700">
-          총 방어 금액
+          안 사서 번 돈
         </p>
-        <p className="text-4xl font-extrabold text-emerald-600">
+        <p className="text-3xl sm:text-4xl font-extrabold text-emerald-600 text-center">
           {formatKRW(totalDefendedAmount)}
         </p>
 
@@ -34,7 +34,7 @@ export default function JomoSummary({
             <p className="text-2xl font-bold text-emerald-600">
               {defenseSuccessRate}%
             </p>
-            <p className="text-sm text-zinc-500">방어 성공률</p>
+            <p className="text-sm text-zinc-500">차단 성공률</p>
           </div>
         </div>
       </div>

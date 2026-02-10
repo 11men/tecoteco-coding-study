@@ -22,14 +22,14 @@ export default function BadgeCollection({ badges }: BadgeCollectionProps) {
     <div className="space-y-1">
       <div className="flex items-baseline justify-between">
         <h2 className="text-lg font-bold text-zinc-900">
-          뱃지 컬렉션
+          뱃지
         </h2>
         <span className="text-sm text-zinc-400">
           {earned} / {badges.length}
         </span>
       </div>
       <p className="text-sm text-zinc-400 mb-6">
-        특별한 조건을 달성하면 뱃지를 획득할 수 있습니다
+        특별한 조건 달성하면 뱃지 획득
       </p>
 
       <div className="grid grid-cols-2 gap-3">
@@ -63,9 +63,9 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
       type="button"
       onClick={onToggle}
       className={cn(
-        "w-full rounded-2xl border p-4 text-left transition-all",
+        "w-full rounded-2xl border p-4 text-left transition-all min-h-[44px]",
         badge.isEarned
-          ? "border-zinc-200 bg-white hover:shadow-md"
+          ? "border-zinc-200 bg-white hover:shadow-md active:scale-[0.98]"
           : "border-zinc-100 bg-zinc-50/50"
       )}
     >

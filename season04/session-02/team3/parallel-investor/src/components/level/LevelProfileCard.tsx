@@ -42,7 +42,7 @@ export default function LevelProfileCard({ level, nickname }: LevelProfileCardPr
         </div>
 
         {/* EXP progress */}
-        <div className="w-full max-w-xs space-y-2">
+        <div className="w-full space-y-2 px-2">
           <ProgressBar
             value={level.currentExp}
             max={level.nextLevelExp}

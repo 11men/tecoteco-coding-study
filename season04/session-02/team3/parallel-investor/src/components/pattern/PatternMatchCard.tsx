@@ -16,11 +16,11 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
   ];
 
   return (
-    <Card className="relative overflow-hidden">
+    <Card className="relative overflow-hidden w-full">
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
-          <p className="text-xs text-zinc-400 mb-1">유사 패턴 #{index + 1}</p>
+          <p className="text-xs text-zinc-400 mb-1">D&eacute;j&agrave; Vu #{index + 1}</p>
           <p className="text-sm text-zinc-600">{match.matchDate}</p>
         </div>
         <div className="text-right">
@@ -31,7 +31,7 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
 
       {/* Price at match */}
       <div className="mb-5">
-        <p className="text-xs text-zinc-400 mb-1">당시 가격</p>
+        <p className="text-xs text-zinc-400 mb-1">그때 가격</p>
         <p className="text-base font-semibold text-zinc-800">
           {formatKRW(match.priceAtMatch)}
         </p>
@@ -63,7 +63,7 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
       </div>
 
       {/* Indicators */}
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap justify-start">
         <BadgeUI
           label={`RSI ${match.indicators.rsi}`}
           variant={match.indicators.rsi > 70 ? "danger" : match.indicators.rsi < 30 ? "success" : "default"}

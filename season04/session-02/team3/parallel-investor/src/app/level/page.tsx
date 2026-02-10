@@ -12,13 +12,13 @@ import BadgeCollection from "@/components/level/BadgeCollection";
 
 export default function LevelPage() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 px-4 sm:gap-8 sm:px-0">
       <section>
-        <h1 className="text-2xl font-bold text-zinc-900">
-          참을성 레벨
+        <h1 className="text-2xl font-bold text-zinc-900 sm:text-3xl">
+          내 레벨
         </h1>
         <p className="mt-1 text-sm text-zinc-400">
-          참음 횟수와 기간에 따라 레벨과 뱃지를 획득하세요.
+          안 사면 안 살수록 레벨업.
         </p>
       </section>
 

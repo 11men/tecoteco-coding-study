@@ -10,7 +10,7 @@ export default function JomoConversionGrid({ items }: JomoConversionGridProps) {
     return (
       <Card>
         <p className="text-center text-zinc-400 py-12">
-          방어 금액이 아직 없습니다.
+          아직 세이브한 돈이 없어.
         </p>
       </Card>
     );
@@ -18,7 +18,7 @@ export default function JomoConversionGrid({ items }: JomoConversionGridProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-bold">이만큼 살 수 있었어요</h2>
+      <h2 className="text-lg font-bold">이 돈이면 이걸 살 수 있었는데</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {items.map((item) => (
           <Card key={item.name}>

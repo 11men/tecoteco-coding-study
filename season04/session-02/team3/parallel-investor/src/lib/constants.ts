@@ -1,38 +1,38 @@
 import { LevelTier, NavItem } from "./types";
 
-export const APP_NAME = "Parallel Investor";
-export const APP_TAGLINE = "당신의 직감이 틀렸음을, 과거의 데이터가 증명합니다.";
+export const APP_NAME = "DÉJÀ BUY";
+export const APP_TAGLINE = "또 사려고? 이거 전에도 봤잖아.";
 
 export const NAV_ITEMS: NavItem[] = [
   {
     label: "홈",
     href: "/",
     icon: "home",
-    description: "대시보드",
+    description: "홈",
   },
   {
-    label: "패턴분석",
+    label: "데자뷰",
     href: "/pattern",
     icon: "chart",
-    description: "과거 패턴 매칭",
+    description: "전에 본 적 있는 패턴",
   },
   {
-    label: "참음기록",
+    label: "기록",
     href: "/shadow-record",
     icon: "shield",
-    description: "FOMO 기록",
+    description: "이번엔 안 산다",
   },
   {
-    label: "방어현황",
+    label: "세이브",
     href: "/jomo",
     icon: "trophy",
-    description: "JOMO 계산기",
+    description: "안 사서 번 돈",
   },
   {
     label: "레벨",
     href: "/level",
     icon: "star",
-    description: "참을성 레벨링",
+    description: "내 레벨",
   },
 ];
 
@@ -40,16 +40,16 @@ export const LEVEL_TIERS: LevelTier[] = [
   { level: 1, title: "펄럭귀", titleEn: "Paper Ear", requiredExp: 0 },
   { level: 5, title: "철벽", titleEn: "Iron Wall", requiredExp: 100 },
   { level: 10, title: "돌부처", titleEn: "Stone Buddha", requiredExp: 300 },
-  { level: 30, title: "현금 수호자", titleEn: "Cash Guardian", requiredExp: 1000 },
+  { level: 30, title: "냉장고", titleEn: "Freezer", requiredExp: 1000 },
   { level: 99, title: "버핏의 후계자", titleEn: "Heir of Buffett", requiredExp: 5000 },
 ];
 
 export const FOMO_INTENSITY_LABELS: Record<number, string> = {
-  1: "살짝 흔들림",
-  2: "좀 사고 싶다",
+  1: "좀 흔들리네",
+  2: "사고 싶긴 한데...",
   3: "꽤 사고 싶다",
-  4: "지금 당장 사야 할 것 같다",
-  5: "안 사면 후회할 것 같다",
+  4: "지금 안 사면 늦을 것 같아",
+  5: "안 사면 평생 후회할 듯",
 };
 
 export const JOMO_ITEMS = [

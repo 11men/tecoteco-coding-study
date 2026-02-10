@@ -15,7 +15,7 @@ export default function ShadowRecordList({ records }: ShadowRecordListProps) {
     return (
       <Card>
         <p className="text-center text-zinc-400 py-12">
-          아직 기록이 없습니다. 첫 FOMO를 기록해보세요.
+          아직 기록 없음. 첫 D&eacute;j&agrave; Buy를 기록해봐.
         </p>
       </Card>
     );
@@ -23,7 +23,7 @@ export default function ShadowRecordList({ records }: ShadowRecordListProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-bold">참음 기록</h2>
+      <h2 className="text-lg font-bold">기록 목록</h2>
       {records.map((record) => (
         <ShadowRecordItem key={record.id} record={record} />
       ))}
@@ -54,9 +54,9 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
           </div>
           {hasResult ? (
             isDefenseSuccess ? (
-              <BadgeUI label="방어 성공" variant="success" />
+              <BadgeUI label="Déjà Buy 차단" variant="success" />
             ) : (
-              <BadgeUI label="상승" variant="default" />
+              <BadgeUI label="올랐네..." variant="default" />
             )
           ) : (
             <BadgeUI label="결과 대기중" variant="warning" />
@@ -66,11 +66,11 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
         {/* 중단: 금액 + FOMO 강도 */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-zinc-500">예정 금액</p>
+            <p className="text-sm text-zinc-500">넣으려던 금액</p>
             <p className="text-xl font-bold">{formatKRW(record.intendedAmount)}</p>
           </div>
           <div className="text-right">
-            <p className="text-sm text-zinc-500">FOMO 강도</p>
+            <p className="text-sm text-zinc-500">사고 싶던 강도</p>
             <p className="text-base font-semibold">
               {record.fomoIntensity}/5{" "}
               <span className="text-sm font-normal text-zinc-500">
@@ -96,7 +96,7 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-zinc-500">방어 금액</p>
+              <p className="text-sm text-zinc-500">세이브한 금액</p>
               <p
                 className={
                   record.result.defendedAmount > 0

@@ -49,34 +49,34 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
     <div ref={containerRef} className="relative">
       <div className="relative">
         <Input
-          placeholder="종목명 또는 심볼을 검색하세요"
+          placeholder="뭐가 사고 싶어?"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
-          className="w-full pr-10"
+          className="w-full pr-16 text-base"
         />
         {query && (
           <button
             onClick={handleClear}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-sm"
           >
-            초기화
+            다시
           </button>
         )}
       </div>
 
       {isOpen && filtered.length > 0 && (
-        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white shadow-lg overflow-hidden">
+        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white shadow-lg overflow-hidden max-h-[60vh] overflow-y-auto">
           {filtered.map((ticker) => (
             <li
               key={ticker.symbol}
               onClick={() => handleSelect(ticker)}
               className={cn(
-                "flex items-center justify-between px-4 py-3 cursor-pointer transition-colors",
-                "hover:bg-zinc-50",
+                "flex items-center justify-between px-4 py-3 min-h-[48px] cursor-pointer transition-colors",
+                "hover:bg-zinc-50 active:bg-zinc-100",
                 selectedTicker?.symbol === ticker.symbol && "bg-teal-50"
               )}
             >
@@ -104,21 +104,21 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
 
       {isOpen && query.trim() && filtered.length === 0 && (
         <div className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-4 py-6 text-center text-sm text-zinc-400 shadow-lg">
-          검색 결과가 없습니다
+          못 찾겠는데?
         </div>
       )}
 
       {selectedTicker && (
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-teal-200 bg-teal-50 px-5 py-4">
-          <div>
-            <p className="text-xs text-teal-600 font-medium mb-0.5">선택한 종목</p>
-            <p className="text-lg font-bold text-zinc-900">
+        <div className="mt-4 flex items-center justify-between rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 gap-2">
+          <div className="min-w-0">
+            <p className="text-xs text-teal-600 font-medium mb-0.5">이거 사려고?</p>
+            <p className="text-base sm:text-lg font-bold text-zinc-900 truncate">
               {selectedTicker.name}
               <span className="ml-2 text-sm font-normal text-zinc-400">{selectedTicker.symbol}</span>
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-lg font-bold text-zinc-900">
+          <div className="text-right shrink-0">
+            <p className="text-base sm:text-lg font-bold text-zinc-900">
               {formatKRW(selectedTicker.currentPrice)}
             </p>
             <p

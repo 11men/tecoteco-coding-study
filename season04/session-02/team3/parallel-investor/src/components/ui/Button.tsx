@@ -18,7 +18,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-xl font-semibold transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none",
+        "inline-flex items-center justify-center rounded-xl font-semibold transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none min-h-[44px]",
         variant === "primary" && "bg-teal-500 text-white hover:bg-teal-600",
         variant === "secondary" && "bg-zinc-100 text-zinc-900 hover:bg-zinc-200",
         variant === "danger" && "bg-red-500 text-white hover:bg-red-600",

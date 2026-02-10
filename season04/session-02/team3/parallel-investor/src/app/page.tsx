@@ -19,24 +19,24 @@ export default function Home() {
     : MOCK_TICKERS;
 
   return (
-    <div className="flex min-h-[80vh] flex-col gap-8 pt-4">
+    <div className="flex min-h-[80vh] flex-col gap-6 px-4 pt-4 sm:gap-8 sm:px-0">
       {/* Title */}
       <div className="text-center">
-        <h1 className="text-2xl font-bold tracking-tight">
-          지금 사고 싶은 종목이 있나요?
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          또 사고 싶어졌어?
         </h1>
         <p className="mt-2 text-sm text-zinc-500">
-          종목을 선택하면 과거 데이터가 답해줍니다
+          이거 전에도 본 적 있는데.
         </p>
       </div>
 
       {/* Search */}
-      <div className="relative">
+      <div className="relative w-full">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="종목명 또는 심볼 검색..."
+          placeholder="뭐가 사고 싶어? 종목 검색..."
           className="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
         />
       </div>
@@ -49,15 +49,15 @@ export default function Home() {
       </div>
 
       {/* Bottom Links */}
-      <div className="mt-auto flex gap-3 pb-4">
+      <div className="sticky bottom-4 mt-auto flex gap-3 pb-4">
         <Link href="/shadow-record" className="flex-1">
           <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
-            참음 기록 보기
+            참음 기록
           </div>
         </Link>
         <Link href="/level" className="flex-1">
           <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
-            내 레벨 확인
+            내 레벨
           </div>
         </Link>
       </div>
@@ -70,7 +70,7 @@ function TickerRow({ ticker }: { ticker: StockTicker }) {
 
   return (
     <Link href={`/pattern?symbol=${ticker.symbol}`}>
-      <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-white px-5 py-4 transition-all active:scale-[0.98] hover:border-zinc-200 hover:shadow-sm">
+      <div className="flex min-h-[56px] items-center justify-between rounded-2xl border border-zinc-100 bg-white px-5 py-4 transition-all active:scale-[0.98] hover:border-zinc-200 hover:shadow-sm">
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-600">
             {ticker.symbol.slice(0, 2)}
