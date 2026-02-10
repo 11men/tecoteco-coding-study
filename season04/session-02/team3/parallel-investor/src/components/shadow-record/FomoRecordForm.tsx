@@ -6,8 +6,8 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { MOCK_TICKERS } from "@/lib/mock-data";
 import { FomoIntensity, ShadowRecord, StockTicker } from "@/lib/types";
-import { FOMO_INTENSITY_LABELS } from "@/lib/constants";
 import { cn, formatKRW } from "@/lib/utils";
+import FomoIntensitySlider from "./FomoIntensitySlider";
 
 interface FomoRecordFormProps {
   onSubmit: (record: ShadowRecord) => void;
@@ -83,33 +83,10 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
         />
 
         {/* FOMO 강도 */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-zinc-300">
-            얼마나 사고 싶어?
-          </label>
-          <div className="grid grid-cols-5 gap-2">
-            {([1, 2, 3, 4, 5] as FomoIntensity[]).map((level) => (
-              <button
-                key={level}
-                type="button"
-                onClick={() => setFomoIntensity(level)}
-                className={cn(
-                  "rounded-xl py-3 text-sm font-semibold transition-all min-h-[44px]",
-                  fomoIntensity === level
-                    ? "bg-blue-500 text-white"
-                    : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 active:bg-zinc-600"
-                )}
-              >
-                {level}
-              </button>
-            ))}
-          </div>
-          {fomoIntensity && (
-            <p className="text-sm text-blue-400 font-medium">
-              {FOMO_INTENSITY_LABELS[fomoIntensity]}
-            </p>
-          )}
-        </div>
+        <FomoIntensitySlider
+          value={fomoIntensity}
+          onChange={setFomoIntensity}
+        />
 
         {/* 메모 */}
         <div className="flex flex-col gap-1.5">

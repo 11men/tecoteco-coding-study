@@ -5,8 +5,10 @@ import Link from "next/link";
 
 const PAGE_TITLES: Record<string, string> = {
   "/": "",
-  "/history": "기록",
-  "/level": "내 레벨",
+  "/pattern": "패턴 분석",
+  "/shadow-record": "참음의 기록",
+  "/jomo": "방어 현황",
+  "/level": "나의 프로필",
 };
 
 export default function Header() {

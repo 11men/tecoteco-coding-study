@@ -11,16 +11,22 @@ export const NAV_ITEMS: NavItem[] = [
     description: "Déjà Buy 감지",
   },
   {
+    label: "분석",
+    href: "/pattern",
+    icon: "chart",
+    description: "과거 패턴 매칭",
+  },
+  {
     label: "기록",
-    href: "/history",
+    href: "/shadow-record",
     icon: "shield",
     description: "참음 기록 & 세이브",
   },
   {
-    label: "내 레벨",
+    label: "나",
     href: "/level",
-    icon: "star",
-    description: "레벨 & 뱃지",
+    icon: "user",
+    description: "나의 프로필",
   },
 ];
 

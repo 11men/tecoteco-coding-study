@@ -5,6 +5,7 @@ import BadgeUI from "@/components/ui/Badge";
 import { ShadowRecord } from "@/lib/types";
 import { FOMO_INTENSITY_LABELS } from "@/lib/constants";
 import { formatKRW, formatPercent, getRelativeTime } from "@/lib/utils";
+import ResultFeedback from "./ResultFeedback";
 
 interface ShadowRecordListProps {
   records: ShadowRecord[];
@@ -122,6 +123,13 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
             {getRelativeTime(record.createdAt)}
           </p>
         </div>
+
+        {/* 결과 피드백 */}
+        {hasResult && (
+          <div className="pt-2">
+            <ResultFeedback record={record} />
+          </div>
+        )}
       </div>
     </Card>
   );
