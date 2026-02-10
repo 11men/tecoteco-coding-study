@@ -48,7 +48,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
       <div className="flex flex-col gap-5">
         {/* 종목 선택 */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <label className="text-sm font-medium text-zinc-700">
             종목 선택
           </label>
           <select
@@ -59,8 +59,8 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
             }}
             className={cn(
               "rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors",
-              "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
-              "dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+              "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
+              ""
             )}
           >
             <option value="">종목을 선택하세요</option>
@@ -83,7 +83,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
         {/* FOMO 강도 */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <label className="text-sm font-medium text-zinc-700">
             FOMO 강도
           </label>
           <div className="flex gap-2">
@@ -95,8 +95,8 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
                 className={cn(
                   "flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all",
                   fomoIntensity === level
-                    ? "bg-blue-600 text-white"
-                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                    ? "bg-teal-500 text-white"
+                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
                 )}
               >
                 {level}
@@ -104,7 +104,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
             ))}
           </div>
           {fomoIntensity && (
-            <p className="text-sm text-blue-600 font-medium">
+            <p className="text-sm text-teal-500 font-medium">
               {FOMO_INTENSITY_LABELS[fomoIntensity]}
             </p>
           )}
@@ -112,7 +112,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
         {/* 메모 */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <label className="text-sm font-medium text-zinc-700">
             메모
           </label>
           <textarea
@@ -123,8 +123,8 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
             className={cn(
               "rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors resize-none",
               "placeholder:text-zinc-400",
-              "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
-              "dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+              "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
+              ""
             )}
           />
         </div>

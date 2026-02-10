@@ -48,7 +48,7 @@ export default function PatternPage() {
     <div className="flex flex-col gap-8">
       {/* Header */}
       <section>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">패턴 분석</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 ">패턴 분석</h1>
         <p className="mt-1 text-sm text-zinc-500">
           사고 싶은 종목을 입력하면, 과거 유사 패턴의 결과를 보여드립니다.
         </p>
@@ -71,7 +71,7 @@ export default function PatternPage() {
       {/* Loading */}
       {state === "loading" && (
         <section className="flex flex-col items-center gap-3 py-16">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-500 border-t-transparent" />
           <p className="text-sm text-zinc-500">
             과거 유사 패턴을 분석하고 있습니다...
           </p>
@@ -83,7 +83,7 @@ export default function PatternPage() {
         <>
           {/* Pattern Match Cards */}
           <section>
-            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+            <h2 className="text-lg font-bold text-zinc-900  mb-4">
               유사 패턴 {analysisResult.matches.length}건
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

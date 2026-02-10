@@ -21,14 +21,14 @@ export default function BadgeCollection({ badges }: BadgeCollectionProps) {
   return (
     <div className="space-y-1">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
+        <h2 className="text-lg font-bold text-zinc-900">
           뱃지 컬렉션
         </h2>
-        <span className="text-sm text-zinc-400 dark:text-zinc-500">
+        <span className="text-sm text-zinc-400">
           {earned} / {badges.length}
         </span>
       </div>
-      <p className="text-sm text-zinc-400 dark:text-zinc-500 mb-6">
+      <p className="text-sm text-zinc-400 mb-6">
         특별한 조건을 달성하면 뱃지를 획득할 수 있습니다
       </p>
 
@@ -65,8 +65,8 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
       className={cn(
         "w-full rounded-2xl border p-4 text-left transition-all",
         badge.isEarned
-          ? "border-zinc-200 bg-white hover:shadow-md dark:border-zinc-700 dark:bg-zinc-900 dark:hover:border-zinc-600"
-          : "border-zinc-100 bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900/50"
+          ? "border-zinc-200 bg-white hover:shadow-md"
+          : "border-zinc-100 bg-zinc-50/50"
       )}
     >
       <div className="flex flex-col items-center gap-2">
@@ -81,13 +81,13 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
             {badge.icon}
           </span>
           {!badge.isEarned && (
-            <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-600">
+            <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-300">
               <svg
                 width="10"
                 height="10"
                 viewBox="0 0 10 12"
                 fill="none"
-                className="text-zinc-500 dark:text-zinc-400"
+                className="text-zinc-500"
               >
                 <rect
                   x="2"
@@ -114,8 +114,8 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
           className={cn(
             "text-sm font-bold",
             badge.isEarned
-              ? "text-zinc-900 dark:text-zinc-50"
-              : "text-zinc-400 dark:text-zinc-500"
+              ? "text-zinc-900"
+              : "text-zinc-400"
           )}
         >
           {badge.name}
@@ -123,11 +123,11 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
 
         {/* Earned date or condition */}
         {badge.isEarned && badge.earnedAt ? (
-          <span className="text-[11px] text-zinc-400 dark:text-zinc-500">
+          <span className="text-[11px] text-zinc-400">
             {formatDate(badge.earnedAt)} 획득
           </span>
         ) : (
-          <span className="text-[11px] text-zinc-300 dark:text-zinc-600">
+          <span className="text-[11px] text-zinc-300">
             {badge.condition}
           </span>
         )}
@@ -141,19 +141,19 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
         )}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-zinc-100 pt-3 dark:border-zinc-800">
+          <div className="border-t border-zinc-100 pt-3">
             <p
               className={cn(
                 "text-xs leading-relaxed",
                 badge.isEarned
-                  ? "text-zinc-500 dark:text-zinc-400"
-                  : "text-zinc-400 dark:text-zinc-500"
+                  ? "text-zinc-500"
+                  : "text-zinc-400"
               )}
             >
               {badge.description}
             </p>
             {!badge.isEarned && (
-              <p className="mt-1.5 text-[11px] font-medium text-zinc-400 dark:text-zinc-500">
+              <p className="mt-1.5 text-[11px] font-medium text-zinc-400">
                 조건: {badge.condition}
               </p>
             )}

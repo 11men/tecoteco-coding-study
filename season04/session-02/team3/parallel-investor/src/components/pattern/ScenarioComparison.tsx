@@ -11,7 +11,7 @@ export default function ScenarioComparison({ analysis }: ScenarioComparisonProps
 
   return (
     <div>
-      <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+      <h2 className="text-lg font-bold text-zinc-900 mb-4">
         시나리오 비교
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,7 +35,7 @@ export default function ScenarioComparison({ analysis }: ScenarioComparisonProps
               </p>
             </div>
 
-            <div className="rounded-lg bg-red-100 dark:bg-red-900/30 px-4 py-3">
+            <div className="rounded-lg bg-red-100 px-4 py-3">
               <p className="text-xs text-zinc-500 mb-0.5">손실 확률</p>
               <p className="text-2xl font-extrabold text-red-600">{buyScenario.lossRate}%</p>
             </div>
@@ -62,14 +62,14 @@ export default function ScenarioComparison({ analysis }: ScenarioComparisonProps
               </p>
             </div>
 
-            <div className="rounded-lg bg-emerald-100 dark:bg-emerald-900/30 px-4 py-3 mb-3">
+            <div className="rounded-lg bg-emerald-100  px-4 py-3 mb-3">
               <p className="text-xs text-zinc-500 mb-0.5">수익 확률</p>
               <p className="text-2xl font-extrabold text-emerald-600">{waitScenario.gainRate}%</p>
             </div>
 
-            <div className="rounded-lg bg-emerald-100 dark:bg-emerald-900/30 px-4 py-3">
+            <div className="rounded-lg bg-emerald-100  px-4 py-3">
               <p className="text-xs text-zinc-500 mb-0.5">적정 진입 시점</p>
-              <p className="text-xl font-bold text-emerald-700 dark:text-emerald-400">
+              <p className="text-xl font-bold text-emerald-700">
                 {waitScenario.optimalEntryDays}일 후
               </p>
             </div>

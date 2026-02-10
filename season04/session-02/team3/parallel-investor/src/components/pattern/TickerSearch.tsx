@@ -69,23 +69,23 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
       </div>
 
       {isOpen && filtered.length > 0 && (
-        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900 overflow-hidden">
+        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white shadow-lg overflow-hidden">
           {filtered.map((ticker) => (
             <li
               key={ticker.symbol}
               onClick={() => handleSelect(ticker)}
               className={cn(
                 "flex items-center justify-between px-4 py-3 cursor-pointer transition-colors",
-                "hover:bg-zinc-50 dark:hover:bg-zinc-800",
-                selectedTicker?.symbol === ticker.symbol && "bg-blue-50 dark:bg-blue-950"
+                "hover:bg-zinc-50",
+                selectedTicker?.symbol === ticker.symbol && "bg-teal-50"
               )}
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs font-mono text-zinc-400 w-16">{ticker.symbol}</span>
-                <span className="font-medium text-zinc-900 dark:text-zinc-100">{ticker.name}</span>
+                <span className="font-medium text-zinc-900">{ticker.name}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                <span className="text-sm font-medium text-zinc-700">
                   {formatKRW(ticker.currentPrice)}
                 </span>
                 <span
@@ -103,22 +103,22 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
       )}
 
       {isOpen && query.trim() && filtered.length === 0 && (
-        <div className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-4 py-6 text-center text-sm text-zinc-400 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-4 py-6 text-center text-sm text-zinc-400 shadow-lg">
           검색 결과가 없습니다
         </div>
       )}
 
       {selectedTicker && (
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-5 py-4 dark:border-blue-800 dark:bg-blue-950">
+        <div className="mt-4 flex items-center justify-between rounded-xl border border-teal-200 bg-teal-50 px-5 py-4">
           <div>
-            <p className="text-xs text-blue-500 font-medium mb-0.5">선택한 종목</p>
-            <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <p className="text-xs text-teal-600 font-medium mb-0.5">선택한 종목</p>
+            <p className="text-lg font-bold text-zinc-900">
               {selectedTicker.name}
               <span className="ml-2 text-sm font-normal text-zinc-400">{selectedTicker.symbol}</span>
             </p>
           </div>
           <div className="text-right">
-            <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+            <p className="text-lg font-bold text-zinc-900">
               {formatKRW(selectedTicker.currentPrice)}
             </p>
             <p
