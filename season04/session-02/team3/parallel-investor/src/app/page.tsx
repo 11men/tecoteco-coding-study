@@ -1,97 +1,149 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Card from "@/components/ui/Card";
-import { MOCK_TICKERS } from "@/lib/mock-data";
-import { StockTicker } from "@/lib/types";
-import { formatKRW, formatPercent, cn } from "@/lib/utils";
+import ProgressBar from "@/components/ui/ProgressBar";
+import BadgeUI from "@/components/ui/Badge";
+import { MOCK_USER, MOCK_SHADOW_RECORDS } from "@/lib/mock-data";
+import { formatKRW, formatPercent, calculateJomo, getRelativeTime } from "@/lib/utils";
 
 export default function Home() {
-  const [query, setQuery] = useState("");
+  const { level } = MOCK_USER;
+  const jomo = calculateJomo(MOCK_USER.totalDefendedAmount);
+  const chickenItem = jomo.items.find((i) => i.name === "치킨");
+  const recentRecords = MOCK_SHADOW_RECORDS.slice(0, 3);
 
-  const filtered = query.length > 0
-    ? MOCK_TICKERS.filter(
-        (t) =>
-          t.name.includes(query) ||
-          t.symbol.toLowerCase().includes(query.toLowerCase())
-      )
-    : MOCK_TICKERS;
+  const successCount = MOCK_SHADOW_RECORDS.filter(
+    (r) => r.result?.isDefenseSuccess
+  ).length;
 
-  return (
-    <div className="flex min-h-[80vh] flex-col gap-8 pt-4">
-      {/* Title */}
-      <div className="text-center">
-        <h1 className="text-2xl font-bold tracking-tight">
-          지금 사고 싶은 종목이 있나요?
-        </h1>
-        <p className="mt-2 text-sm text-zinc-500">
-          종목을 선택하면 과거 데이터가 답해줍니다
-        </p>
-      </div>
-
-      {/* Search */}
-      <div className="relative">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="종목명 또는 심볼 검색..."
-          className="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
-        />
-      </div>
-
-      {/* Ticker List */}
-      <div className="flex flex-col gap-2">
-        {filtered.map((ticker) => (
-          <TickerRow key={ticker.symbol} ticker={ticker} />
-        ))}
-      </div>
-
-      {/* Bottom Links */}
-      <div className="mt-auto flex gap-3 pb-4">
-        <Link href="/shadow-record" className="flex-1">
-          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
-            참음 기록 보기
-          </div>
-        </Link>
-        <Link href="/level" className="flex-1">
-          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
-            내 레벨 확인
-          </div>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function TickerRow({ ticker }: { ticker: StockTicker }) {
-  const isUp = ticker.changePercent >= 0;
+  const encourageMessage =
+    MOCK_USER.defenseSuccessRate >= 70
+      ? `방어 성공률 ${MOCK_USER.defenseSuccessRate}%! 흔들림 없는 철벽 투자자시네요.`
+      : MOCK_SHADOW_RECORDS.length >= 5
+        ? `${MOCK_SHADOW_RECORDS.length}번의 FOMO를 기록했어요. 기록만으로도 대단합니다.`
+        : "참을수록 강해집니다. 오늘도 현명한 선택을 하세요.";
 
   return (
-    <Link href={`/pattern?symbol=${ticker.symbol}`}>
-      <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-white px-5 py-4 transition-all active:scale-[0.98] hover:border-zinc-200 hover:shadow-sm">
-        <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-600">
-            {ticker.symbol.slice(0, 2)}
-          </span>
-          <div>
-            <p className="font-semibold">{ticker.name}</p>
-            <p className="text-xs text-zinc-400">{ticker.symbol}</p>
+    <div className="flex flex-col gap-5 pb-4 pt-2">
+      {/* 1-1. 레벨 프로필 영역 */}
+      <div className="flex items-center gap-4 px-1">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-100 text-xl font-bold text-teal-600">
+          Lv.{level.level}
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold">{MOCK_USER.nickname}</span>
+            <BadgeUI label={level.title} variant="info" size="sm" />
+          </div>
+          <div className="mt-1.5 flex items-center gap-2">
+            <ProgressBar
+              value={level.currentExp}
+              max={level.nextLevelExp}
+              color="blue"
+              className="flex-1"
+            />
+            <span className="text-xs text-zinc-400">
+              {level.currentExp}/{level.nextLevelExp} EXP
+            </span>
           </div>
         </div>
-        <div className="text-right">
-          <p className="font-semibold tabular-nums">{formatKRW(ticker.currentPrice)}</p>
-          <p
-            className={cn(
-              "text-xs font-medium tabular-nums",
-              isUp ? "text-red-500" : "text-blue-500"
-            )}
-          >
-            {formatPercent(ticker.changePercent)}
+      </div>
+
+      {/* 1-2. 방어 금액 히어로 카드 */}
+      <Link href="/jomo">
+        <Card variant="highlight" className="active:scale-[0.98]">
+          <p className="text-sm font-medium text-teal-700">총 방어 금액</p>
+          <p className="mt-1 text-3xl font-extrabold text-teal-900">
+            {formatKRW(MOCK_USER.totalDefendedAmount)}
+          </p>
+          {chickenItem && (
+            <p className="mt-1 text-sm text-teal-600">
+              치킨 {chickenItem.quantity}마리를 지켰어요 🍗
+            </p>
+          )}
+          <div className="mt-3 flex items-center justify-between">
+            <div className="flex items-center gap-3 text-sm text-teal-700">
+              <span>방어 {successCount}회</span>
+              <span>성공률 {MOCK_USER.defenseSuccessRate}%</span>
+            </div>
+            <span className="text-xs text-teal-500">상세 보기 →</span>
+          </div>
+        </Card>
+      </Link>
+
+      {/* 1-3. FOMO 진입 CTA 버튼 */}
+      <Link href="/pattern">
+        <div className="rounded-2xl bg-zinc-900 px-5 py-4 text-center transition-all active:scale-[0.98]">
+          <p className="text-base font-bold text-white">
+            지금 사고 싶은 종목이 있다
+          </p>
+          <p className="mt-0.5 text-xs text-zinc-400">
+            과거 데이터가 당신의 직감을 검증합니다
           </p>
         </div>
+      </Link>
+
+      {/* 1-4. 최근 방어 기록 */}
+      <div>
+        <div className="mb-3 flex items-center justify-between px-1">
+          <h2 className="text-base font-bold">최근 방어 기록</h2>
+          <Link
+            href="/shadow-record"
+            className="text-xs font-medium text-teal-500"
+          >
+            전체 보기 →
+          </Link>
+        </div>
+        <div className="flex flex-col gap-2">
+          {recentRecords.map((record) => (
+            <Card key={record.id} className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-100 text-xs font-bold text-zinc-600">
+                  {record.ticker.symbol.slice(0, 2)}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold">{record.ticker.name}</p>
+                  <p className="text-xs text-zinc-400">
+                    {getRelativeTime(record.createdAt)}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {record.result && (
+                  <>
+                    <span
+                      className={`text-sm font-semibold tabular-nums ${
+                        record.result.changePercent < 0
+                          ? "text-blue-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {formatPercent(record.result.changePercent)}
+                    </span>
+                    <BadgeUI
+                      label={
+                        record.result.isDefenseSuccess
+                          ? "방어성공"
+                          : "방어실패"
+                      }
+                      variant={
+                        record.result.isDefenseSuccess ? "success" : "danger"
+                      }
+                      size="sm"
+                    />
+                  </>
+                )}
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
-    </Link>
+
+      {/* 1-5. 오늘의 한마디 */}
+      <Card variant="default" className="text-center">
+        <p className="text-sm text-zinc-500">{encourageMessage}</p>
+      </Card>
+    </div>
   );
 }

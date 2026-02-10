@@ -8,7 +8,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/pattern": "패턴 분석",
   "/shadow-record": "참음의 기록",
   "/jomo": "방어 현황",
-  "/level": "내 레벨",
+  "/level": "나의 프로필",
 };
 
 export default function Header() {

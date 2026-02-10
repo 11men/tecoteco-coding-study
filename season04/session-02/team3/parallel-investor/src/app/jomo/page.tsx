@@ -5,10 +5,11 @@
 // 이 페이지와 src/components/jomo/ 디렉토리는 Team 2가 담당합니다.
 // 다른 팀은 이 파일을 수정하지 마세요.
 
-import { MOCK_USER } from "@/lib/mock-data";
+import { MOCK_USER, MOCK_SHADOW_RECORDS } from "@/lib/mock-data";
 import { calculateJomo } from "@/lib/utils";
 import JomoSummary from "@/components/jomo/JomoSummary";
 import JomoConversionGrid from "@/components/jomo/JomoConversionGrid";
+import DefenseTimeline from "@/components/jomo/DefenseTimeline";
 
 export default function JomoPage() {
   const { totalDefendedAmount, totalRecords, defenseSuccessRate } = MOCK_USER;
@@ -30,6 +31,8 @@ export default function JomoPage() {
       />
 
       <JomoConversionGrid items={jomo.items} />
+
+      <DefenseTimeline records={MOCK_SHADOW_RECORDS} />
     </div>
   );
 }

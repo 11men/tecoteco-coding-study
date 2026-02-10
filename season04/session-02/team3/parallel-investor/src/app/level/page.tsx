@@ -9,6 +9,7 @@ import { MOCK_USER, MOCK_BADGES } from "@/lib/mock-data";
 import LevelProfileCard from "@/components/level/LevelProfileCard";
 import LevelTierProgress from "@/components/level/LevelTierProgress";
 import BadgeCollection from "@/components/level/BadgeCollection";
+import AchievementFeed from "@/components/level/AchievementFeed";
 
 export default function LevelPage() {
   return (
@@ -38,6 +39,11 @@ export default function LevelPage() {
       {/* 뱃지 컬렉션 */}
       <section>
         <BadgeCollection badges={MOCK_BADGES} />
+      </section>
+
+      {/* 최근 업적 */}
+      <section>
+        <AchievementFeed badges={MOCK_BADGES} />
       </section>
     </div>
   );

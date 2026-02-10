@@ -14,6 +14,9 @@ import { StockTicker, PatternAnalysisResult } from "@/lib/types";
 import TickerSearch from "@/components/pattern/TickerSearch";
 import PatternMatchCard from "@/components/pattern/PatternMatchCard";
 import ScenarioComparison from "@/components/pattern/ScenarioComparison";
+import MomentCapture from "@/components/pattern/MomentCapture";
+import ActionGuide from "@/components/pattern/ActionGuide";
+import PremiumLock from "@/components/pattern/PremiumLock";
 
 type PageState = "idle" | "selected" | "loading" | "result";
 
@@ -81,21 +84,35 @@ export default function PatternPage() {
       {/* Results */}
       {state === "result" && analysisResult && (
         <>
-          {/* Pattern Match Cards */}
+          {/* Moment Capture */}
           <section>
-            <h2 className="text-lg font-bold text-zinc-900  mb-4">
-              유사 패턴 {analysisResult.matches.length}건
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {analysisResult.matches.map((match, i) => (
-                <PatternMatchCard key={match.id} match={match} index={i} />
-              ))}
-            </div>
+            <MomentCapture analysis={analysisResult} />
           </section>
 
+          {/* Pattern Match Cards */}
+          <PremiumLock title="유사 패턴 분석">
+            <section>
+              <h2 className="text-lg font-bold text-zinc-900  mb-4">
+                유사 패턴 {analysisResult.matches.length}건
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {analysisResult.matches.map((match, i) => (
+                  <PatternMatchCard key={match.id} match={match} index={i} />
+                ))}
+              </div>
+            </section>
+          </PremiumLock>
+
           {/* Scenario Comparison */}
+          <PremiumLock title="시나리오 비교">
+            <section>
+              <ScenarioComparison analysis={analysisResult} />
+            </section>
+          </PremiumLock>
+
+          {/* Action Guide */}
           <section>
-            <ScenarioComparison analysis={analysisResult} />
+            <ActionGuide analysis={analysisResult} />
           </section>
         </>
       )}

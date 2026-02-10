@@ -1,22 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Card from "@/components/ui/Card";
 import { Badge } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import BadgeDetailModal from "@/components/level/BadgeDetailModal";
 
 interface BadgeCollectionProps {
   badges: Badge[];
 }
 
 export default function BadgeCollection({ badges }: BadgeCollectionProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [selectedBadge, setSelectedBadge] = useState<Badge | null>(null);
 
   const earned = badges.filter((b) => b.isEarned).length;
-
-  const toggleExpand = (id: string) => {
-    setExpandedId((prev) => (prev === id ? null : id));
-  };
 
   return (
     <div className="space-y-1">
@@ -37,22 +33,25 @@ export default function BadgeCollection({ badges }: BadgeCollectionProps) {
           <BadgeCard
             key={badge.id}
             badge={badge}
-            isExpanded={expandedId === badge.id}
-            onToggle={() => toggleExpand(badge.id)}
+            onClick={() => setSelectedBadge(badge)}
           />
         ))}
       </div>
+
+      <BadgeDetailModal
+        badge={selectedBadge}
+        onClose={() => setSelectedBadge(null)}
+      />
     </div>
   );
 }
 
 interface BadgeCardProps {
   badge: Badge;
-  isExpanded: boolean;
-  onToggle: () => void;
+  onClick: () => void;
 }
 
-function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
+function BadgeCard({ badge, onClick }: BadgeCardProps) {
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
@@ -61,7 +60,7 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
   return (
     <button
       type="button"
-      onClick={onToggle}
+      onClick={onClick}
       className={cn(
         "w-full rounded-2xl border p-4 text-left transition-all",
         badge.isEarned
@@ -131,34 +130,6 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
             {badge.condition}
           </span>
         )}
-      </div>
-
-      {/* Expanded detail (accordion) */}
-      <div
-        className={cn(
-          "grid transition-all duration-200",
-          isExpanded ? "mt-3 grid-rows-[1fr]" : "grid-rows-[0fr]"
-        )}
-      >
-        <div className="overflow-hidden">
-          <div className="border-t border-zinc-100 pt-3">
-            <p
-              className={cn(
-                "text-xs leading-relaxed",
-                badge.isEarned
-                  ? "text-zinc-500"
-                  : "text-zinc-400"
-              )}
-            >
-              {badge.description}
-            </p>
-            {!badge.isEarned && (
-              <p className="mt-1.5 text-[11px] font-medium text-zinc-400">
-                조건: {badge.condition}
-              </p>
-            )}
-          </div>
-        </div>
       </div>
     </button>
   );

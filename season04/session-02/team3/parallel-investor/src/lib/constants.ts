@@ -11,28 +11,22 @@ export const NAV_ITEMS: NavItem[] = [
     description: "대시보드",
   },
   {
-    label: "패턴분석",
+    label: "분석",
     href: "/pattern",
     icon: "chart",
     description: "과거 패턴 매칭",
   },
   {
-    label: "참음기록",
+    label: "기록",
     href: "/shadow-record",
     icon: "shield",
     description: "FOMO 기록",
   },
   {
-    label: "방어현황",
-    href: "/jomo",
-    icon: "trophy",
-    description: "JOMO 계산기",
-  },
-  {
-    label: "레벨",
+    label: "나",
     href: "/level",
-    icon: "star",
-    description: "참을성 레벨링",
+    icon: "user",
+    description: "나의 프로필",
   },
 ];
 
