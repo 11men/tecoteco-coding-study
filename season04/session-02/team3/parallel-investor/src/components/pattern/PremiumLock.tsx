@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import BadgeUI from "@/components/ui/Badge";
 import { MOCK_USER } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 
@@ -7,8 +11,27 @@ interface PremiumLockProps {
 }
 
 export default function PremiumLock({ children, title }: PremiumLockProps) {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
   if (MOCK_USER.isPremium) {
     return <>{children}</>;
+  }
+
+  if (isUnlocked) {
+    return (
+      <div className="relative">
+        <div className="flex items-center gap-2 mb-2">
+          <BadgeUI label="관리자 모드" variant="warning" />
+          <button
+            onClick={() => setIsUnlocked(false)}
+            className="text-xs text-zinc-400 hover:text-zinc-600"
+          >
+            잠금
+          </button>
+        </div>
+        {children}
+      </div>
+    );
   }
 
   return (
@@ -18,6 +41,12 @@ export default function PremiumLock({ children, title }: PremiumLockProps) {
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-zinc-900/60 backdrop-blur-sm">
+        <button
+          onClick={() => setIsUnlocked(true)}
+          className="absolute top-2 right-2 text-xs text-zinc-400 hover:text-zinc-600 z-10"
+        >
+          관리자: 잠금 해제
+        </button>
         {title && (
           <p className="text-sm font-medium text-zinc-300 mb-2">{title}</p>
         )}
