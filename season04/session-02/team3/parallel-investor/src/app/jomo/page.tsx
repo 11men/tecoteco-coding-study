@@ -5,9 +5,15 @@
 // 이 페이지와 src/components/jomo/ 디렉토리는 Team 2가 담당합니다.
 // 다른 팀은 이 파일을 수정하지 마세요.
 
-import Card from "@/components/ui/Card";
+import { MOCK_USER } from "@/lib/mock-data";
+import { calculateJomo } from "@/lib/utils";
+import JomoSummary from "@/components/jomo/JomoSummary";
+import JomoConversionGrid from "@/components/jomo/JomoConversionGrid";
 
 export default function JomoPage() {
+  const { totalDefendedAmount, totalRecords, defenseSuccessRate } = MOCK_USER;
+  const jomo = calculateJomo(totalDefendedAmount);
+
   return (
     <div className="flex flex-col gap-6">
       <section>
@@ -17,19 +23,13 @@ export default function JomoPage() {
         </p>
       </section>
 
-      {/* TODO: Team 2 - 총 방어 금액 서머리 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          💰 총 방어 금액 서머리가 들어갈 자리입니다 (Team 2)
-        </p>
-      </Card>
+      <JomoSummary
+        totalDefendedAmount={totalDefendedAmount}
+        totalRecords={totalRecords}
+        defenseSuccessRate={defenseSuccessRate}
+      />
 
-      {/* TODO: Team 2 - 실물 환산 카드 리스트 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          🍗 실물 환산 카드 리스트가 들어갈 자리입니다 (Team 2)
-        </p>
-      </Card>
+      <JomoConversionGrid items={jomo.items} />
     </div>
   );
 }

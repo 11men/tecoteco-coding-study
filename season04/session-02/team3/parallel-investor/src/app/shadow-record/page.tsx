@@ -5,9 +5,21 @@
 // 이 페이지와 src/components/shadow-record/ 디렉토리는 Team 2가 담당합니다.
 // 다른 팀은 이 파일을 수정하지 마세요.
 
-import Card from "@/components/ui/Card";
+"use client";
+
+import { useState } from "react";
+import { MOCK_SHADOW_RECORDS } from "@/lib/mock-data";
+import { ShadowRecord } from "@/lib/types";
+import FomoRecordForm from "@/components/shadow-record/FomoRecordForm";
+import ShadowRecordList from "@/components/shadow-record/ShadowRecordList";
 
 export default function ShadowRecordPage() {
+  const [records, setRecords] = useState<ShadowRecord[]>(MOCK_SHADOW_RECORDS);
+
+  const handleSubmit = (newRecord: ShadowRecord) => {
+    setRecords((prev) => [newRecord, ...prev]);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <section>
@@ -17,26 +29,9 @@ export default function ShadowRecordPage() {
         </p>
       </section>
 
-      {/* TODO: Team 2 - FOMO 기록 폼 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          📝 FOMO 기록 폼이 들어갈 자리입니다 (Team 2)
-        </p>
-      </Card>
+      <FomoRecordForm onSubmit={handleSubmit} />
 
-      {/* TODO: Team 2 - 참음 기록 리스트 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          📋 참음 기록 리스트가 들어갈 자리입니다 (Team 2)
-        </p>
-      </Card>
-
-      {/* TODO: Team 2 - 결과 피드백 카드 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          🎉 결과 피드백 카드가 들어갈 자리입니다 (Team 2)
-        </p>
-      </Card>
+      <ShadowRecordList records={records} />
     </div>
   );
 }
