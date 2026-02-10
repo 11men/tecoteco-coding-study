@@ -5,38 +5,100 @@
 // 이 페이지와 src/components/pattern/ 디렉토리는 Team 1이 담당합니다.
 // 다른 팀은 이 파일을 수정하지 마세요.
 
-import Card from "@/components/ui/Card";
+"use client";
+
+import { useState, useCallback } from "react";
+import Button from "@/components/ui/Button";
+import { MOCK_ANALYSIS_RESULT, MOCK_PATTERN_MATCHES } from "@/lib/mock-data";
+import { StockTicker, PatternAnalysisResult } from "@/lib/types";
+import TickerSearch from "@/components/pattern/TickerSearch";
+import PatternMatchCard from "@/components/pattern/PatternMatchCard";
+import ScenarioComparison from "@/components/pattern/ScenarioComparison";
+
+type PageState = "idle" | "selected" | "loading" | "result";
 
 export default function PatternPage() {
+  const [state, setState] = useState<PageState>("idle");
+  const [selectedTicker, setSelectedTicker] = useState<StockTicker | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<PatternAnalysisResult | null>(null);
+
+  const handleSelect = useCallback((ticker: StockTicker) => {
+    setSelectedTicker(ticker);
+    setState(ticker ? "selected" : "idle");
+    setAnalysisResult(null);
+  }, []);
+
+  const handleAnalyze = useCallback(() => {
+    if (!selectedTicker) return;
+    setState("loading");
+
+    setTimeout(() => {
+      const result: PatternAnalysisResult = {
+        ...MOCK_ANALYSIS_RESULT,
+        ticker: selectedTicker,
+        capturedAt: new Date().toISOString(),
+        matches: MOCK_PATTERN_MATCHES,
+      };
+      setAnalysisResult(result);
+      setState("result");
+    }, 1000);
+  }, [selectedTicker]);
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
+      {/* Header */}
       <section>
-        <h1 className="text-2xl font-bold">패턴 분석</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">패턴 분석</h1>
         <p className="mt-1 text-sm text-zinc-500">
           사고 싶은 종목을 입력하면, 과거 유사 패턴의 결과를 보여드립니다.
         </p>
       </section>
 
-      {/* TODO: Team 1 - 종목 검색 컴포넌트 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          🔍 종목 검색 컴포넌트가 들어갈 자리입니다 (Team 1)
-        </p>
-      </Card>
+      {/* Ticker Search */}
+      <section>
+        <TickerSearch onSelect={handleSelect} selectedTicker={selectedTicker} />
+      </section>
 
-      {/* TODO: Team 1 - 패턴 매칭 결과 카드 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          📊 패턴 매칭 결과 카드가 들어갈 자리입니다 (Team 1)
-        </p>
-      </Card>
+      {/* Analyze Button */}
+      {state === "selected" && selectedTicker && (
+        <section className="flex justify-center">
+          <Button size="lg" onClick={handleAnalyze}>
+            &ldquo;{selectedTicker.name}&rdquo; 사고 싶다
+          </Button>
+        </section>
+      )}
 
-      {/* TODO: Team 1 - 사면/참으면 시나리오 비교 */}
-      <Card>
-        <p className="text-center text-zinc-400 py-12">
-          ⚖️ 시나리오 비교 UI가 들어갈 자리입니다 (Team 1)
-        </p>
-      </Card>
+      {/* Loading */}
+      {state === "loading" && (
+        <section className="flex flex-col items-center gap-3 py-16">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent" />
+          <p className="text-sm text-zinc-500">
+            과거 유사 패턴을 분석하고 있습니다...
+          </p>
+        </section>
+      )}
+
+      {/* Results */}
+      {state === "result" && analysisResult && (
+        <>
+          {/* Pattern Match Cards */}
+          <section>
+            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-4">
+              유사 패턴 {analysisResult.matches.length}건
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {analysisResult.matches.map((match, i) => (
+                <PatternMatchCard key={match.id} match={match} index={i} />
+              ))}
+            </div>
+          </section>
+
+          {/* Scenario Comparison */}
+          <section>
+            <ScenarioComparison analysis={analysisResult} />
+          </section>
+        </>
+      )}
     </div>
   );
 }
