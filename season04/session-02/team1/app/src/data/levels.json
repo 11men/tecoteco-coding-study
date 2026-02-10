@@ -1,0 +1,18 @@
+[
+  { "level": 1, "title": "손실 새싹", "minLoss": 0, "maxLoss": 500000 },
+  { "level": 2, "title": "손실 새싹", "minLoss": 500000, "maxLoss": 1000000 },
+  { "level": 3, "title": "벼락 거지 입문자", "minLoss": 1000000, "maxLoss": 1500000 },
+  { "level": 4, "title": "하락 견습생", "minLoss": 1500000, "maxLoss": 2000000 },
+  { "level": 5, "title": "하락 탐지기", "minLoss": 2000000, "maxLoss": 3000000 },
+  { "level": 6, "title": "벼락 거지 헌터", "minLoss": 3000000, "maxLoss": 4000000 },
+  { "level": 7, "title": "손실 수집가", "minLoss": 4000000, "maxLoss": 5000000 },
+  { "level": 8, "title": "조용한 손실러", "minLoss": 5000000, "maxLoss": 6000000 },
+  { "level": 9, "title": "하락의 정석", "minLoss": 6000000, "maxLoss": 7000000 },
+  { "level": 10, "title": "폭락 마니아", "minLoss": 7000000, "maxLoss": 8000000 },
+  { "level": 11, "title": "하락 전문가", "minLoss": 8000000, "maxLoss": 9000000 },
+  { "level": 12, "title": "손실의 달인", "minLoss": 9000000, "maxLoss": 10000000 },
+  { "level": 13, "title": "역대급손실러", "minLoss": 10000000, "maxLoss": 12000000 },
+  { "level": 14, "title": "공포의 매수자", "minLoss": 12000000, "maxLoss": 15000000 },
+  { "level": 15, "title": "폭락 예언자", "minLoss": 15000000, "maxLoss": 20000000 },
+  { "level": 99, "title": "마이너스의 신", "minLoss": 20000000, "maxLoss": 999999999 }
+]

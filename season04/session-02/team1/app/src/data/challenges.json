@@ -1,0 +1,34 @@
+[
+  {
+    "id": "challenge_001",
+    "title": "이달의 마이너스의 손",
+    "description": "2월 한 달간 가장 큰 손실을 기록하세요!",
+    "type": "monthly",
+    "startDate": "2026-02-01",
+    "endDate": "2026-02-28",
+    "participants": 4821,
+    "myRank": 23,
+    "topRankers": [
+      { "rank": 1, "nickname": "손실왕김씨", "totalLoss": 5840000 },
+      { "rank": 2, "nickname": "벼락거지마스터", "totalLoss": 4500000 },
+      { "rank": 3, "nickname": "하락매니아", "totalLoss": 3200000 }
+    ],
+    "prize": "명예의 전당 등록 + 특별 배지"
+  },
+  {
+    "id": "challenge_002",
+    "title": "코인 벼락 거지 챌린지",
+    "description": "코인만으로 최대 손실에 도전하세요!",
+    "type": "biweekly",
+    "startDate": "2026-02-03",
+    "endDate": "2026-02-17",
+    "participants": 1523,
+    "myRank": 45,
+    "topRankers": [
+      { "rank": 1, "nickname": "코인루저", "totalLoss": 2850000 },
+      { "rank": 2, "nickname": "비트손실", "totalLoss": 2100000 },
+      { "rank": 3, "nickname": "이더폭락", "totalLoss": 1800000 }
+    ],
+    "prize": "코인 벼락 거지 마스터 배지"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "user_001",
+  "nickname": "벼락거지파괴자",
+  "virtualBalance": 234000,
+  "initialBalance": 1000000,
+  "totalDeposited": 3000000,
+  "level": 5,
+  "levelTitle": "하락 탐지기",
+  "totalLoss": 2766000,
+  "rankScore": 2766000,
+  "badges": ["first_record", "minus_hand_badge", "week_streak", "crypto_fomo"],
+  "joinedAt": "2026-01-15"
+}

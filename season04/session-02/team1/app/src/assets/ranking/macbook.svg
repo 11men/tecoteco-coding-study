@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 40" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4" y="6" width="56" height="28" rx="2" ry="2"/>
+  <line x1="4" y1="34" x2="60" y2="34"/>
+  <rect x="26" y="34" width="12" height="2" rx="0.5"/>
+  <!-- 화면 영역 + 금 가는 줄 -->
+  <rect x="8" y="10" width="48" height="20" rx="1" fill="#9ca3af" fill-opacity="0.15"/>
+  <path d="M12 14 L28 28 L44 16 L52 24" stroke="#6b7280" stroke-width="1.2"/>
+  <path d="M20 30 L36 18 L48 26" stroke="#6b7280" stroke-width="1"/>
+  <path d="M16 22 L40 12" stroke="#6b7280" stroke-width="0.8"/>
+</svg>

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "first_record",
+    "name": "첫 벼락 거지 기록",
+    "description": "첫 번째 섀도우 포지션을 기록했습니다",
+    "emoji": "🎯",
+    "unlocked": true
+  },
+  {
+    "id": "minus_hand_badge",
+    "name": "마이너스의 손",
+    "description": "첫 손실을 기록했습니다",
+    "emoji": "👋",
+    "unlocked": true
+  },
+  {
+    "id": "week_streak",
+    "name": "7일 연속 기록",
+    "description": "일주일 동안 매일 벼락 거지를 기록했습니다",
+    "emoji": "🔥",
+    "unlocked": true
+  },
+  {
+    "id": "crypto_fomo",
+    "name": "코인 벼락 거지",
+    "description": "첫 코인 섀도우 포지션을 기록했습니다",
+    "emoji": "🪙",
+    "unlocked": true
+  },
+  {
+    "id": "million_loss",
+    "name": "100만원 손실 달성",
+    "description": "누적 손실 100만원을 돌파했습니다",
+    "emoji": "💸",
+    "unlocked": false
+  },
+  {
+    "id": "overseas_fomo",
+    "name": "해외주식 벼락 거지",
+    "description": "첫 해외주식 섀도우 포지션을 기록했습니다",
+    "emoji": "🌍",
+    "unlocked": false
+  },
+  {
+    "id": "top_100",
+    "name": "TOP 100 진입",
+    "description": "전체 랭킹 100위 안에 들었습니다",
+    "emoji": "🏆",
+    "unlocked": false
+  },
+  {
+    "id": "diversified",
+    "name": "분산 손실가",
+    "description": "국내, 해외, 코인 모두에서 포지션을 보유했습니다",
+    "emoji": "📊",
+    "unlocked": false
+  },
+  {
+    "id": "monthly_champion",
+    "name": "월간 챔피언",
+    "description": "월간 챌린지에서 1위를 차지했습니다",
+    "emoji": "👑",
+    "unlocked": false
+  },
+  {
+    "id": "comeback",
+    "name": "재기불능",
+    "description": "잔고가 0원 이하로 떨어졌습니다",
+    "emoji": "💀",
+    "unlocked": false
+  },
+  {
+    "id": "tesla_fomo",
+    "name": "테슬라 탑승자",
+    "description": "테슬라 섀도우 포지션을 기록했습니다",
+    "emoji": "🚗",
+    "unlocked": false
+  },
+  {
+    "id": "samsung_fomo",
+    "name": "삼전 주주",
+    "description": "삼성전자 섀도우 포지션을 기록했습니다",
+    "emoji": "📱",
+    "unlocked": false
+  }
+]
