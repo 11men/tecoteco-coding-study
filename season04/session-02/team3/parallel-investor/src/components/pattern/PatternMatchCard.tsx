@@ -21,10 +21,10 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
       <div className="flex items-start justify-between mb-5">
         <div>
           <p className="text-xs text-zinc-400 mb-1">유사 패턴 #{index + 1}</p>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">{match.matchDate}</p>
+          <p className="text-sm text-zinc-600">{match.matchDate}</p>
         </div>
         <div className="text-right">
-          <p className="text-4xl font-extrabold text-blue-600">{match.similarity}%</p>
+          <p className="text-4xl font-extrabold text-teal-600">{match.similarity}%</p>
           <p className="text-xs text-zinc-400 mt-0.5">유사도</p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
       {/* Price at match */}
       <div className="mb-5">
         <p className="text-xs text-zinc-400 mb-1">당시 가격</p>
-        <p className="text-base font-semibold text-zinc-800 dark:text-zinc-200">
+        <p className="text-base font-semibold text-zinc-800">
           {formatKRW(match.priceAtMatch)}
         </p>
       </div>
@@ -45,8 +45,8 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
             className={cn(
               "rounded-lg px-3 py-3 text-center",
               r.value >= 0
-                ? "bg-emerald-50 dark:bg-emerald-950"
-                : "bg-red-50 dark:bg-red-950"
+                ? "bg-emerald-50"
+                : "bg-red-50"
             )}
           >
             <p className="text-xs text-zinc-500 mb-1">{r.label}</p>

@@ -82,7 +82,7 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
 
         {/* 결과가 있을 때 변동률 표시 */}
         {hasResult && record.result && (
-          <div className="flex items-center justify-between pt-2 border-t border-zinc-200 dark:border-zinc-700">
+          <div className="flex items-center justify-between pt-2 border-t border-zinc-200">
             <div>
               <p className="text-sm text-zinc-500">결과</p>
               <p

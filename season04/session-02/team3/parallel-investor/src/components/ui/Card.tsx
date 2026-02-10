@@ -15,10 +15,10 @@ export default function Card({
     <div
       className={cn(
         "rounded-2xl border p-5 transition-shadow",
-        variant === "default" && "border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900",
-        variant === "success" && "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950",
-        variant === "danger" && "border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950",
-        variant === "highlight" && "border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950",
+        variant === "default" && "border-zinc-200 bg-white",
+        variant === "success" && "border-emerald-200 bg-emerald-50",
+        variant === "danger" && "border-red-200 bg-red-50",
+        variant === "highlight" && "border-teal-200 bg-teal-50",
         className
       )}
       {...props}

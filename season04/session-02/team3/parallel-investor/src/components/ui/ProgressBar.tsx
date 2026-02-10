@@ -19,11 +19,11 @@ export default function ProgressBar({
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700">
+      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-200">
         <div
           className={cn(
             "h-full rounded-full transition-all duration-500",
-            color === "blue" && "bg-blue-500",
+            color === "blue" && "bg-teal-500",
             color === "emerald" && "bg-emerald-500",
             color === "amber" && "bg-amber-500",
             color === "red" && "bg-red-500"
@@ -32,7 +32,7 @@ export default function ProgressBar({
         />
       </div>
       {showLabel && (
-        <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        <span className="text-sm font-medium text-zinc-500">
           {Math.round(percent)}%
         </span>
       )}

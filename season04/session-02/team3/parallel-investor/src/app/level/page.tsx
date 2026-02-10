@@ -14,10 +14,10 @@ export default function LevelPage() {
   return (
     <div className="flex flex-col gap-8">
       <section>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-2xl font-bold text-zinc-900">
           참을성 레벨
         </h1>
-        <p className="mt-1 text-sm text-zinc-400 dark:text-zinc-500">
+        <p className="mt-1 text-sm text-zinc-400">
           참음 횟수와 기간에 따라 레벨과 뱃지를 획득하세요.
         </p>
       </section>

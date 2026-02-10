@@ -37,7 +37,7 @@ export default function Home() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="종목명 또는 심볼 검색..."
-          className="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900"
+          className="w-full rounded-2xl border border-zinc-200 bg-white px-5 py-4 text-base outline-none transition-all placeholder:text-zinc-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
         />
       </div>
 
@@ -51,12 +51,12 @@ export default function Home() {
       {/* Bottom Links */}
       <div className="mt-auto flex gap-3 pb-4">
         <Link href="/shadow-record" className="flex-1">
-          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400">
+          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
             참음 기록 보기
           </div>
         </Link>
         <Link href="/level" className="flex-1">
-          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400">
+          <div className="rounded-2xl bg-zinc-100 px-4 py-3 text-center text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200">
             내 레벨 확인
           </div>
         </Link>
@@ -70,9 +70,9 @@ function TickerRow({ ticker }: { ticker: StockTicker }) {
 
   return (
     <Link href={`/pattern?symbol=${ticker.symbol}`}>
-      <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-white px-5 py-4 transition-all active:scale-[0.98] hover:border-zinc-200 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-white px-5 py-4 transition-all active:scale-[0.98] hover:border-zinc-200 hover:shadow-sm">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-600">
             {ticker.symbol.slice(0, 2)}
           </span>
           <div>

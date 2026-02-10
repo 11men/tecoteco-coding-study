@@ -25,7 +25,7 @@ export default function JomoConversionGrid({ items }: JomoConversionGridProps) {
             <div className="flex flex-col items-center gap-2 py-3">
               <span className="text-4xl">{item.emoji}</span>
               <p className="text-sm text-zinc-500 font-medium">{item.name}</p>
-              <p className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-100">
+              <p className="text-3xl font-extrabold text-zinc-900">
                 {item.quantity}
                 <span className="text-base font-medium text-zinc-500 ml-0.5">
                   개
