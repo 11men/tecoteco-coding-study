@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Parallel Investor - 타임머신 인베스터",
-  description: "당신의 직감이 틀렸음을, 과거의 데이터가 증명합니다.",
+  title: "DÉJÀ BUY - 데자바이",
+  description: "또 사려고? 이거 전에도 봤잖아. 이미 본 패턴에 또 당하지 마세요.",
 };
 
 export default function RootLayout({

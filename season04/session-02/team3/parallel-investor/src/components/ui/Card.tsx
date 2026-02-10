@@ -14,7 +14,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl border p-5 transition-shadow",
+        "rounded-2xl border p-4 sm:p-5 transition-shadow",
         variant === "default" && "border-zinc-200 bg-white",
         variant === "success" && "border-emerald-200 bg-emerald-50",
         variant === "danger" && "border-red-200 bg-red-50",

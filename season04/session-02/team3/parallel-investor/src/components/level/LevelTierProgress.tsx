@@ -15,7 +15,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
         레벨 티어
       </h2>
       <p className="text-sm text-zinc-400 mb-6">
-        참을성이 높아질수록 더 높은 칭호를 얻습니다
+        안 살수록 칭호가 올라간다
       </p>
 
       <div className="relative pl-8">
@@ -28,7 +28,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
             const isCurrent = isCurrentTier(currentLevel, index);
 
             return (
-              <div key={tier.level} className="relative flex items-start gap-4">
+              <div key={tier.level} className="relative flex items-start gap-3 sm:gap-4">
                 {/* Timeline dot */}
                 <div
                   className={cn(
@@ -72,10 +72,10 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                       <span
                         className={cn(
-                          "text-xs font-bold",
+                          "text-xs font-bold shrink-0",
                           isCurrent && "text-teal-600",
                           isAchieved && !isCurrent && "text-emerald-600",
                           !isAchieved && "text-zinc-400"
@@ -85,7 +85,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       </span>
                       <span
                         className={cn(
-                          "text-base font-bold",
+                          "text-sm sm:text-base font-bold shrink-0",
                           isCurrent && "text-zinc-900",
                           isAchieved && !isCurrent && "text-zinc-700",
                           !isAchieved && "text-zinc-400"
@@ -95,7 +95,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       </span>
                       <span
                         className={cn(
-                          "text-xs",
+                          "text-[11px] sm:text-xs truncate",
                           isCurrent && "text-zinc-500",
                           isAchieved && !isCurrent && "text-zinc-400",
                           !isAchieved && "text-zinc-300"

@@ -21,11 +21,11 @@ export default function ShadowRecordPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 px-4 sm:px-0">
       <section>
-        <h1 className="text-2xl font-bold">참음의 기록</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">참음 기록</h1>
         <p className="mt-1 text-sm text-zinc-500">
-          FOMO를 느꼈지만 참은 종목을 기록하고, 결과를 확인하세요.
+          사고 싶었는데 참은 거, 여기 적어.
         </p>
       </section>
 

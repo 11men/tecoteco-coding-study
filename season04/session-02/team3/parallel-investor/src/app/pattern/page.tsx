@@ -45,12 +45,12 @@ export default function PatternPage() {
   }, [selectedTicker]);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 px-4 sm:gap-8 sm:px-0">
       {/* Header */}
       <section>
-        <h1 className="text-2xl font-bold text-zinc-900 ">패턴 분석</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 sm:text-3xl">데자뷰</h1>
         <p className="mt-1 text-sm text-zinc-500">
-          사고 싶은 종목을 입력하면, 과거 유사 패턴의 결과를 보여드립니다.
+          전에 본 적 있는 패턴을 찾아볼게.
         </p>
       </section>
 
@@ -63,7 +63,7 @@ export default function PatternPage() {
       {state === "selected" && selectedTicker && (
         <section className="flex justify-center">
           <Button size="lg" onClick={handleAnalyze}>
-            &ldquo;{selectedTicker.name}&rdquo; 사고 싶다
+            &ldquo;{selectedTicker.name}&rdquo; Deja Buy 감지
           </Button>
         </section>
       )}
@@ -73,7 +73,7 @@ export default function PatternPage() {
         <section className="flex flex-col items-center gap-3 py-16">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-500 border-t-transparent" />
           <p className="text-sm text-zinc-500">
-            과거 유사 패턴을 분석하고 있습니다...
+            전에 본 적 있는 패턴을 찾는 중...
           </p>
         </section>
       )}
@@ -83,10 +83,10 @@ export default function PatternPage() {
         <>
           {/* Pattern Match Cards */}
           <section>
-            <h2 className="text-lg font-bold text-zinc-900  mb-4">
+            <h2 className="text-lg font-bold text-zinc-900 mb-4">
               유사 패턴 {analysisResult.matches.length}건
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
               {analysisResult.matches.map((match, i) => (
                 <PatternMatchCard key={match.id} match={match} index={i} />
               ))}
@@ -94,7 +94,7 @@ export default function PatternPage() {
           </section>
 
           {/* Scenario Comparison */}
-          <section>
+          <section className="w-full">
             <ScenarioComparison analysis={analysisResult} />
           </section>
         </>

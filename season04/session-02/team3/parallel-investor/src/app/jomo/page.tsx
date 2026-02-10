@@ -15,11 +15,11 @@ export default function JomoPage() {
   const jomo = calculateJomo(totalDefendedAmount);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 px-4 sm:px-0">
       <section>
-        <h1 className="text-2xl font-bold">방어 현황</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">세이브</h1>
         <p className="mt-1 text-sm text-zinc-500">
-          방어한 손실액을 실물 가치로 환산하여 보여드립니다.
+          안 사서 번 돈으로 뭘 살 수 있었을까?
         </p>
       </section>
 

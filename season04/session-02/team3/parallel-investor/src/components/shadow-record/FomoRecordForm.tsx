@@ -43,13 +43,13 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
   return (
     <Card>
-      <h2 className="text-lg font-bold mb-5">FOMO 기록하기</h2>
+      <h2 className="text-lg font-bold mb-5">기록하기</h2>
 
       <div className="flex flex-col gap-5">
         {/* 종목 선택 */}
         <div className="flex flex-col gap-1.5">
           <label className="text-sm font-medium text-zinc-700">
-            종목 선택
+            뭘 사고 싶었어?
           </label>
           <select
             value={selectedTicker?.symbol ?? ""}
@@ -58,12 +58,12 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
               setSelectedTicker(ticker ?? null);
             }}
             className={cn(
-              "rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors",
+              "w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors",
               "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
               ""
             )}
           >
-            <option value="">종목을 선택하세요</option>
+            <option value="">종목 선택</option>
             {MOCK_TICKERS.map((ticker) => (
               <option key={ticker.symbol} value={ticker.symbol}>
                 {ticker.name} ({ticker.symbol}) - {formatKRW(ticker.currentPrice)}
@@ -74,9 +74,10 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
         {/* 투자 예정 금액 */}
         <Input
-          label="투자 예정 금액"
+          label="얼마나 넣으려고 했어?"
           type="number"
-          placeholder="금액을 입력하세요 (원)"
+          placeholder="금액 (원)"
+          className="w-full"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -84,19 +85,19 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
         {/* FOMO 강도 */}
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium text-zinc-700">
-            FOMO 강도
+            얼마나 사고 싶어?
           </label>
-          <div className="flex gap-2">
+          <div className="grid grid-cols-5 gap-2">
             {([1, 2, 3, 4, 5] as FomoIntensity[]).map((level) => (
               <button
                 key={level}
                 type="button"
                 onClick={() => setFomoIntensity(level)}
                 className={cn(
-                  "flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all",
+                  "rounded-xl py-3 text-sm font-semibold transition-all min-h-[44px]",
                   fomoIntensity === level
                     ? "bg-teal-500 text-white"
-                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 active:bg-zinc-300"
                 )}
               >
                 {level}
@@ -113,15 +114,15 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
         {/* 메모 */}
         <div className="flex flex-col gap-1.5">
           <label className="text-sm font-medium text-zinc-700">
-            메모
+            왜 사고 싶었어?
           </label>
           <textarea
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
-            placeholder="왜 사고 싶었는지 적어보세요..."
+            placeholder="친구가 그러는데... / 뉴스에서 봤는데..."
             rows={3}
             className={cn(
-              "rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors resize-none",
+              "w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors resize-none",
               "placeholder:text-zinc-400",
               "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
               ""
@@ -135,9 +136,9 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
           size="lg"
           onClick={handleSubmit}
           disabled={!isValid}
-          className="w-full"
+          className="w-full mt-2 py-4 text-base font-bold"
         >
-          참겠습니다
+          이번엔 안 산다
         </Button>
       </div>
     </Card>
