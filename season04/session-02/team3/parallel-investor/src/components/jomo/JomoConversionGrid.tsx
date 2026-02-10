@@ -9,7 +9,7 @@ export default function JomoConversionGrid({ items }: JomoConversionGridProps) {
   if (items.length === 0) {
     return (
       <Card>
-        <p className="text-center text-zinc-400 py-12">
+        <p className="text-center text-zinc-500 py-12">
           아직 세이브한 돈이 없어.
         </p>
       </Card>
@@ -18,16 +18,16 @@ export default function JomoConversionGrid({ items }: JomoConversionGridProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-bold">이 돈이면 이걸 살 수 있었는데</h2>
+      <h2 className="text-lg font-bold text-zinc-100">이 돈이면 이걸 살 수 있었는데</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {items.map((item) => (
           <Card key={item.name}>
             <div className="flex flex-col items-center gap-2 py-3">
               <span className="text-4xl">{item.emoji}</span>
-              <p className="text-sm text-zinc-500 font-medium">{item.name}</p>
-              <p className="text-3xl font-extrabold text-zinc-900">
+              <p className="text-sm text-zinc-400 font-medium">{item.name}</p>
+              <p className="text-3xl font-extrabold text-zinc-100">
                 {item.quantity}
-                <span className="text-base font-medium text-zinc-500 ml-0.5">
+                <span className="text-base font-medium text-zinc-400 ml-0.5">
                   개
                 </span>
               </p>

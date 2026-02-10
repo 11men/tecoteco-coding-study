@@ -2,6 +2,8 @@ import {
   Badge,
   PatternAnalysisResult,
   PatternMatch,
+  PersonaRecord,
+  PersonaStats,
   ShadowRecord,
   StockTicker,
   UserProfile,
@@ -119,6 +121,49 @@ export const MOCK_SHADOW_RECORDS: ShadowRecord[] = [
   },
 ];
 
+// --- Persona Records ---
+export const MOCK_PERSONA_RECORDS: PersonaRecord[] = [
+  {
+    id: "pr-1",
+    ticker: MOCK_TICKERS[0],
+    priceAtRecord: 59000000,
+    amount: 1500000,
+    persona: { why: "N", time: "S", risk: "H", code: "NSH", nickname: "불나방", emoji: "🔥" },
+    createdAt: "2025-01-18T11:30:00Z",
+    result: { closingPrice: 57500000, changePercent: -2.5, checkedAt: "2025-01-18T18:00:00Z" },
+  },
+  {
+    id: "pr-2",
+    ticker: MOCK_TICKERS[3],
+    priceAtRecord: 148000,
+    amount: 2000000,
+    persona: { why: "N", time: "W", risk: "H", code: "NWH", nickname: "뉴스올인러", emoji: "📰" },
+    createdAt: "2025-01-25T09:15:00Z",
+    result: { closingPrice: 145000, changePercent: -2.0, checkedAt: "2025-01-25T18:00:00Z" },
+  },
+  {
+    id: "pr-3",
+    ticker: MOCK_TICKERS[2],
+    priceAtRecord: 73000,
+    amount: 500000,
+    persona: { why: "C", time: "W", risk: "L", code: "CWL", nickname: "분석가", emoji: "🧠" },
+    createdAt: "2025-02-03T13:45:00Z",
+    result: { closingPrice: 74200, changePercent: 1.6, checkedAt: "2025-02-03T18:00:00Z" },
+  },
+];
+
+// --- Persona Stats ---
+export const MOCK_PERSONA_STATS: PersonaStats = {
+  totalRecords: 3,
+  mostFrequentType: "NSH",
+  typeDistribution: { "NSH": 1, "NWH": 1, "CWL": 1 },
+  winRateByWhy: {
+    "N": { wins: 0, total: 2 },
+    "C": { wins: 1, total: 1 },
+    "F": { wins: 0, total: 0 },
+  },
+};
+
 // --- Badges ---
 export const MOCK_BADGES: Badge[] = [
   {
@@ -173,5 +218,13 @@ export const MOCK_USER: UserProfile = {
   totalRecords: 8,
   defenseSuccessRate: 75,
   isPremium: false,
+  premium: {
+    plan: "free",
+    analysisUsedThisMonth: 1,
+    analysisLimitThisMonth: 10,
+  },
+  streak: 14,
+  personaRecords: MOCK_PERSONA_RECORDS,
+  personaStats: MOCK_PERSONA_STATS,
   joinedAt: "2025-01-10T00:00:00Z",
 };

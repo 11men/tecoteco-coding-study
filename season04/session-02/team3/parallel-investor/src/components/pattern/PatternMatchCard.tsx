@@ -20,19 +20,19 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
-          <p className="text-xs text-zinc-400 mb-1">D&eacute;j&agrave; Vu #{index + 1}</p>
-          <p className="text-sm text-zinc-600">{match.matchDate}</p>
+          <p className="tracking-widest uppercase font-mono text-xs text-zinc-500 mb-1">D&eacute;j&agrave; Vu #{index + 1}</p>
+          <p className="text-sm text-zinc-400">{match.matchDate}</p>
         </div>
         <div className="text-right">
-          <p className="text-4xl font-extrabold text-teal-600">{match.similarity}%</p>
-          <p className="text-xs text-zinc-400 mt-0.5">유사도</p>
+          <p className="text-4xl font-extrabold font-mono text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]">{match.similarity}%</p>
+          <p className="text-xs text-zinc-500 mt-0.5">유사도</p>
         </div>
       </div>
 
       {/* Price at match */}
       <div className="mb-5">
-        <p className="text-xs text-zinc-400 mb-1">그때 가격</p>
-        <p className="text-base font-semibold text-zinc-800">
+        <p className="text-xs text-zinc-500 mb-1">그때 가격</p>
+        <p className="text-base font-semibold text-zinc-200">
           {formatKRW(match.priceAtMatch)}
         </p>
       </div>
@@ -45,15 +45,15 @@ export default function PatternMatchCard({ match, index }: PatternMatchCardProps
             className={cn(
               "rounded-lg px-3 py-3 text-center",
               r.value >= 0
-                ? "bg-emerald-50"
-                : "bg-red-50"
+                ? "bg-emerald-500/10"
+                : "bg-red-500/10"
             )}
           >
             <p className="text-xs text-zinc-500 mb-1">{r.label}</p>
             <p
               className={cn(
                 "text-lg font-bold",
-                r.value >= 0 ? "text-emerald-600" : "text-red-500"
+                r.value >= 0 ? "text-emerald-400" : "text-red-400"
               )}
             >
               {formatPercent(r.value)}

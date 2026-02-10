@@ -25,15 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-zinc-100`}
       >
-        <Header />
-        <main className="mx-auto min-h-screen max-w-lg px-4 pb-24 pt-4 md:max-w-2xl md:pb-8">
-          {children}
-        </main>
-        <BottomNav />
+        {/* Mobile app shell — 390px fixed width, centered */}
+        <div className="relative mx-auto w-full max-w-[390px] min-h-screen bg-[#0a0a0f] shadow-2xl shadow-black/50 overflow-hidden">
+          <Header />
+          <main className="px-4 pb-24 pt-4">
+            {children}
+          </main>
+          <BottomNav />
+        </div>
       </body>
     </html>
   );

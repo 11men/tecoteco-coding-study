@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary: #1FC6B1;
-  --primary-light: #E8F9F6;
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-400: #9ca3af;
-  --gray-500: #6b7280;
-  --gray-600: #4b5563;
-  --gray-900: #111827;
-  --red: #FF4B4B;
-  --blue: #3182F6;
+  --background: #0a0a0f;
+  --foreground: #e4e4e7;
+  --primary: #3B82F6;
+  --primary-light: #1a1f35;
+  --gray-50: #18181b;
+  --gray-100: #1c1c22;
+  --gray-200: #27272a;
+  --gray-400: #52525b;
+  --gray-500: #71717a;
+  --gray-600: #a1a1aa;
+  --gray-900: #f4f4f5;
+  --red: #f87171;
+  --blue: #60a5fa;
 }
 
 @theme inline {
@@ -49,7 +49,7 @@ html {
 /* Banksalad-style divider */
 .divider {
   height: 8px;
-  background: #f5f6f8;
+  background: #1c1c22;
 }
 
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
@@ -77,10 +77,10 @@ html {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--gray-200);
+    background: var(--gray-400);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--gray-400);
+    background: var(--gray-500);
   }
 }

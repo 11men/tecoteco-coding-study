@@ -61,7 +61,7 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
         {query && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 text-sm"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 text-sm"
           >
             다시
           </button>
@@ -69,29 +69,29 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
       </div>
 
       {isOpen && filtered.length > 0 && (
-        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white shadow-lg overflow-hidden max-h-[60vh] overflow-y-auto">
+        <ul className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-700 bg-zinc-900 shadow-lg overflow-hidden max-h-[60vh] overflow-y-auto">
           {filtered.map((ticker) => (
             <li
               key={ticker.symbol}
               onClick={() => handleSelect(ticker)}
               className={cn(
                 "flex items-center justify-between px-4 py-3 min-h-[48px] cursor-pointer transition-colors",
-                "hover:bg-zinc-50 active:bg-zinc-100",
-                selectedTicker?.symbol === ticker.symbol && "bg-teal-50"
+                "hover:bg-zinc-800 active:bg-zinc-700",
+                selectedTicker?.symbol === ticker.symbol && "bg-blue-500/10"
               )}
             >
               <div className="flex items-center gap-3">
                 <span className="text-xs font-mono text-zinc-400 w-16">{ticker.symbol}</span>
-                <span className="font-medium text-zinc-900">{ticker.name}</span>
+                <span className="font-medium text-zinc-100">{ticker.name}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-zinc-700">
+                <span className="text-sm font-medium text-zinc-300">
                   {formatKRW(ticker.currentPrice)}
                 </span>
                 <span
                   className={cn(
                     "text-sm font-semibold",
-                    ticker.changePercent >= 0 ? "text-emerald-600" : "text-red-500"
+                    ticker.changePercent >= 0 ? "text-emerald-400" : "text-red-400"
                   )}
                 >
                   {formatPercent(ticker.changePercent)}
@@ -103,28 +103,28 @@ export default function TickerSearch({ onSelect, selectedTicker }: TickerSearchP
       )}
 
       {isOpen && query.trim() && filtered.length === 0 && (
-        <div className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-4 py-6 text-center text-sm text-zinc-400 shadow-lg">
+        <div className="absolute z-20 mt-1.5 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-6 text-center text-sm text-zinc-400 shadow-lg">
           못 찾겠는데?
         </div>
       )}
 
       {selectedTicker && (
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 gap-2">
+        <div className="mt-4 flex items-center justify-between rounded-xl border border-blue-500/30 bg-blue-500/10 px-4 py-3 gap-2">
           <div className="min-w-0">
-            <p className="text-xs text-teal-600 font-medium mb-0.5">이거 사려고?</p>
-            <p className="text-base sm:text-lg font-bold text-zinc-900 truncate">
+            <p className="text-xs text-blue-400 font-medium mb-0.5">이거 사려고?</p>
+            <p className="text-base sm:text-lg font-bold text-zinc-100 truncate">
               {selectedTicker.name}
               <span className="ml-2 text-sm font-normal text-zinc-400">{selectedTicker.symbol}</span>
             </p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-base sm:text-lg font-bold text-zinc-900">
+            <p className="text-base sm:text-lg font-bold text-zinc-100">
               {formatKRW(selectedTicker.currentPrice)}
             </p>
             <p
               className={cn(
                 "text-sm font-semibold",
-                selectedTicker.changePercent >= 0 ? "text-emerald-600" : "text-red-500"
+                selectedTicker.changePercent >= 0 ? "text-emerald-400" : "text-red-400"
               )}
             >
               {formatPercent(selectedTicker.changePercent)}

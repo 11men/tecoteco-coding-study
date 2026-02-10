@@ -17,8 +17,8 @@ export default function JomoPage() {
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-0">
       <section>
-        <h1 className="text-2xl font-bold sm:text-3xl">세이브</h1>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h1 className="text-2xl font-bold sm:text-3xl text-zinc-100">세이브</h1>
+        <p className="mt-1 text-sm text-zinc-400">
           안 사서 번 돈으로 뭘 살 수 있었을까?
         </p>
       </section>

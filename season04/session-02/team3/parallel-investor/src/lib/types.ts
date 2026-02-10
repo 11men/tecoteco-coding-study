@@ -104,6 +104,44 @@ export interface LevelTier {
   requiredExp: number;
 }
 
+// --- Persona (투자 MBTI) ---
+export type PersonaWhy = "N" | "C" | "F"; // News, Chart, Feeling
+export type PersonaTime = "S" | "W" | "H"; // Scalping, sWing, Holding
+export type PersonaRisk = "H" | "L"; // High, Low
+
+export interface PersonaTag {
+  why: PersonaWhy;
+  time: PersonaTime;
+  risk: PersonaRisk;
+  code: string; // e.g. "NFH"
+  nickname: string; // e.g. "불나방"
+  emoji: string;
+}
+
+export interface PersonaRecord {
+  id: string;
+  ticker: StockTicker;
+  priceAtRecord: number;
+  amount: number;
+  persona: PersonaTag;
+  createdAt: string;
+  result?: {
+    closingPrice: number;
+    changePercent: number;
+    checkedAt: string;
+  };
+}
+
+// --- Premium ---
+export type PlanType = "free" | "solid"; // "solid" = 프리미엄 플랜 이름
+
+export interface PremiumStatus {
+  plan: PlanType;
+  analysisUsedThisMonth: number;
+  analysisLimitThisMonth: number; // 3 for free, Infinity for solid
+  trialEndsAt?: string;
+}
+
 // --- User ---
 export interface UserProfile {
   id: string;
@@ -114,7 +152,18 @@ export interface UserProfile {
   totalRecords: number;
   defenseSuccessRate: number;
   isPremium: boolean;
+  premium: PremiumStatus;
+  streak: number; // consecutive defense days
+  personaRecords: PersonaRecord[];
+  personaStats: PersonaStats;
   joinedAt: string;
+}
+
+export interface PersonaStats {
+  totalRecords: number;
+  mostFrequentType: string; // e.g. "NFH"
+  typeDistribution: Record<string, number>; // e.g. { "NFH": 5, "CWL": 2 }
+  winRateByWhy: Record<PersonaWhy, { wins: number; total: number }>;
 }
 
 // --- Navigation ---

@@ -43,12 +43,12 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
   return (
     <Card>
-      <h2 className="text-lg font-bold mb-5">기록하기</h2>
+      <h2 className="text-lg font-bold mb-5 text-zinc-100">기록하기</h2>
 
       <div className="flex flex-col gap-5">
         {/* 종목 선택 */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-zinc-300">
             뭘 사고 싶었어?
           </label>
           <select
@@ -58,8 +58,8 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
               setSelectedTicker(ticker ?? null);
             }}
             className={cn(
-              "w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors",
-              "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
+              "w-full rounded-xl border border-zinc-700 bg-zinc-800/50 px-4 py-2.5 text-base text-zinc-100 outline-none transition-colors",
+              "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
               ""
             )}
           >
@@ -84,7 +84,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
         {/* FOMO 강도 */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-zinc-300">
             얼마나 사고 싶어?
           </label>
           <div className="grid grid-cols-5 gap-2">
@@ -96,8 +96,8 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
                 className={cn(
                   "rounded-xl py-3 text-sm font-semibold transition-all min-h-[44px]",
                   fomoIntensity === level
-                    ? "bg-teal-500 text-white"
-                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 active:bg-zinc-300"
+                    ? "bg-blue-500 text-white"
+                    : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 active:bg-zinc-600"
                 )}
               >
                 {level}
@@ -105,7 +105,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
             ))}
           </div>
           {fomoIntensity && (
-            <p className="text-sm text-teal-500 font-medium">
+            <p className="text-sm text-blue-400 font-medium">
               {FOMO_INTENSITY_LABELS[fomoIntensity]}
             </p>
           )}
@@ -113,7 +113,7 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
 
         {/* 메모 */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-zinc-300">
             왜 사고 싶었어?
           </label>
           <textarea
@@ -122,9 +122,9 @@ export default function FomoRecordForm({ onSubmit }: FomoRecordFormProps) {
             placeholder="친구가 그러는데... / 뉴스에서 봤는데..."
             rows={3}
             className={cn(
-              "w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-base outline-none transition-colors resize-none",
-              "placeholder:text-zinc-400",
-              "focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20",
+              "w-full rounded-xl border border-zinc-700 bg-zinc-800/50 px-4 py-2.5 text-base text-zinc-100 outline-none transition-colors resize-none",
+              "placeholder:text-zinc-500",
+              "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
               ""
             )}
           />

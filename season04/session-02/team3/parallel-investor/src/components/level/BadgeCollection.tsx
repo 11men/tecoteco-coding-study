@@ -4,6 +4,7 @@ import { useState } from "react";
 import Card from "@/components/ui/Card";
 import { Badge } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import PremiumBadge from "@/components/premium/PremiumBadge";
 
 interface BadgeCollectionProps {
   badges: Badge[];
@@ -21,7 +22,7 @@ export default function BadgeCollection({ badges }: BadgeCollectionProps) {
   return (
     <div className="space-y-1">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-lg font-bold text-zinc-900">
+        <h2 className="text-lg font-bold text-zinc-100">
           뱃지
         </h2>
         <span className="text-sm text-zinc-400">
@@ -63,12 +64,19 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
       type="button"
       onClick={onToggle}
       className={cn(
-        "w-full rounded-2xl border p-4 text-left transition-all min-h-[44px]",
+        "relative w-full rounded-2xl border p-4 text-left transition-all min-h-[44px]",
         badge.isEarned
-          ? "border-zinc-200 bg-white hover:shadow-md active:scale-[0.98]"
-          : "border-zinc-100 bg-zinc-50/50"
+          ? "border-zinc-800 bg-zinc-900 hover:shadow-md hover:shadow-zinc-900/50 active:scale-[0.98]"
+          : "border-zinc-800 bg-zinc-800/50"
       )}
     >
+      {/* 프리미엄 전용 뱃지 표시 (미획득 뱃지) */}
+      {!badge.isEarned && (
+        <div className="absolute -top-2 -right-2 z-10">
+          <PremiumBadge size="sm" />
+        </div>
+      )}
+
       <div className="flex flex-col items-center gap-2">
         {/* Icon */}
         <div className="relative">
@@ -81,13 +89,13 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
             {badge.icon}
           </span>
           {!badge.isEarned && (
-            <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-300">
+            <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-zinc-600">
               <svg
                 width="10"
                 height="10"
                 viewBox="0 0 10 12"
                 fill="none"
-                className="text-zinc-500"
+                className="text-zinc-400"
               >
                 <rect
                   x="2"
@@ -114,8 +122,8 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
           className={cn(
             "text-sm font-bold",
             badge.isEarned
-              ? "text-zinc-900"
-              : "text-zinc-400"
+              ? "text-zinc-100"
+              : "text-zinc-500"
           )}
         >
           {badge.name}
@@ -127,7 +135,7 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
             {formatDate(badge.earnedAt)} 획득
           </span>
         ) : (
-          <span className="text-[11px] text-zinc-300">
+          <span className="text-[11px] text-zinc-500">
             {badge.condition}
           </span>
         )}
@@ -141,19 +149,19 @@ function BadgeCard({ badge, isExpanded, onToggle }: BadgeCardProps) {
         )}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-zinc-100 pt-3">
+          <div className="border-t border-zinc-800 pt-3">
             <p
               className={cn(
                 "text-xs leading-relaxed",
                 badge.isEarned
-                  ? "text-zinc-500"
-                  : "text-zinc-400"
+                  ? "text-zinc-400"
+                  : "text-zinc-500"
               )}
             >
               {badge.description}
             </p>
             {!badge.isEarned && (
-              <p className="mt-1.5 text-[11px] font-medium text-zinc-400">
+              <p className="mt-1.5 text-[11px] font-medium text-zinc-500">
                 조건: {badge.condition}
               </p>
             )}

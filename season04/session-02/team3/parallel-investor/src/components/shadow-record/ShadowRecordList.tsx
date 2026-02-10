@@ -14,7 +14,7 @@ export default function ShadowRecordList({ records }: ShadowRecordListProps) {
   if (records.length === 0) {
     return (
       <Card>
-        <p className="text-center text-zinc-400 py-12">
+        <p className="text-center text-zinc-500 py-12">
           아직 기록 없음. 첫 D&eacute;j&agrave; Buy를 기록해봐.
         </p>
       </Card>
@@ -23,7 +23,7 @@ export default function ShadowRecordList({ records }: ShadowRecordListProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-bold">기록 목록</h2>
+      <h2 className="text-lg font-bold text-zinc-100">기록 목록</h2>
       {records.map((record) => (
         <ShadowRecordItem key={record.id} record={record} />
       ))}
@@ -49,8 +49,8 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
         {/* 상단: 종목명 + 뱃지 */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-base">{record.ticker.name}</span>
-            <span className="text-sm text-zinc-500">{record.ticker.symbol}</span>
+            <span className="font-bold text-base text-zinc-100">{record.ticker.name}</span>
+            <span className="text-sm text-zinc-400">{record.ticker.symbol}</span>
           </div>
           {hasResult ? (
             isDefenseSuccess ? (
@@ -66,14 +66,14 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
         {/* 중단: 금액 + FOMO 강도 */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-zinc-500">넣으려던 금액</p>
-            <p className="text-xl font-bold">{formatKRW(record.intendedAmount)}</p>
+            <p className="text-sm text-zinc-400">넣으려던 금액</p>
+            <p className="text-xl font-bold text-zinc-100">{formatKRW(record.intendedAmount)}</p>
           </div>
           <div className="text-right">
-            <p className="text-sm text-zinc-500">사고 싶던 강도</p>
-            <p className="text-base font-semibold">
+            <p className="text-sm text-zinc-400">사고 싶던 강도</p>
+            <p className="text-base font-semibold text-zinc-100">
               {record.fomoIntensity}/5{" "}
-              <span className="text-sm font-normal text-zinc-500">
+              <span className="text-sm font-normal text-zinc-400">
                 {FOMO_INTENSITY_LABELS[record.fomoIntensity]}
               </span>
             </p>
@@ -82,26 +82,26 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
 
         {/* 결과가 있을 때 변동률 표시 */}
         {hasResult && record.result && (
-          <div className="flex items-center justify-between pt-2 border-t border-zinc-200">
+          <div className="flex items-center justify-between pt-2 border-t border-zinc-800">
             <div>
-              <p className="text-sm text-zinc-500">결과</p>
+              <p className="text-sm text-zinc-400">결과</p>
               <p
                 className={
                   record.result.changePercent < 0
-                    ? "text-emerald-600 font-bold"
-                    : "text-zinc-500 font-bold"
+                    ? "text-emerald-400 font-bold"
+                    : "text-zinc-400 font-bold"
                 }
               >
                 {formatPercent(record.result.changePercent)}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-zinc-500">세이브한 금액</p>
+              <p className="text-sm text-zinc-400">세이브한 금액</p>
               <p
                 className={
                   record.result.defendedAmount > 0
-                    ? "text-emerald-600 font-bold"
-                    : "text-zinc-500 font-bold"
+                    ? "text-emerald-400 font-bold"
+                    : "text-zinc-400 font-bold"
                 }
               >
                 {record.result.defendedAmount > 0 ? "+" : ""}
@@ -114,11 +114,11 @@ function ShadowRecordItem({ record }: { record: ShadowRecord }) {
         {/* 하단: 메모 + 경과시간 */}
         <div className="flex items-end justify-between pt-1">
           {record.memo && (
-            <p className="text-sm text-zinc-500 italic truncate max-w-[70%]">
+            <p className="text-sm text-zinc-400 italic truncate max-w-[70%]">
               &ldquo;{record.memo}&rdquo;
             </p>
           )}
-          <p className="text-xs text-zinc-400 shrink-0">
+          <p className="text-xs text-zinc-500 shrink-0">
             {getRelativeTime(record.createdAt)}
           </p>
         </div>

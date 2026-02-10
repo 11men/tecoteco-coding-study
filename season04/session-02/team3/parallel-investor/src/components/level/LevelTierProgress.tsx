@@ -11,7 +11,7 @@ interface LevelTierProgressProps {
 export default function LevelTierProgress({ currentLevel }: LevelTierProgressProps) {
   return (
     <div className="space-y-1">
-      <h2 className="text-lg font-bold text-zinc-900">
+      <h2 className="text-lg font-bold text-zinc-100">
         레벨 티어
       </h2>
       <p className="text-sm text-zinc-400 mb-6">
@@ -20,7 +20,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
 
       <div className="relative pl-8">
         {/* Vertical line */}
-        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-zinc-200" />
+        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-zinc-700" />
 
         <div className="space-y-6">
           {LEVEL_TIERS.map((tier, index) => {
@@ -34,11 +34,11 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                   className={cn(
                     "absolute -left-8 top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 text-xs",
                     isCurrent &&
-                      "border-teal-500 bg-teal-500 text-white shadow-md shadow-teal-500/25",
+                      "border-blue-500 bg-blue-500 text-white shadow-md shadow-blue-500/25",
                     isAchieved && !isCurrent &&
                       "border-emerald-500 bg-emerald-500 text-white",
                     !isAchieved &&
-                      "border-zinc-300 bg-zinc-100 text-zinc-400"
+                      "border-zinc-600 bg-zinc-800 text-zinc-500"
                   )}
                 >
                   {isAchieved ? (
@@ -64,9 +64,9 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                   className={cn(
                     "flex-1 rounded-xl px-4 py-3 transition-all",
                     isCurrent &&
-                      "bg-teal-50 ring-1 ring-teal-200",
+                      "bg-blue-500/10 ring-1 ring-blue-500/30",
                     isAchieved && !isCurrent &&
-                      "bg-zinc-50",
+                      "bg-zinc-800/50",
                     !isAchieved &&
                       "opacity-50"
                   )}
@@ -76,9 +76,9 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       <span
                         className={cn(
                           "text-xs font-bold shrink-0",
-                          isCurrent && "text-teal-600",
-                          isAchieved && !isCurrent && "text-emerald-600",
-                          !isAchieved && "text-zinc-400"
+                          isCurrent && "text-blue-400",
+                          isAchieved && !isCurrent && "text-emerald-400",
+                          !isAchieved && "text-zinc-500"
                         )}
                       >
                         Lv.{tier.level}
@@ -86,9 +86,9 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       <span
                         className={cn(
                           "text-sm sm:text-base font-bold shrink-0",
-                          isCurrent && "text-zinc-900",
-                          isAchieved && !isCurrent && "text-zinc-700",
-                          !isAchieved && "text-zinc-400"
+                          isCurrent && "text-zinc-100",
+                          isAchieved && !isCurrent && "text-zinc-300",
+                          !isAchieved && "text-zinc-500"
                         )}
                       >
                         {tier.title}
@@ -96,9 +96,9 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       <span
                         className={cn(
                           "text-[11px] sm:text-xs truncate",
-                          isCurrent && "text-zinc-500",
-                          isAchieved && !isCurrent && "text-zinc-400",
-                          !isAchieved && "text-zinc-300"
+                          isCurrent && "text-zinc-400",
+                          isAchieved && !isCurrent && "text-zinc-500",
+                          !isAchieved && "text-zinc-600"
                         )}
                       >
                         {tier.titleEn}
@@ -106,7 +106,7 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                     </div>
 
                     {isCurrent && (
-                      <span className="rounded-full bg-teal-500 px-2 py-0.5 text-[10px] font-bold text-white">
+                      <span className="rounded-full bg-blue-500 px-2 py-0.5 text-[10px] font-bold text-white">
                         NOW
                       </span>
                     )}
@@ -117,8 +117,8 @@ export default function LevelTierProgress({ currentLevel }: LevelTierProgressPro
                       className={cn(
                         "text-xs",
                         isAchieved
-                          ? "text-zinc-400"
-                          : "text-zinc-300"
+                          ? "text-zinc-500"
+                          : "text-zinc-600"
                       )}
                     >
                       필요 EXP: {tier.requiredExp.toLocaleString()}
