@@ -13,7 +13,10 @@ import {
     Store,
     Clock,
     Share2,
+    Lock,
+    Crown,
 } from "lucide-react";
+import { ProLock } from "@/components/ProLock";
 import { cn } from "@/lib/utils";
 import {
     MOCK_BUILDINGS,
@@ -280,9 +283,9 @@ export default function BuildingDetailPage({
                     transition={{ duration: 0.2 }}
                     className="px-4 py-5"
                 >
-                    <h3 className="text-sm font-bold text-foreground mb-4">📊 객관적 지표 분석</h3>
-
-                    <div className="space-y-0">
+                    {/* Free: road distance summary only */}
+                    <div className="mb-4">
+                        <h3 className="text-sm font-bold text-foreground mb-3">📊 객관적 지표 요약</h3>
                         <div className="info-row">
                             <span className="info-label flex items-center gap-1.5">
                                 <Car size={13} className="text-accent-orange" /> 차도
@@ -292,61 +295,67 @@ export default function BuildingDetailPage({
                                 {objectiveData.roadLanes && ` · ${objectiveData.roadLanes}차선`}
                             </span>
                         </div>
-                        <div className="info-row">
-                            <span className="info-label flex items-center gap-1.5">
-                                <Construction size={13} className="text-noise-loud" /> 공사
-                            </span>
-                            <span className="info-value">
-                                {objectiveData.nearbyConstruction ? "있음" : "없음"}
-                                {objectiveData.constructionEndDate &&
-                                    ` · ${objectiveData.constructionEndDate} 종료 예정`}
-                            </span>
-                        </div>
-                        {objectiveData.subwayDistance && (
-                            <div className="info-row">
-                                <span className="info-label flex items-center gap-1.5">
-                                    <Train size={13} className="text-primary" /> 지하철
-                                </span>
-                                <span className="info-value">
-                                    {objectiveData.subwayDistance}m
-                                    {objectiveData.subwayLine && ` · ${objectiveData.subwayLine}`}
-                                </span>
-                            </div>
-                        )}
-                        <div className="info-row">
-                            <span className="info-label flex items-center gap-1.5">
-                                <Store size={13} className="text-accent-teal" /> 상가
-                            </span>
-                            <span className="info-value">
-                                밀집도{" "}
-                                {objectiveData.commercialDensity === "HIGH"
-                                    ? "높음"
-                                    : objectiveData.commercialDensity === "MEDIUM"
-                                        ? "보통"
-                                        : "낮음"}
-                                {objectiveData.commercialCount &&
-                                    ` · 반경 100m 내 ${objectiveData.commercialCount}개`}
-                            </span>
-                        </div>
                     </div>
 
-                    {building.predictedNoiseScore && (
-                        <div className="mt-5 rounded-xl bg-accent-purple/5 border border-accent-purple/10 p-4">
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm">🤖</span>
-                                <span className="text-xs font-bold text-foreground">AI 소음 예측 점수</span>
-                            </div>
-                            <div className="mt-2 flex items-baseline gap-1">
-                                <span className="text-2xl font-extrabold text-accent-purple">
-                                    {building.predictedNoiseScore.toFixed(1)}
+                    {/* Pro: detailed metrics */}
+                    <ProLock label="상세 지표 보기" className="rounded-xl">
+                        <div className="space-y-0 rounded-xl border border-card-border p-4">
+                            <div className="info-row">
+                                <span className="info-label flex items-center gap-1.5">
+                                    <Construction size={13} className="text-noise-loud" /> 공사
                                 </span>
-                                <span className="text-xs text-muted">/ 5.0</span>
+                                <span className="info-value">
+                                    {objectiveData.nearbyConstruction ? "있음" : "없음"}
+                                    {objectiveData.constructionEndDate &&
+                                        ` · ${objectiveData.constructionEndDate} 종료 예정`}
+                                </span>
                             </div>
-                            <p className="mt-1 text-[10px] text-muted">
-                                도로, 공사, 지하철, 상가 데이터 기반 예측
-                            </p>
+                            {objectiveData.subwayDistance && (
+                                <div className="info-row">
+                                    <span className="info-label flex items-center gap-1.5">
+                                        <Train size={13} className="text-primary" /> 지하철
+                                    </span>
+                                    <span className="info-value">
+                                        {objectiveData.subwayDistance}m
+                                        {objectiveData.subwayLine && ` · ${objectiveData.subwayLine}`}
+                                    </span>
+                                </div>
+                            )}
+                            <div className="info-row">
+                                <span className="info-label flex items-center gap-1.5">
+                                    <Store size={13} className="text-accent-teal" /> 상가
+                                </span>
+                                <span className="info-value">
+                                    밀집도{" "}
+                                    {objectiveData.commercialDensity === "HIGH"
+                                        ? "높음"
+                                        : objectiveData.commercialDensity === "MEDIUM"
+                                            ? "보통"
+                                            : "낮음"}
+                                    {objectiveData.commercialCount &&
+                                        ` · 반경 100m 내 ${objectiveData.commercialCount}개`}
+                                </span>
+                            </div>
+
+                            {building.predictedNoiseScore && (
+                                <div className="mt-4 rounded-xl bg-accent-purple/5 border border-accent-purple/10 p-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm">🤖</span>
+                                        <span className="text-xs font-bold text-foreground">AI 소음 예측 점수</span>
+                                    </div>
+                                    <div className="mt-2 flex items-baseline gap-1">
+                                        <span className="text-2xl font-extrabold text-accent-purple">
+                                            {building.predictedNoiseScore.toFixed(1)}
+                                        </span>
+                                        <span className="text-xs text-muted">/ 5.0</span>
+                                    </div>
+                                    <p className="mt-1 text-[10px] text-muted">
+                                        도로, 공사, 지하철, 상가 데이터 기반 예측
+                                    </p>
+                                </div>
+                            )}
                         </div>
-                    )}
+                    </ProLock>
                 </motion.div>
             )}
 

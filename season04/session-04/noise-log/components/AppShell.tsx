@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Map, PenSquare, MessageCircle, Home, Volume2 } from "lucide-react";
+import { Map, PenSquare, MessageCircle, Home, Volume2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const TABS = [
@@ -10,6 +10,7 @@ const TABS = [
     { href: "/map", label: "지도", icon: Map },
     { href: "/review", label: "리뷰", icon: PenSquare },
     { href: "/community", label: "커뮤니티", icon: MessageCircle },
+    { href: "/mypage", label: "MY", icon: User },
 ];
 
 export function BottomNav() {
