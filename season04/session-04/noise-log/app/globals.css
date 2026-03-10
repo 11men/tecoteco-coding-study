@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --muted: #6b7280;
+  --muted-foreground: #9ca3af;
+  --card: #ffffff;
+  --card-border: #f0f0f0;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-light: #eff6ff;
+  --primary-foreground: #ffffff;
+  --noise-quiet: #22c55e;
+  --noise-moderate: #eab308;
+  --noise-loud: #ef4444;
+  --accent-teal: #14b8a6;
+  --accent-orange: #f97316;
+  --accent-purple: #8b5cf6;
+  --radius: 12px;
+  --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafaf9;
+    --muted: #a1a1aa;
+    --muted-foreground: #71717a;
+    --card: #18181b;
+    --card-border: #27272a;
+    --primary: #60a5fa;
+    --primary-hover: #93c5fd;
+    --primary-light: #1e3a5f;
+    --primary-foreground: #09090b;
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-noise-quiet: var(--noise-quiet);
+  --color-noise-moderate: var(--noise-moderate);
+  --color-noise-loud: var(--noise-loud);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-purple: var(--accent-purple);
+}
+
+/* ─── Base ─── */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ─── Badges ─── */
+.noise-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.noise-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--card-border);
+  color: var(--muted);
+}
+
+/* ─── Stars ─── */
+.star-filled {
+  color: #f59e0b;
+}
+
+.star-empty {
+  color: #e5e7eb;
+}
+
+/* ─── Card ─── */
+.card-hover {
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.card-hover:active {
+  transform: scale(0.98);
+  background-color: var(--card-border);
+}
+
+/* ─── Tab bar ─── */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--card-border);
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-item {
+  position: relative;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.tab-item.active {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--foreground);
+}
+
+/* ─── Info table row ─── */
+.info-row {
+  display: flex;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 13px;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  width: 72px;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.info-value {
+  flex: 1;
+  color: var(--foreground);
+  font-weight: 400;
+}
+
+/* ─── Floating action button ─── */
+.fab {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-radius: 24px;
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* ─── Section divider ─── */
+.section-divider {
+  height: 8px;
+  background: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-divider {
+    background: #111;
+  }
+}
+
+/* ─── Recording pulse ─── */
+.recording-pulse {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* ─── Waveform animation ─── */
+.waveform-bar {
+  animation: waveform-bar var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes waveform-bar {
+
+  0%,
+  100% {
+    height: 4px;
+  }
+
+  50% {
+    height: 100%;
+  }
+}
+
+/* ─── Safe area ─── */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ─── Leaflet overrides ─── */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  font-family: var(--font-sans);
+}
+
+.noise-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.noise-popup .leaflet-popup-content {
+  margin: 0;
+  min-width: 180px;
+}
+
+/* ─── Bottom sheet ─── */
+.bottom-sheet {
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ─── Scrollbar hiding ─── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Line clamp ─── */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
