@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>플랜잇 — 퇴사 후 로망, 플랜으로 만들어드립니다</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/variable/pretendardvariable.min.css" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{--primary:#2D5BFF;--primary-light:#EEF2FF;--primary-dark:#1A3DB8;--accent:#FF6B35;--accent-light:#FFF3ED;--dark:#0F172A;--gray-900:#1E293B;--gray-700:#334155;--gray-500:#64748B;--gray-300:#CBD5E1;--gray-100:#F1F5F9;--white:#FFF;--success:#22C55E;--danger:#EF4444;--gradient:linear-gradient(135deg,#2D5BFF 0%,#7C3AED 100%)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--dark);background:var(--white);line-height:1.6;overflow-x:hidden}
+
+[data-lucide]{width:1em;height:1em;stroke-width:2}
+.problem-emoji [data-lucide]{width:2rem;height:2rem}
+.p-step-icon [data-lucide]{width:2.5rem;height:2.5rem}
+.dream-opt-emoji [data-lucide]{width:1.75rem;height:1.75rem}
+.feature-icon [data-lucide]{width:1.3rem;height:1.3rem}
+.partner-cat-icon [data-lucide]{width:2rem;height:2rem}
+.partner-card-emoji [data-lucide]{width:1.5rem;height:1.5rem}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.25rem;font-weight:800;color:var(--primary)}.nav-logo span{color:var(--accent)}
+.nav-cta{padding:0.5rem 1.25rem;border-radius:8px;background:var(--primary);color:white;font-weight:600;font-size:0.875rem;border:none;cursor:pointer;transition:all 0.2s}
+.nav-cta:hover{background:var(--primary-dark)}
+
+section{padding:5rem 1.5rem}.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:0.85rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;line-height:1.3;letter-spacing:-1px;margin-bottom:1rem}
+.section-desc{font-size:1.05rem;color:var(--gray-500);max-width:560px;line-height:1.7}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(45,91,255,0.08) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.hero-badge{display:inline-block;padding:0.4rem 1rem;border-radius:100px;background:var(--accent-light);color:var(--accent);font-size:0.85rem;font-weight:600;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;line-height:1.25;letter-spacing:-1.5px;margin-bottom:1.25rem}
+.hero h1 em{font-style:normal;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--gray-500);max-width:520px;margin:0 auto 2.5rem;line-height:1.7}
+.btn-primary{padding:0.9rem 2rem;border-radius:12px;background:var(--gradient);color:white;font-size:1.05rem;font-weight:700;border:none;cursor:pointer;transition:all 0.25s;box-shadow:0 4px 20px rgba(45,91,255,0.25);display:inline-block}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(45,91,255,0.35)}
+.social-proof{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-top:2rem;font-size:0.9rem;color:var(--gray-500)}
+.avatars{display:flex}.avatars span{width:32px;height:32px;border-radius:50%;border:2px solid white;margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:white}.avatars span:first-child{margin-left:0}
+.avatars span:nth-child(1){background:#FDE68A;color:#333}.avatars span:nth-child(2){background:#A5F3FC;color:#333}.avatars span:nth-child(3){background:#C4B5FD;color:#333}.avatars span:nth-child(4){background:#FCA5A5;color:#333}
+
+/* PROBLEM */
+.problem{background:var(--gray-100)}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+.problem-card{background:white;border-radius:16px;padding:1.75rem;border:1px solid rgba(0,0,0,0.04);transition:all 0.3s}
+.problem-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06)}
+.problem-emoji{margin-bottom:0.75rem;display:block}
+.problem-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem}
+.problem-card p{font-size:0.9rem;color:var(--gray-500);line-height:1.6}
+
+/* HOW */
+.penalty-how{background:white}
+.penalty-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-top:3rem}
+.p-step{background:var(--gray-100);border-radius:16px;padding:1.75rem;text-align:center}
+.p-step-icon{margin-bottom:0.75rem;display:block}.p-step h3{font-size:1rem;font-weight:700;margin-bottom:0.4rem}.p-step p{font-size:0.85rem;color:var(--gray-500);line-height:1.5}
+
+/* BUILDER */
+.plan-builder{background:var(--gray-100)}.plan-builder .container{max-width:720px}
+.builder-card{background:white;border-radius:24px;padding:2.5rem;margin-top:2.5rem;border:1.5px solid rgba(0,0,0,0.04);box-shadow:0 8px 40px rgba(0,0,0,0.06)}
+.builder-progress{display:flex;gap:0.5rem;margin-bottom:2rem}
+.builder-progress-dot{flex:1;height:4px;border-radius:100px;background:var(--gray-300);transition:all 0.3s}
+.builder-progress-dot.active{background:var(--primary)}.builder-progress-dot.done{background:var(--success)}
+.builder-step{display:none}.builder-step.active{display:block}
+.builder-step-label{font-size:0.8rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem}
+.builder-step h3{font-size:1.4rem;font-weight:800;margin-bottom:0.5rem}
+.builder-step>p{font-size:0.9rem;color:var(--gray-500);margin-bottom:1.5rem}
+.dream-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem}
+.dream-opt{padding:1.25rem;border-radius:14px;border:2px solid var(--gray-300);cursor:pointer;transition:all 0.2s;text-align:center;background:var(--gray-100)}
+.dream-opt:hover{border-color:var(--primary);transform:translateY(-2px)}.dream-opt.selected{border-color:var(--primary);background:var(--primary-light)}
+.dream-opt-emoji{margin-bottom:0.4rem;display:block}.dream-opt-title{font-weight:700;font-size:0.95rem}.dream-opt-sub{font-size:0.8rem;color:var(--gray-500);margin-top:0.15rem}
+.input-group{margin-bottom:1.25rem}.input-group label{display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.4rem}
+.input-group input,.input-group select{width:100%;padding:0.8rem 1rem;border-radius:10px;border:1.5px solid var(--gray-300);font-size:1rem;font-family:inherit;outline:none;transition:border 0.2s;background:white}
+.input-group input:focus{border-color:var(--primary)}.input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.input-hint{font-size:0.8rem;color:var(--gray-500);margin-top:0.25rem}
+.builder-nav{display:flex;gap:0.75rem;margin-top:2rem}
+.btn-back{padding:0.75rem 1.5rem;border-radius:10px;background:var(--gray-100);border:1.5px solid var(--gray-300);color:var(--gray-700);font-weight:600;font-size:0.95rem;cursor:pointer;transition:all 0.2s}
+.btn-back:hover{border-color:var(--primary);color:var(--primary)}
+.btn-next{flex:1;padding:0.75rem 1.5rem;border-radius:10px;background:var(--primary);color:white;font-weight:700;font-size:0.95rem;border:none;cursor:pointer;transition:all 0.2s}
+.btn-next:hover{background:var(--primary-dark)}
+
+/* PENALTY */
+.penalty-box{background:var(--gray-100);border-radius:14px;padding:1.5rem;border:2px solid var(--accent);margin-top:1rem}
+.penalty-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
+.penalty-amount{font-size:1.75rem;font-weight:800;color:var(--accent)}
+.penalty-slider{width:100%;accent-color:var(--accent);cursor:pointer;margin-bottom:0.5rem}
+.penalty-desc{font-size:0.85rem;color:var(--gray-500);line-height:1.6}
+.penalty-example{margin-top:1rem;padding:0.75rem 1rem;background:var(--accent-light);border-radius:10px;font-size:0.85rem;color:var(--accent);font-weight:600}
+
+/* RESULT */
+.result-header{background:var(--dark);border-radius:20px;padding:2rem;color:white;margin-top:1.5rem}
+.result-runway{font-size:3rem;font-weight:800;background:linear-gradient(90deg,#60A5FA,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-runway span{font-size:1.3rem}
+.result-date{color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:1rem}
+.result-bar-bg{width:100%;height:8px;border-radius:100px;background:rgba(255,255,255,0.1);overflow:hidden}
+.result-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,#2D5BFF,#A78BFA);transition:width 1.5s ease}
+.result-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:1.25rem}
+.result-stat{padding:0.75rem;border-radius:10px;background:rgba(255,255,255,0.06)}
+.result-stat-label{font-size:0.75rem;color:rgba(255,255,255,0.5)}.result-stat-value{font-size:1.1rem;font-weight:700;color:white}
+.result-stat-value.pos{color:#34D399}.result-stat-value.neg{color:#F87171}
+
+/* CALENDAR */
+.calendar-section{margin-top:1.5rem}
+.calendar-section h4{font-size:1.1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.calendar-month{margin-bottom:1rem;border:1.5px solid var(--gray-100);border-radius:16px;overflow:hidden}
+.cal-month-header{padding:1rem 1.25rem;background:var(--gray-100);font-weight:700;font-size:0.95rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background 0.2s}
+.cal-month-header:hover{background:#E2E8F0}
+.cal-month-header .month-tag{font-size:0.75rem;padding:0.15rem 0.6rem;border-radius:100px;font-weight:600}
+.tag-save{background:#DCFCE7;color:#16A34A}.tag-action{background:#DBEAFE;color:#2563EB}.tag-quit{background:#FEF3C7;color:#D97706}.tag-dream{background:#F3E8FF;color:#7C3AED}.tag-prep{background:#FFE4E6;color:#E11D48}
+.cal-tasks{padding:0;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
+.cal-tasks.open{padding:0.75rem 1.25rem;max-height:600px}
+.cal-task{display:flex;align-items:flex-start;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid var(--gray-100)}
+.cal-task:last-child{border-bottom:none}
+.cal-task-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--gray-300);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;font-size:0.75rem;color:white}
+.cal-task-check.checked{background:var(--success);border-color:var(--success);color:white}
+.cal-task-info{flex:1}.cal-task-title{font-size:0.9rem;font-weight:600}.cal-task-desc{font-size:0.8rem;color:var(--gray-500);margin-top:0.1rem}
+.cal-task-tag{font-size:0.7rem;padding:0.1rem 0.5rem;border-radius:100px;font-weight:600;white-space:nowrap;margin-top:4px;display:inline-block}
+.task-money{background:#DCFCE7;color:#16A34A}.task-career{background:#DBEAFE;color:#2563EB}
+.task-travel{background:#FEF3C7;color:#D97706}.task-admin{background:#F3E8FF;color:#7C3AED}.task-wellness{background:#FFE4E6;color:#E11D48}.task-bucket{background:#E0E7FF;color:#4F46E5}
+
+/* TRAVEL INFO */
+.travel-info-section{margin-top:1.5rem;background:var(--dark);border-radius:16px;padding:1.5rem;color:white}
+.travel-info-section h4{font-size:1rem;font-weight:700;margin-bottom:1rem;color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:0.5rem}
+.travel-dest{display:flex;gap:1rem;padding:0.75rem;border-radius:12px;background:rgba(255,255,255,0.05);margin-bottom:0.5rem;border:1px solid rgba(255,255,255,0.08)}
+.travel-dest-flag{font-size:2rem;display:flex;align-items:center}
+.travel-dest-info{flex:1}.travel-dest-info strong{display:block;font-size:0.95rem;color:white}
+.travel-dest-info span{font-size:0.8rem;color:rgba(255,255,255,0.5)}
+.travel-meta{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem}
+.travel-meta-tag{font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:100px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:0.3rem}
+.travel-alert{margin-top:0.75rem;padding:0.75rem;border-radius:10px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);font-size:0.8rem;color:#93C5FD;display:flex;align-items:flex-start;gap:0.5rem}
+.travel-alert span{flex-shrink:0}
+
+/* PARTNER */
+.partner-reco{margin-top:1.5rem}
+.partner-reco h4{font-size:1.05rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.partner-card{padding:1rem;border-radius:12px;border:1.5px solid var(--gray-100);transition:all 0.2s;cursor:pointer;text-align:center}
+.partner-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 4px 15px rgba(45,91,255,0.08)}
+.partner-card-emoji{margin-bottom:0.4rem;display:block}
+.partner-card strong{font-size:0.85rem;display:block;margin-bottom:0.15rem}
+.partner-card span{font-size:0.75rem;color:var(--gray-500)}
+.partner-card .ptag{display:inline-block;margin-top:0.4rem;font-size:0.7rem;padding:0.1rem 0.5rem;border-radius:100px;background:#DCFCE7;color:#16A34A;font-weight:600}
+
+/* PENALTY COMMIT */
+.commit-box{margin-top:1.5rem;padding:1.25rem;border-radius:14px;border:2px solid var(--accent);background:var(--accent-light)}
+.commit-box h4{color:var(--accent);font-size:0.95rem;margin-bottom:0.4rem}
+.commit-box p{font-size:0.85rem;color:var(--gray-700);line-height:1.5}
+.commit-box .amount{font-size:1.5rem;font-weight:800;color:var(--accent);margin-top:0.5rem;display:block}
+
+/* B2B PARTNERS */
+.partners{background:var(--dark);color:white}
+.partners .section-label{color:var(--accent)}.partners .section-desc{color:rgba(255,255,255,0.6);margin:0 auto}
+.partner-category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:3rem}
+.partner-cat{border-radius:16px;padding:1.75rem;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);transition:all 0.3s}
+.partner-cat:hover{background:rgba(255,255,255,0.06);transform:translateY(-2px)}
+.partner-cat-icon{margin-bottom:0.75rem;display:block}
+.partner-cat h3{font-size:1.05rem;font-weight:700;margin-bottom:0.4rem;color:white}
+.partner-cat p{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.5}
+.partner-cat-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
+.partner-cat-tag{font-size:0.75rem;padding:0.2rem 0.6rem;border-radius:100px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)}
+.b2b-cta-box{margin-top:3rem;text-align:center;padding:2rem;border-radius:16px;border:1.5px solid var(--accent);background:rgba(255,107,53,0.05)}
+.b2b-cta-box h3{font-size:1.2rem;font-weight:800;color:white;margin-bottom:0.5rem}
+.b2b-cta-box p{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:1.25rem}
+.btn-b2b{padding:0.75rem 1.75rem;border-radius:10px;background:var(--accent);color:white;font-weight:700;font-size:0.95rem;border:none;cursor:pointer;transition:all 0.2s}
+.btn-b2b:hover{background:#E55A2B}
+
+/* FEATURES */
+.features{background:var(--gray-100)}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:3rem}
+.feature-card{border-radius:16px;padding:1.75rem;border:1.5px solid rgba(0,0,0,0.04);transition:all 0.3s;background:white}
+.feature-card:hover{border-color:var(--primary);box-shadow:0 8px 30px rgba(45,91,255,0.08);transform:translateY(-2px)}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.feature-card h3{font-size:1rem;font-weight:700;margin-bottom:0.4rem}.feature-card p{font-size:0.875rem;color:var(--gray-500);line-height:1.6}
+
+/* CTA */
+.cta{background:var(--gradient);color:white;text-align:center;padding:5rem 1.5rem}
+.cta h2{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px}
+.cta p{font-size:1.1rem;opacity:0.85;max-width:480px;margin:0 auto 2rem}
+.cta .btn-primary{background:white;color:var(--primary);box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+
+footer{background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;padding:2rem 1.5rem;font-size:0.85rem}
+
+@media(max-width:640px){nav{padding:0 1rem}section{padding:3.5rem 1rem}.dream-options,.input-row,.result-stats,.partner-grid{grid-template-columns:1fr}.builder-card{padding:1.5rem}.feature-grid,.partner-category-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">플랜잇<span>.</span></div>
+  <button class="nav-cta" onclick="document.getElementById('builder').scrollIntoView({behavior:'smooth'})">내 플랜 만들기</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-content fade-up">
+    <div class="hero-badge">플랜을 세우고, 약속을 걸고, 로망을 이루세요</div>
+    <h1>퇴사 후 로망을<br><em>진짜 실행되는 플랜</em>으로</h1>
+    <p>세계여행, 프리랜서 전환, 완전한 쉼 — 로망을 캘린더에 옮기고, 페널티를 걸면 진짜 실행됩니다.</p>
+    <button class="btn-primary" onclick="document.getElementById('builder').scrollIntoView({behavior:'smooth'})">무료로 내 플랜 만들기</button>
+    <div class="social-proof"><div class="avatars"><span>H</span><span>J</span><span>S</span><span>M</span></div><span><strong style="color:var(--dark)">2,847명</strong>이 플랜에 돈을 걸었어요</span></div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="container">
+    <div class="fade-up"><div class="section-label">Problem</div><div class="section-title">퇴사 계획, 세워놓고<br>몇 번이나 미뤘나요?</div><div class="section-desc">계획은 누구나 세워요. 문제는 실행이죠.</div></div>
+    <div class="problem-grid fade-up">
+      <div class="problem-card"><span class="problem-emoji"><i data-lucide="clipboard-list"></i></span><h3>계획만 10번째</h3><p>"다음 달부터 준비해야지" — 그 다음 달은 영원히 안 옵니다.</p></div>
+      <div class="problem-card"><span class="problem-emoji"><i data-lucide="frown"></i></span><h3>막연한 불안</h3><p>돈이 충분한지, 언제가 적기인지 모르니까 계속 미루게 돼요.</p></div>
+      <div class="problem-card"><span class="problem-emoji"><i data-lucide="meh"></i></span><h3>의지력의 한계</h3><p>절약도, 투자도, 이직 준비도 — 혼자 하면 작심삼일이에요.</p></div>
+      <div class="problem-card"><span class="problem-emoji"><i data-lucide="banknote"></i></span><h3>실행 강제력 없음</h3><p>안 지켜도 아무 일도 안 생기니까 계속 미루는 거예요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="penalty-how">
+  <div class="container">
+    <div class="fade-up" style="text-align:center"><div class="section-label">How it works</div><div class="section-title">돈을 걸면<br>진짜 실행됩니다</div><div class="section-desc" style="margin:0 auto">행동경제학이 증명한 사실: 사람은 얻는 것보다 잃는 것에 2배 더 강하게 반응합니다.</div></div>
+    <div class="penalty-steps fade-up">
+      <div class="p-step"><span class="p-step-icon"><i data-lucide="target"></i></span><h3>1. 로망 선택</h3><p>세계여행, 프리랜서, 쉼 — 당신의 꿈을 고르세요</p></div>
+      <div class="p-step"><span class="p-step-icon"><i data-lucide="bar-chart-3"></i></span><h3>2. 플랜 생성</h3><p>AI가 캘린더에 월별 액션플랜을 짜드려요</p></div>
+      <div class="p-step"><span class="p-step-icon"><i data-lucide="coins"></i></span><h3>3. 페널티 설정</h3><p>안 지키면 잃을 금액을 직접 설정해요</p></div>
+      <div class="p-step"><span class="p-step-icon"><i data-lucide="flame"></i></span><h3>4. 매주 체크인</h3><p>지키면 돈 보존, 안 지키면 페널티 차감</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="plan-builder" id="builder">
+  <div class="container">
+    <div class="fade-up" style="text-align:center"><div class="section-label">Plan Builder</div><div class="section-title">지금 바로<br>내 플랜을 만들어보세요</div></div>
+    <div class="builder-card fade-up">
+      <div class="builder-progress"><div class="builder-progress-dot active" id="prog1"></div><div class="builder-progress-dot" id="prog2"></div><div class="builder-progress-dot" id="prog3"></div><div class="builder-progress-dot" id="prog4"></div></div>
+
+      <div class="builder-step active" id="step1">
+        <div class="builder-step-label">Step 1 / 4</div>
+        <h3>어떤 로망을 이루고 싶으세요?</h3><p>퇴사 후 가장 하고 싶은 것을 선택하세요.</p>
+        <div class="dream-options">
+          <div class="dream-opt" onclick="selectDream(this,'travel')"><span class="dream-opt-emoji"><i data-lucide="plane"></i></span><div class="dream-opt-title">장기 여행</div><div class="dream-opt-sub">세계여행, 한 달 살기</div></div>
+          <div class="dream-opt" onclick="selectDream(this,'freelance')"><span class="dream-opt-emoji"><i data-lucide="laptop"></i></span><div class="dream-opt-title">프리랜서 전환</div><div class="dream-opt-sub">자유로운 일, 원격 근무</div></div>
+          <div class="dream-opt" onclick="selectDream(this,'rest')"><span class="dream-opt-emoji"><i data-lucide="cloud"></i></span><div class="dream-opt-title">완전한 쉼</div><div class="dream-opt-sub">3~6개월 아무것도 안 하기</div></div>
+          <div class="dream-opt" onclick="selectDream(this,'change')"><span class="dream-opt-emoji"><i data-lucide="refresh-cw"></i></span><div class="dream-opt-title">이직 준비</div><div class="dream-opt-sub">더 나은 회사로</div></div>
+          <div class="dream-opt" onclick="selectDream(this,'bucket')"><span class="dream-opt-emoji"><i data-lucide="list-checks"></i></span><div class="dream-opt-title">버킷리스트</div><div class="dream-opt-sub">콘서트, 맛집, 소소한 꿈</div></div>
+        </div>
+        <div class="builder-nav"><button class="btn-next" id="btn1" disabled onclick="goStep(2)">다음</button></div>
+      </div>
+
+      <div class="builder-step" id="step2">
+        <div class="builder-step-label">Step 2 / 4</div>
+        <h3>재정 상태를 알려주세요</h3><p>정확할수록 플랜이 정교해져요.</p>
+        <div class="input-row"><div class="input-group"><label>월 세후 소득</label><input type="number" id="income" placeholder="300" min="0"><div class="input-hint">만원 단위</div></div><div class="input-group"><label>월 고정 지출</label><input type="number" id="expense" placeholder="180" min="0"><div class="input-hint">만원 단위</div></div></div>
+        <div class="input-row"><div class="input-group"><label>현재 저축액</label><input type="number" id="savings" placeholder="2000" min="0"><div class="input-hint">만원 단위</div></div><div class="input-group"><label>예상 퇴직금</label><input type="number" id="severance" placeholder="500" min="0"><div class="input-hint">만원 단위 (모르면 0)</div></div></div>
+        <div class="builder-nav"><button class="btn-back" onclick="goStep(1)">이전</button><button class="btn-next" onclick="goStep(3)">다음</button></div>
+      </div>
+
+      <div class="builder-step" id="step3">
+        <div class="builder-step-label">Step 3 / 4</div>
+        <h3>얼마를 걸겠습니까?</h3><p>플랜을 안 지키면 잃게 될 금액을 설정하세요.</p>
+        <div class="penalty-box">
+          <div class="penalty-top"><span>주당 페널티</span><span class="penalty-amount" id="penaltyDisplay">10,000원</span></div>
+          <input type="range" class="penalty-slider" id="penaltySlider" min="1000" max="100000" step="1000" value="10000" oninput="updatePenalty()">
+          <p class="penalty-desc" id="penaltyExample">한 달에 최대 40,000원 리스크 — 커피 4잔 값으로 로망에 대한 약속을 지키세요</p>
+        </div>
+        <div class="builder-nav"><button class="btn-back" onclick="goStep(2)">이전</button><button class="btn-next" onclick="goStep(4);generatePlan()">플랜 생성</button></div>
+      </div>
+
+      <div class="builder-step" id="step4">
+        <div class="result-header">
+          <div style="margin-bottom:1.5rem"><span style="color:rgba(255,255,255,0.5);font-size:0.9rem">당신의 런웨이</span></div>
+          <div class="result-runway" id="resultRunway">0<span>개월</span></div>
+          <div class="result-date" id="resultDate">자금 소진 예정: 계산 중</div>
+          <div class="result-bar-bg"><div class="result-bar-fill" id="resultBar"></div></div>
+          <div class="result-stats" id="resultStats"></div>
+        </div>
+        <div style="margin-top:1.5rem;padding:1.5rem;background:white;border-radius:14px">
+          <h3 id="resultTitle" style="font-size:1.2rem;margin-bottom:0.5rem">플랜</h3>
+          <p id="resultSub" style="color:var(--gray-500);margin-bottom:1.5rem"></p>
+
+          <div class="calendar-section">
+            <h4><i data-lucide="calendar"></i> 월별 액션 플랜</h4>
+            <div id="calendarPlan"></div>
+          </div>
+
+          <div id="travelInfoContainer"></div>
+
+          <div class="partner-reco">
+            <h4><i data-lucide="handshake"></i> 로망 실현 파트너</h4>
+            <div class="partner-grid" id="partnerGrid"></div>
+          </div>
+
+          <div class="commit-box">
+            <h4>매주 플랜 체크인</h4>
+            <p id="commitText"></p>
+            <span class="amount" id="commitAmount">주간 페널티: 10,000원</span>
+          </div>
+        </div>
+        <div class="builder-nav"><button class="btn-back" onclick="goStep(3)">이전</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B2B -->
+<section class="partners">
+  <div class="container">
+    <div class="fade-up" style="text-align:center"><div class="section-label">Partner Ecosystem</div><div class="section-title" style="color:white">로망 실현에 필요한<br>모든 서비스를 연결합니다</div><div class="section-desc">유저의 플랜에 딱 맞는 파트너 서비스를 추천합니다.</div></div>
+    <div class="partner-category-grid fade-up">
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="plane"></i></span><h3>여행 파트너</h3><p>항공권, 장기 숙소, 여행자보험, 한 달 살기 프로그램</p><div class="partner-cat-tags"><span class="partner-cat-tag">항공권</span><span class="partner-cat-tag">숙소</span><span class="partner-cat-tag">보험</span><span class="partner-cat-tag">한달살기</span></div></div>
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="building"></i></span><h3>공간 파트너</h3><p>공유오피스, 코워킹, 홈오피스 디자인 서비스</p><div class="partner-cat-tags"><span class="partner-cat-tag">공유오피스</span><span class="partner-cat-tag">코워킹</span><span class="partner-cat-tag">인테리어</span></div></div>
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="briefcase"></i></span><h3>커리어 파트너</h3><p>이력서, 포트폴리오, 커리어 코칭, 프리랜서 플랫폼</p><div class="partner-cat-tags"><span class="partner-cat-tag">이력서</span><span class="partner-cat-tag">코칭</span><span class="partner-cat-tag">프리랜서</span></div></div>
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="file-text"></i></span><h3>재무/법률 파트너</h3><p>세무사, 노무사, 재무설계사 연결</p><div class="partner-cat-tags"><span class="partner-cat-tag">세무</span><span class="partner-cat-tag">노무</span><span class="partner-cat-tag">재무설계</span></div></div>
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="heart"></i></span><h3>웰니스 파트너</h3><p>명상, 요가, 심리상담, 힐링 프로그램</p><div class="partner-cat-tags"><span class="partner-cat-tag">명상</span><span class="partner-cat-tag">요가</span><span class="partner-cat-tag">심리상담</span></div></div>
+      <div class="partner-cat"><span class="partner-cat-icon"><i data-lucide="book-open"></i></span><h3>교육 파트너</h3><p>온라인 강의, 부트캠프, 자격증 과정</p><div class="partner-cat-tags"><span class="partner-cat-tag">강의</span><span class="partner-cat-tag">부트캠프</span><span class="partner-cat-tag">자격증</span></div></div>
+    </div>
+    <div class="b2b-cta-box fade-up"><h3>파트너사를 모집합니다</h3><p>퇴사를 결심한 고객에게 정확한 타이밍에 서비스를 노출하세요.</p><button class="btn-b2b">파트너 입점 문의</button></div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="fade-up"><div class="section-label">Features</div><div class="section-title">플랜 실행을 돕는<br>모든 도구</div></div>
+    <div class="feature-grid fade-up">
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="bar-chart-3"></i></div><h3>런웨이 시뮬레이션</h3><p>퇴사 시점별 시뮬레이션으로 최적 타이밍을 찾아드립니다.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="newspaper"></i></div><h3>맞춤 경제 피드</h3><p>매일 뉴스가 내 런웨이에 어떤 영향을 주는지 번역합니다.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="trending-up"></i></div><h3>배당 시뮬레이터</h3><p>ETF/주식 투자로 런웨이를 얼마나 늘릴 수 있는지 계산합니다.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="globe"></i></div><h3>여행지 맞춤 정보</h3><p>비자, 물가, 치안, 최적 예약 시점을 플랜에 맞춰 알려드립니다.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="briefcase"></i></div><h3>이직 시장 분석</h3><p>고용노동부 데이터 기반 채용 트렌드와 연봉 변화를 추적합니다.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i data-lucide="brain"></i></div><h3>시사 퀴즈</h3><p>매일 경제 퀴즈로 금융 지식을 쌓고 판단력을 높입니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="container fade-up">
+    <h2>로망에 돈을 걸 준비,<br>되셨나요?</h2>
+    <p>사전 등록하시면 출시 알림과 함께 무료 런웨이 분석을 받으실 수 있습니다.</p>
+    <div style="display:flex;gap:0.5rem;justify-content:center;max-width:420px;margin:0 auto;flex-wrap:wrap">
+      <input type="email" id="emailInput" placeholder="이메일을 입력하세요" style="flex:1;min-width:200px;padding:0.9rem 1.25rem;border-radius:12px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:white;font-size:1rem;outline:none">
+      <button class="btn-primary" id="ctaBtn" onclick="submitEmail()">사전 등록</button>
+    </div>
+    <div style="font-size:0.8rem;opacity:0.7;margin-top:1rem">스팸 없이, 출시 소식만 보내드립니다.</div>
+  </div>
+</section>
+
+<footer><p>&copy; 2026 플랜잇. 퇴사 후 로망을 현실로.</p></footer>
+
+<script>
+let selectedDream=null;
+const D={
+  travel:{name:'장기 여행',months:6,extra:1200},
+  freelance:{name:'프리랜서 전환',months:9,extra:0},
+  rest:{name:'완전한 쉼',months:3,extra:300},
+  change:{name:'이직 준비',months:4,extra:200},
+  bucket:{name:'버킷리스트 실현',months:2,extra:100}
+};
+function selectDream(el,t){document.querySelectorAll('.dream-opt').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');selectedDream=t;document.getElementById('btn1').disabled=false}
+function goStep(n){document.querySelectorAll('.builder-step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');for(let i=1;i<=4;i++){const d=document.getElementById('prog'+i);d.classList.remove('active','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('active')}document.querySelector('.builder-card').scrollIntoView({behavior:'smooth',block:'start'})}
+function updatePenalty(){const v=+document.getElementById('penaltySlider').value;document.getElementById('penaltyDisplay').textContent=v.toLocaleString()+'원';const m=v*4;let met='커피 4잔';if(m<=10000)met='편의점 간식 몇 번';else if(m<=20000)met='커피 4잔';else if(m<=50000)met='치킨 2마리';else if(m<=100000)met='외식 2~3번';else met='월 구독 몇 개';document.getElementById('penaltyExample').textContent=`한 달에 최대 ${m.toLocaleString()}원 리스크 — ${met} 값으로 로망에 대한 약속을 지키세요`}
+function fmt(d){return`${d.getFullYear()}년 ${d.getMonth()+1}월`}
+function fmtShort(d){return`${d.getMonth()+1}월`}
+
+const calendarData={
+  travel:m=>[
+    {offset:0,tag:'save',tagLabel:'저축',tasks:[{t:'비상금 제외 저축 시작',d:`매월 ${m}만원 자동이체 설정`,c:'money'},{t:'여행 국가 리서치',d:'비자 요건, 물가, 치안 정보 수집',c:'travel'},{t:'여행자 보험 비교',d:'장기 여행 특화 보험 3개 비교',c:'travel'}]},
+    {offset:1,tag:'save',tagLabel:'저축',tasks:[{t:'항공권 가격 모니터링 시작',d:'출발 3~6개월 전이 최저가 구간',c:'travel'},{t:'불필요한 구독 서비스 정리',d:'월 고정지출 줄여서 런웨이 +0.2개월',c:'money'},{t:'여권 유효기간 확인',d:'6개월 이상 남아야 입국 가능한 국가 다수',c:'admin'}]},
+    {offset:2,tag:'action',tagLabel:'행동',tasks:[{t:'항공권 예약',d:'얼리버드 할인 구간 — 지금이 최적',c:'travel'},{t:'숙소 장기 예약',d:'에어비앤비 월 할인 or 게스트하우스 장기 계약',c:'travel'},{t:'퇴직금 수령 방식 결정',d:'일시금 vs 연금 — 세금 시뮬레이션 필요',c:'money'}]},
+    {offset:3,tag:'quit',tagLabel:'퇴사',tasks:[{t:'퇴사 의사 전달',d:'최소 1개월 전 공식 통보',c:'admin'},{t:'연차 소진 계획',d:'남은 연차 소진 후 퇴사가 유리',c:'admin'},{t:'건강보험 임의계속가입 신청',d:'퇴사 후 2개월 내 신청 필수',c:'admin'}]},
+    {offset:4,tag:'dream',tagLabel:'출발',tasks:[{t:'출발!',d:'드디어 로망이 시작됩니다',c:'travel'},{t:'현지 SIM 카드 & 환전',d:'공항보다 시내 환전이 유리',c:'travel'},{t:'첫 번째 목적지 체크인',d:'장기 숙소 입주 및 현지 적응',c:'travel'}]},
+  ],
+  freelance:m=>[
+    {offset:0,tag:'save',tagLabel:'저축',tasks:[{t:'런웨이 확보 시작',d:`매월 ${m}만원 저축 자동이체`,c:'money'},{t:'프리랜서 포트폴리오 기획',d:'강점 분석 → 포트폴리오 구조 설계',c:'career'},{t:'사업자 등록 vs 3.3% 비교',d:'세무사 상담 예약',c:'admin'}]},
+    {offset:1,tag:'action',tagLabel:'행동',tasks:[{t:'포트폴리오 제작',d:'대표 프로젝트 3개 정리 + 개인 웹사이트',c:'career'},{t:'프리랜서 플랫폼 가입',d:'크몽, 숨고, 위시켓 프로필 작성',c:'career'},{t:'부업으로 첫 프로젝트 수주',d:'재직 중 사이드 프로젝트로 실전 경험',c:'career'}]},
+    {offset:3,tag:'action',tagLabel:'행동',tasks:[{t:'정기 수입원 확보',d:'월 100만원 이상 프리랜서 수입 달성',c:'career'},{t:'공유오피스 투어',d:'집중력을 위한 업무 공간 확보',c:'admin'},{t:'종합소득세 예비 계산',d:'프리랜서 소득에 대한 세금 시뮬레이션',c:'money'}]},
+    {offset:5,tag:'quit',tagLabel:'퇴사',tasks:[{t:'퇴사',d:'프리랜서 수입이 안정된 후 퇴사',c:'admin'},{t:'국민연금/건강보험 전환',d:'지역가입자로 전환 신청',c:'admin'},{t:'홈오피스 or 공유오피스 계약',d:'본격적인 프리랜서 업무 환경 세팅',c:'admin'}]},
+  ],
+  rest:m=>[
+    {offset:0,tag:'save',tagLabel:'저축',tasks:[{t:'런웨이 최종 확인',d:`현재 저축 + 퇴직금으로 ${m}개월 이상 확보`,c:'money'},{t:'고정비 최소화',d:'불필요한 구독/보험 정리',c:'money'},{t:'쉬는 동안 하고 싶은 리스트 작성',d:'명상, 여행, 독서, 운동 등',c:'wellness'}]},
+    {offset:1,tag:'quit',tagLabel:'퇴사',tasks:[{t:'퇴사 의사 전달',d:'1개월 전 공식 통보',c:'admin'},{t:'연차 소진',d:'남은 연차 모두 사용',c:'admin'},{t:'퇴직금/건강보험 처리',d:'임의계속가입 신청 (2개월 내)',c:'admin'}]},
+    {offset:2,tag:'dream',tagLabel:'쉼 시작',tasks:[{t:'첫 2주: 완전한 방전',d:'아무것도 안 하기. 죄책감 금지.',c:'wellness'},{t:'수면 패턴 리셋',d:'7~8시간 수면 + 오전 루틴 만들기',c:'wellness'},{t:'힐링 프로그램 시작',d:'명상, 요가, 산책 등 몸과 마음 회복',c:'wellness'}]},
+    {offset:3,tag:'prep',tagLabel:'준비',tasks:[{t:'다음 스텝 고민',d:'충분히 쉬었으면, 천천히 다음을 그려보기',c:'career'},{t:'가벼운 네트워킹',d:'급하지 않은 만남으로 시야 넓히기',c:'career'},{t:'런웨이 체크',d:'남은 자금 확인 후 복귀 타이밍 결정',c:'money'}]},
+  ],
+  change:m=>[
+    {offset:0,tag:'action',tagLabel:'행동',tasks:[{t:'이력서/포트폴리오 업데이트',d:'현재 성과 중심으로 리뉴얼',c:'career'},{t:'목표 기업 리스트 작성',d:'연봉, 문화, 성장성 기준 10개 선정',c:'career'},{t:'런웨이 확보',d:`매월 ${m}만원 저축 — 이직 실패 대비`,c:'money'}]},
+    {offset:1,tag:'action',tagLabel:'행동',tasks:[{t:'채용 플랫폼 프로필 활성화',d:'원티드, 리멤버, 링크드인 프로필 최적화',c:'career'},{t:'코딩 테스트/면접 준비',d:'예상 면접 질문 30개 답변 준비',c:'career'},{t:'연봉 협상 시뮬레이션',d:'시장 연봉 데이터 기반 협상 전략 수립',c:'money'}]},
+    {offset:2,tag:'action',tagLabel:'행동',tasks:[{t:'본격 지원 시작',d:'주 3곳 이상 지원 — 면접 경험 축적',c:'career'},{t:'면접 피드백 정리',d:'매 면접 후 개선점 기록',c:'career'},{t:'최종 합격 & 연봉 협상',d:'런웨이 데이터로 협상 여유 확보',c:'money'}]},
+    {offset:3,tag:'quit',tagLabel:'퇴사&입사',tasks:[{t:'퇴사',d:'인수인계 완료 후 퇴사',c:'admin'},{t:'퇴직금/연차 정산',d:'퇴직금 수령 + 미사용 연차 수당',c:'money'},{t:'새 회사 입사',d:'더 나은 환경에서 새 출발!',c:'career'}]},
+  ],
+  bucket:m=>[
+    {offset:0,tag:'action',tagLabel:'행동',tasks:[{t:'버킷리스트 작성',d:'꼭 하고 싶은 것 30개 리스트 만들기',c:'bucket'},{t:'우선순위 정하기',d:'꼭 해야 할 것 vs 좋으면 좋은 것 분류',c:'bucket'},{t:'예산 책정',d:'각 항목별 예상 비용 계산',c:'money'}]},
+    {offset:1,tag:'dream',tagLabel:'실행',tasks:[{t:'콘서트/공연 예약',d:'선호 아티스트 공연 일정 확인 & 예약',c:'bucket'},{t:'맛집 투어 시작',d:'한 달에 3곳 이상 새로운 맛집 도전',c:'bucket'},{t:'주말 당일치기 여행',d:'가까운 도시들 탐방 (강릉, 남이섬 등)',c:'travel'}]},
+    {offset:2,tag:'dream',tagLabel:'계속',tasks:[{t:'비전보드 만들기',d:'완성하고 싶은 모습 시각화 & 정리',c:'bucket'},{t:'취미 클래스 등록',d:'요리, 사진, 악기 등 배우고 싶은 것',c:'bucket'},{t:'친구 여행 계획',d:'함께 가고 싶던 사람들과 여행 일정 잡기',c:'travel'}]},
+  ]
+};
+
+const travelDestinations=[
+  {flag:'🇹🇭',name:'태국 (치앙마이)',cost:'월 80~120만원',visa:'90일 무비자',best:'11월~2월',book:'2~3개월 전',news:'디지털노마드 비자 신설로 장기 체류 편리해짐'},
+  {flag:'🇵🇹',name:'포르투갈 (리스본)',cost:'월 150~200만원',visa:'90일 무비자 (쉥겐)',best:'4월~10월',book:'3~4개월 전',news:'유럽 내 디지털노마드 허브로 부상, 물가 안정적'},
+  {flag:'🇯🇵',name:'일본 (오사카/후쿠오카)',cost:'월 130~180만원',visa:'90일 무비자',best:'3월~5월, 10월~11월',book:'2~3개월 전',news:'엔저 지속으로 체류 비용 부담 감소'},
+  {flag:'🇻🇳',name:'베트남 (호치민/다낭)',cost:'월 60~100만원',visa:'45일 무비자',best:'12월~4월',book:'1~2개월 전',news:'E-비자로 90일까지 연장 가능, 물가 매우 저렴'},
+];
+
+const partnerMap={
+  travel:[{e:'plane',n:'항공권 최저가 알림',d:'퇴사 시점에 맞춘 최적 항공권',t:'예약 시 -12%'},{e:'home',n:'장기 숙소 매칭',d:'한 달 살기, 에어비앤비 장기할인',t:'월 40만원~'},{e:'shield-check',n:'여행자 보험',d:'장기 여행 특화 보험 비교',t:'런웨이 보호'},{e:'globe',n:'현지 가이드 연결',d:'한 달 살기 커뮤니티 & 투어',t:'첫 달 무료'}],
+  freelance:[{e:'building',n:'공유오피스 할인',d:'전국 코워킹 최대 30% 할인',t:'월 15만원~'},{e:'laptop',n:'프리랜서 플랫폼',d:'개발/디자인 일감 매칭',t:'바로 시작'},{e:'file-text',n:'프리랜서 세무',d:'3.3% 원천징수, 종소세 절세',t:'절세 효과'},{e:'book-open',n:'스킬업 강의',d:'포트폴리오/스킬 강의 추천',t:'30% 할인'}],
+  rest:[{e:'heart',n:'명상 & 힐링',d:'번아웃 회복 맞춤 프로그램',t:'첫 달 무료'},{e:'home',n:'한 달 살기',d:'제주, 강릉, 양양 힐링 스테이',t:'월 80만원~'},{e:'file-text',n:'퇴직금 절세',d:'수령 방식별 세금 차이 분석',t:'최대 200만 절약'},{e:'book',n:'자기계발 클래스',d:'쉬면서 배우고 싶은 것 큐레이션',t:'맞춤 추천'}],
+  change:[{e:'pen-line',n:'이력서 컨설팅',d:'현직 리크루터 피드백 코칭',t:'합격률 3배'},{e:'target',n:'커리어 코칭',d:'이직 전략, 연봉 협상 1:1',t:'만족도 96%'},{e:'file-text',n:'퇴직금 정산',d:'퇴사 시점별 최적 정산',t:'맞춤 절세'},{e:'briefcase',n:'맞춤 채용 공고',d:'경력+희망 연봉 매칭 포지션',t:'실시간'}],
+  bucket:[{e:'music',n:'콘서트 예약',d:'인기 공연 선예매 & 할인 정보',t:'조기 예매 -15%'},{e:'utensils',n:'맛집 예약',d:'숨은 맛집 발굴 & 미슐랭 정보',t:'예약 완료'},{e:'camera',n:'여행 계획',d:'당일치기 코스 & 사진 명소',t:'1박 패키지'},{e:'pen',n:'취미 클래스',d:'요리, 악기, 사진 등 강좌',t:'첫 수강 무료'}]
+};
+
+function generatePlan(){
+  const income=+document.getElementById('income').value||300;
+  const expense=+document.getElementById('expense').value||180;
+  const savings=+document.getElementById('savings').value||2000;
+  const severance=+document.getElementById('severance').value||0;
+  const penalty=+document.getElementById('penaltySlider').value;
+  const d=D[selectedDream]||D.rest;
+  const totalFund=savings+severance,monthlyBurn=expense;
+  const runway=Math.round((totalFund/monthlyBurn)*10)/10;
+  const needed=d.months*monthlyBurn+d.extra;
+  const gap=Math.max(0,needed-totalFund);
+  const monthlySave=income-expense;
+  const monthsToGoal=monthlySave>0?Math.ceil(gap/monthlySave):99;
+  const now=new Date();
+  const goalDate=new Date(now);goalDate.setMonth(goalDate.getMonth()+monthsToGoal);
+
+  goStep(4);
+
+  document.getElementById('resultTitle').textContent=`"${d.name}" 플랜`;
+  document.getElementById('resultSub').textContent=gap<=0?'지금 바로 실행 가능한 상태입니다!':`목표까지 ${gap.toLocaleString()}만원 더 필요 — ${monthsToGoal}개월 후 실행 가능`;
+  document.getElementById('resultRunway').innerHTML=`${runway}<span>개월</span>`;
+  document.getElementById('resultDate').textContent=`자금 소진 예정: ${fmt(new Date(now.getFullYear(),now.getMonth()+Math.floor(runway),1))}`;
+  setTimeout(()=>{document.getElementById('resultBar').style.width=Math.min(runway/d.months*100,100)+'%'},200);
+
+  document.getElementById('resultStats').innerHTML=`
+    <div class="result-stat"><div class="result-stat-label">현재 자금</div><div class="result-stat-value">${totalFund.toLocaleString()}만원</div></div>
+    <div class="result-stat"><div class="result-stat-label">필요 자금</div><div class="result-stat-value">${needed.toLocaleString()}만원</div></div>
+    <div class="result-stat"><div class="result-stat-label">월 저축 가능</div><div class="result-stat-value pos">+${monthlySave.toLocaleString()}만원</div></div>
+    <div class="result-stat"><div class="result-stat-label">${d.name}까지</div><div class="result-stat-value">${gap<=0?'바로 가능':monthsToGoal+'개월'}</div></div>`;
+
+  // CALENDAR
+  const tasks=(calendarData[selectedDream]||calendarData.rest)(monthlySave);
+  const cal=document.getElementById('calendarPlan');
+  const tagClass={save:'tag-save',action:'tag-action',quit:'tag-quit',dream:'tag-dream',prep:'tag-prep'};
+  const taskClass={money:'task-money',career:'task-career',travel:'task-travel',admin:'task-admin',wellness:'task-wellness',bucket:'task-bucket'};
+  cal.innerHTML=tasks.map((month,i)=>{
+    const mDate=new Date(now.getFullYear(),now.getMonth()+month.offset,1);
+    const isFirst=i===0;
+    return`<div class="calendar-month">
+      <div class="cal-month-header" onclick="this.nextElementSibling.classList.toggle('open')">
+        <span>${fmt(mDate)}</span>
+        <span class="month-tag ${tagClass[month.tag]}">${month.tagLabel}</span>
+      </div>
+      <div class="cal-tasks${isFirst?' open':''}">
+        ${month.tasks.map(t=>`<div class="cal-task">
+          <div class="cal-task-check" onclick="this.classList.toggle('checked')">✓</div>
+          <div class="cal-task-info">
+            <div class="cal-task-title">${t.t}</div>
+            <div class="cal-task-desc">${t.d}</div>
+            <span class="cal-task-tag ${taskClass[t.c]}">${{money:'재정',career:'커리어',travel:'여행',admin:'행정',wellness:'웰니스',bucket:'버킷'}[t.c]}</span>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  // TRAVEL INFO
+  const tc=document.getElementById('travelInfoContainer');
+  if(selectedDream==='travel'){
+    const qDate=new Date(now.getFullYear(),now.getMonth()+monthsToGoal+3,1);
+    tc.innerHTML=`<div class="travel-info-section">
+      <h4><i data-lucide="globe"></i> 추천 여행지 & 맞춤 정보</h4>
+      ${travelDestinations.map(t=>`<div class="travel-dest">
+        <div class="travel-dest-flag">${t.flag}</div>
+        <div class="travel-dest-info">
+          <strong>${t.name}</strong>
+          <span>월 체류비 ${t.cost}</span>
+          <div class="travel-meta">
+            <span class="travel-meta-tag"><i data-lucide="shield-check"></i> ${t.visa}</span>
+            <span class="travel-meta-tag"><i data-lucide="calendar-days"></i> 베스트: ${t.best}</span>
+            <span class="travel-meta-tag"><i data-lucide="plane"></i> 예약: ${t.book}</span>
+          </div>
+        </div>
+      </div>`).join('')}
+      <div class="travel-alert">
+        <span><i data-lucide="pin"></i></span>
+        <div><strong>플랜 기준 출발 예정:</strong> ${fmt(qDate)} — 이 시점 기준으로 항공권 최저가 알림과 비자 만료일 리마인더를 자동으로 보내드립니다.</div>
+      </div>
+    </div>`;
+  } else { tc.innerHTML=''; }
+
+  // PARTNERS
+  const partners=partnerMap[selectedDream]||partnerMap.rest;
+  document.getElementById('partnerGrid').innerHTML=partners.map(p=>`<div class="partner-card">
+    <span class="partner-card-emoji"><i data-lucide="${p.e}"></i></span>
+    <strong>${p.n}</strong><span>${p.d}</span>
+    <span class="ptag">${p.t}</span>
+  </div>`).join('');
+
+  document.getElementById('commitText').textContent=`매주 플랜 체크인을 완료합니다. 지키지 못하면 주당 ${penalty.toLocaleString()}원의 페널티를 납부합니다. 지키면 100% 돌려받습니다.`;
+  document.getElementById('commitAmount').textContent=`주간 페널티: ${penalty.toLocaleString()}원`;
+
+  lucide.createIcons();
+}
+
+function submitEmail(){const b=document.getElementById('ctaBtn'),i=document.getElementById('emailInput');if(i.value&&i.value.includes('@')){b.textContent='등록 완료!';b.style.background='#22C55E';b.style.color='white';setTimeout(()=>{b.textContent='사전 등록';b.style.background='white';b.style.color='#2D5BFF'},2500)}else{i.style.borderColor='#F87171';setTimeout(()=>{i.style.borderColor='rgba(255,255,255,0.3)'},1500)}}
+
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>50?'rgba(255,255,255,0.95)':'rgba(255,255,255,0.85)'});
+
+lucide.createIcons();
+</script>
+</body>
+</html>
